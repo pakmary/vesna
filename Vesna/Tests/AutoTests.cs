@@ -8,10 +8,9 @@ using Vesna.Properties;
 namespace Vesna.Tests {
 	[TestFixture]
 	class AutoTests {
-
 		[OneTimeSetUp]
 		public void SetUp() {
-			Program.UpdateBaseFile(@"D:\Projects\Vesna\2019\Vesna\Misc\database_inspector.mdb");
+			Program.UpdateBaseFile(@"D:\Projects\Vesna\Misc\database_inspector.mdb");
 		}
 
 		[TestCase("4 5 1,3", "10 8 9 10", 
