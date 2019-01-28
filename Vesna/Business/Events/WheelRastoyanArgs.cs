@@ -1,4 +1,4 @@
-namespace Vesna.VesnaEventArgs {
+namespace Vesna.Business.Events {
 	public class WheelDistanceArgs : System.EventArgs {
 		public WheelDistanceArgs(int index, float distanceToNextAxis) {
 			DistanceToNextAxis = distanceToNextAxis;

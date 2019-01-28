@@ -1,7 +1,6 @@
 using System;
 
-namespace Vesna.Business.Parst {
-	[Serializable]
+namespace Vesna.Business.Data {
 	public class Trailer {
 		public string Kind { get; set; }
 		public string Mark { get; set; }

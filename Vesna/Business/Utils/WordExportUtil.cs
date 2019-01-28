@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Forms;
-using Vesna.Business;
 using Application = System.Windows.Forms.Application;
 
-namespace Vesna.Utils {
+namespace Vesna.Business.Utils {
 	internal static class WordExportUtil {
 		private static Microsoft.Office.Interop.Word.Application _wordApp;
-		public static void OpenWordFile() {}
 
 		public static void Export(Auto curTc) {
 			Fill(curTc);
@@ -38,7 +36,7 @@ namespace Vesna.Utils {
 				Replace("[ДАТА_ПОВЕРКИ]", auto.Scales.CheckDateFrom.ToString("dd.MM.yyyy"), ref doc);
 				Replace("[ДАТА_ОКОНЧАНИЯ_ПОВЕРКИ]", auto.Scales.CheckDateTo.ToString("dd.MM.yyyy"), ref doc);
 				Replace("[ЗАВОД_НОМЕР_ВЕСОВ]", auto.Scales.Number, ref doc);
-				Replace("[ХАРАКТЕР_НАРУШЕНИЯ]", auto.GetHarakterNarush(), ref doc);
+				Replace("[ХАРАКТЕР_НАРУШЕНИЯ]", GetHarakterNarush(auto), ref doc);
 
 				Replace("[ТАБ_ТИП_1]", SpravochnikUtil.GetAutoName(auto.AutoType), ref doc);
 				Replace("[ТАБ_ТИП_2]", auto.Trailer1.Kind, ref doc);
@@ -69,28 +67,28 @@ namespace Vesna.Utils {
 				Replace("[ХАРАК_ПЕРЕВОЗ]", auto.HarakterGruza, ref doc);
 
 				Replace("[ВИД_ГРУЗ]", auto.VidGruza, ref doc);
-				Replace("[МАССА_ДОПУСТ]", auto.Mass.LimitTon.ToString(), ref doc);
-				Replace("[МАССА_ФАКТИЧ]", auto.Mass.ValueTon.ToString(), ref doc);
+				Replace("[МАССА_ДОПУСТ]", auto.FullWeightData.Limit.ToString(), ref doc);
+				Replace("[МАССА_ФАКТИЧ]", auto.FullWeightData.Value.ToString(), ref doc);
 
 				string tempStringRazmerVredaOs = "";
 				float tempSumRazmerVreda = 0;
 				for (int i = 0; i < 10; i++) {
-					string r = string.Empty;
-					string nf = string.Empty;
-					string nd = string.Empty;
-					string pre = string.Empty;
-					string prc = string.Empty;
+					string axisDistanceToNext = string.Empty;
+					string axisWeightValue = string.Empty;
+					string axisLoadLimit = string.Empty;
+					string axisOver = string.Empty;
+					string axisOverPercent = string.Empty;
 					bool isPnevmo = false;
 					bool isDouble = false;
 					bool isUp = false;
 					if (i < auto.AxisList.Count - 1) {
-						r = auto.AxisList[i].DistanceToNext.ToString(CultureInfo.InvariantCulture);
+						axisDistanceToNext = auto.AxisList[i].DistanceToNext.ToString(CultureInfo.InvariantCulture);
 					}
 					if (i < auto.AxisList.Count) {
-						nf = auto.AxisList[i].LoadValue.ToString(CultureInfo.InvariantCulture);
-						nd = auto.AxisList[i].LoadLimit.ToString(CultureInfo.InvariantCulture);
-						pre = Math.Round(auto.AxisList[i].Over, 2).ToString(CultureInfo.InvariantCulture);
-						prc = Math.Round(auto.AxisList[i].Procent, 2) + "%";
+						axisWeightValue = auto.AxisList[i].WeightValue.ToString(CultureInfo.InvariantCulture);
+						axisLoadLimit = auto.AxisList[i].LoadLimit.ToString(CultureInfo.InvariantCulture);
+						axisOver = Math.Round(auto.AxisList[i].GetOver(), 2).ToString(CultureInfo.InvariantCulture);
+						axisOverPercent = Math.Round(auto.AxisList[i].GetOverPercent(), 2) + "%";
 						isPnevmo = auto.AxisList[i].IsPnevmo;
 						isDouble = auto.AxisList[i].IsDouble;
 						isUp = auto.AxisList[i].IsUpload;
@@ -98,13 +96,12 @@ namespace Vesna.Utils {
 						tempSumRazmerVreda += auto.AxisList[i].Damage;
 					}
 
-					Replace("[О" + (i + 1) + "]", r, ref doc);
-					Replace("[Н_Ф" + (i + 1) + "]", nf, ref doc);
-					Replace("[Н_Д" + (i + 1) + "]", nd, ref doc);
-					Replace("[Н_П" + (i + 1) + "]", pre, ref doc);
-					Replace("[Н_Р" + (i + 1) + "]", prc, ref doc);
-					Replace("[Д" + (i + 1) + "]",
-						string.Format("{0} / {1} / {2}", isDouble ? "+" : "-", isPnevmo ? "+" : "-", isUp ? "+" : "-"), ref doc);
+					Replace("[О" + (i + 1) + "]", axisDistanceToNext, ref doc);
+					Replace("[Н_Ф" + (i + 1) + "]", axisWeightValue, ref doc);
+					Replace("[Н_Д" + (i + 1) + "]", axisLoadLimit, ref doc);
+					Replace("[Н_П" + (i + 1) + "]", axisOver, ref doc);
+					Replace("[Н_Р" + (i + 1) + "]", axisOverPercent, ref doc);
+					Replace("[Д" + (i + 1) + "]", $"{(isDouble ? "+" : "-")} / {(isPnevmo ? "+" : "-")} / {(isUp ? "+" : "-")}", ref doc);
 				}
 				tempStringRazmerVredaOs += tempSumRazmerVreda;
 				//Replace("[ДР_НАРУШ]", tb_drug_narush.Text, ref doc);
@@ -116,9 +113,9 @@ namespace Vesna.Utils {
 				Replace("[ФИО_ИНСП]", auto.ImyaInspektora, ref doc);
 				Replace("[ФИО_ВОД]", auto.ImyaVodit, ref doc);
 				Replace("[ФИО_ВОД]", auto.ImyaVodit, ref doc);
-				Replace("[РАЗМ_УЩЕРБА]", auto.FullDamage.ToString(), ref doc);
+				Replace("[РАЗМ_УЩЕРБА]", auto.FullAutoDamage.ToString(), ref doc);
 
-				Replace("[РАЗМЕР_ВРЕДА_МАССА]", auto.Mass.Damage.ToString(), ref doc);
+				Replace("[РАЗМЕР_ВРЕДА_МАССА]", auto.FullWeightData.Damage.ToString(), ref doc);
 				Replace("[РАЗМЕР_ВРЕДА_ОСИ_STRING]", tempStringRazmerVredaOs, ref doc);
 				Replace("[КОМ_ИНДЕКС]", auto.SpecIndex.ToString(), ref doc);
 
@@ -144,6 +141,22 @@ namespace Vesna.Utils {
 		private static void Replace(string seach, string replace, ref Microsoft.Office.Interop.Word.Document doc) {
 			Microsoft.Office.Interop.Word.Range r = doc.Range();
 				r.Find.Execute(FindText: seach, ReplaceWith: replace);
+		}
+
+		public static string GetHarakterNarush(Auto auto) {
+			bool weightOver = auto.FullWeightData.HasOver;
+			bool axisOver = auto.HasAxisOver;
+
+			if (weightOver && axisOver) {
+				return "с превышением предельно допустимой массы транспортных средств и с превышением предельно допустимых осевых нагрузок";
+			}
+			if (weightOver) {
+				return "с превышением предельно допустимой массы транспортных средств";
+			}
+			if (axisOver) {
+				return "с превышением предельно допустимых осевых нагрузок";
+			}
+			return "без превышения допустимой массы и допустимых осевых нагрузок";
 		}
 	}
 }

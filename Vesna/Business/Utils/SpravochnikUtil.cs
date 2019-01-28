@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using System.Windows.Forms;
-using Vesna.Business;
+using Vesna.Business.Data;
 
-namespace Vesna.Utils {
+namespace Vesna.Business.Utils {
 	static class SpravochnikUtil {
 		public static object[] GetItemCollections(string curTable, string curCol, bool sort = true, string param = "") {
 			var oc = new List<object>();

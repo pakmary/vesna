@@ -124,23 +124,26 @@ namespace Vesna.Forms {
 			// 
 			// b_calc
 			// 
-			this.b_calc.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.b_calc.Location = new System.Drawing.Point(12, 515);
+			this.b_calc.BackColor = System.Drawing.Color.Snow;
+			this.b_calc.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.b_calc.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.b_calc.Location = new System.Drawing.Point(9, 515);
 			this.b_calc.Name = "b_calc";
-			this.b_calc.Size = new System.Drawing.Size(140, 37);
+			this.b_calc.Size = new System.Drawing.Size(135, 32);
 			this.b_calc.TabIndex = 2;
 			this.b_calc.Text = "Рассчитать";
-			this.b_calc.UseVisualStyleBackColor = true;
+			this.b_calc.UseVisualStyleBackColor = false;
 			this.b_calc.Click += new System.EventHandler(this.b_calc_Click);
 			// 
 			// b_act
 			// 
-			this.b_act.BackColor = System.Drawing.SystemColors.Control;
-			this.b_act.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.b_act.BackColor = System.Drawing.Color.Snow;
+			this.b_act.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.b_act.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.b_act.ForeColor = System.Drawing.Color.Red;
-			this.b_act.Location = new System.Drawing.Point(158, 515);
+			this.b_act.Location = new System.Drawing.Point(168, 515);
 			this.b_act.Name = "b_act";
-			this.b_act.Size = new System.Drawing.Size(140, 37);
+			this.b_act.Size = new System.Drawing.Size(135, 32);
 			this.b_act.TabIndex = 3;
 			this.b_act.Text = "Создать акт";
 			this.b_act.UseVisualStyleBackColor = false;
@@ -149,9 +152,9 @@ namespace Vesna.Forms {
 			// wheelListControl
 			// 
 			this.wheelListControl.BackColor = System.Drawing.Color.White;
-			this.wheelListControl.Location = new System.Drawing.Point(0, 27);
+			this.wheelListControl.Location = new System.Drawing.Point(9, 27);
 			this.wheelListControl.Name = "wheelListControl";
-			this.wheelListControl.Size = new System.Drawing.Size(1250, 482);
+			this.wheelListControl.Size = new System.Drawing.Size(1225, 482);
 			this.wheelListControl.TabIndex = 1;
 			// 
 			// MainForm
@@ -164,6 +167,7 @@ namespace Vesna.Forms {
 			this.Controls.Add(this.b_calc);
 			this.Controls.Add(this.wheelListControl);
 			this.Controls.Add(this.menuStrip1);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MainMenuStrip = this.menuStrip1;
 			this.MaximizeBox = false;

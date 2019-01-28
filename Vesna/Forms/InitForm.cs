@@ -8,7 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Vesna.Business;
-using Vesna.Utils;
+using Vesna.Business.Data;
+using Vesna.Business.Utils;
 
 namespace Vesna.Forms {
 	public partial class InitForm : Form {

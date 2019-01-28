@@ -1,4 +1,4 @@
-﻿namespace Vesna.Business {
+﻿namespace Vesna.Business.Data {
 	public enum RoadType {
 		R10Tc = 1,
 		R115Tc = 2,

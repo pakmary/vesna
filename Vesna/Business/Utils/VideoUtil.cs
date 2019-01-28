@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using AForge.Video.DirectShow;
 
-namespace Vesna.Utils {
+namespace Vesna.Business.Utils {
 	public static class VideoUtil {
 		public static VideoCaptureDevice VideoSource = null;
 		

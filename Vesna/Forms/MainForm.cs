@@ -4,7 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using Vesna.Business;
-using Vesna.Utils;
+using Vesna.Business.Utils;
 
 namespace Vesna.Forms {
 	public partial class MainForm : Form {

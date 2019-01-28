@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Windows.Forms;
 using Microsoft.Office.Interop.Word;
-using Vesna.VesnaEventArgs;
+using Vesna.Business.Events;
 using Point = System.Drawing.Point;
 
 namespace Vesna.Controls {
@@ -27,7 +27,7 @@ namespace Vesna.Controls {
 		private WheelControlState _wheelState;
 
 		public WheelControlState WheelState {
-			get { return _wheelState; }
+			get => _wheelState;
 			set {
 				var e = new WheelStateArgs(Index, _wheelState, value);
 				_wheelState = value;
@@ -53,32 +53,28 @@ namespace Vesna.Controls {
 					b_add.Visible = true;
 					flag = false;
 				}
-				cbDouble.Visible = cbPnevmo.Visible = cbUpper.Visible = 
-						pb_fix.Enabled = l_procent.Visible = l_pereves.Visible = l_nagDop.Visible = tb_nag.Visible = flag;
+				cbDouble.Visible = cbPnevmo.Visible = cbUpper.Visible = tb_nagruz.Visible =
+						pb_fix.Enabled = l_procent.Visible = l_pereves.Visible = l_nagDop.Visible = tb_scales_value.Visible = flag;
 
-				if (WheelStatusChanged != null) {
-					WheelStatusChanged(this, e);
-				}
+				WheelStatusChanged?.Invoke(this, e);
 			}
 		}
 
-		public float Nagruzka {
+		public float WeightValue {
 			get {
-				if (tb_nag.Text == "") {
+				if (tb_scales_value.Text == "") {
 					return 0;
 				}
 				try {
-					return float.Parse(tb_nag.Text);
+					return float.Parse(tb_scales_value.Text);
 				} catch {}
 				return 0;
 			}
 			set {
 				var e = new WheelLoadArgs(Index, value);
-				tb_nag.Text = value.ToString(CultureInfo.InvariantCulture).Replace(".", ",");
+				tb_scales_value.Text = value.ToString(CultureInfo.InvariantCulture).Replace(".", ",");
 
-				if (WheelNagruzkaChanged != null) {
-					WheelNagruzkaChanged(this, e);
-				} //событие -  изменение нагрузки
+				WheelNagruzkaChanged?.Invoke(this, e);
 			}
 		}
 
@@ -94,20 +90,23 @@ namespace Vesna.Controls {
 			}
 			set {
 				l_nagDop.Text = value.ToString();
-				if (value < Nagruzka) //при изменении допустимой массы автомотически меняется процент и перевесом
-				{
-					double temp_perev = Math.Round(Nagruzka - value, 2);
-					double temp_proc = Math.Round(((temp_perev/value)*100), 1);
-					l_pereves.Text = temp_perev.ToString();
-					l_procent.Text = temp_proc + "%";
-				} else {
-					l_pereves.Text = "0";
-					l_procent.Text = "0";
-				}
+				UpdatePercentAndOverValue(value);
 			}
 		}
 
-		public float RastoyanDoSledOs {
+		private void UpdatePercentAndOverValue(float limitValue) {
+			if (limitValue < WeightValue) {
+				double temp_perev = Math.Round(WeightValue - limitValue, 2);
+				double temp_proc = Math.Round(((temp_perev / limitValue) * 100), 1);
+				l_pereves.Text = temp_perev.ToString();
+				l_procent.Text = temp_proc + "%";
+			} else {
+				l_pereves.Text = "0";
+				l_procent.Text = "0";
+			}
+		}
+
+		public float DistanceToNext {
 			get {
 				if (tb_ras.Text == string.Empty) {
 					return 0;
@@ -120,15 +119,13 @@ namespace Vesna.Controls {
 			set {
 				var e = new WheelDistanceArgs(Index, value);
 				tb_ras.Text = value.ToString(CultureInfo.InvariantCulture);
-				if (WheelRastoyanChanged != null) {
-					WheelRastoyanChanged(this, e);
-				} //событие -  изменение растояния
+				WheelRastoyanChanged?.Invoke(this, e);
 			}
 		}
 
 		public bool IsUpper {
-			get { return cbUpper.IsOn; }
-			set { cbUpper.IsOn = value; }
+			get => cbUpper.IsOn;
+			set => cbUpper.IsOn = value;
 		}
 
 		#endregion
@@ -156,10 +153,10 @@ namespace Vesna.Controls {
 		}
 
 		private void ClearWheel() {
-			Nagruzka = 0;
+			WeightValue = 0;
 			NagruzkaDopust = 0;
-			RastoyanDoSledOs = 0;
-			tb_nag.Enabled = false;
+			DistanceToNext = 0;
+			tb_scales_value.Enabled = false;
 			WheelPic.Image = null;
 			pb_fix.Image = null;
 			IsFixed = false;
@@ -175,12 +172,12 @@ namespace Vesna.Controls {
 
 		private void tb_ras_Leave(object sender, EventArgs e) {
 			tb_ras.Text = tb_ras.Text.Replace('.', ',');
-			RastoyanDoSledOs = float.Parse(tb_ras.Text);
+			DistanceToNext = float.Parse(tb_ras.Text);
 		}
 
 		private void tb_nag_Leave(object sender, EventArgs e) {
-			tb_nag.Text = tb_nag.Text.Replace('.', ',');
-			Nagruzka = float.Parse(tb_nag.Text);
+			tb_scales_value.Text = tb_scales_value.Text.Replace('.', ',');
+			WeightValue = float.Parse(tb_scales_value.Text);
 		}
 
 		private void tb_KeyPress(object sender, KeyPressEventArgs e) {
@@ -215,7 +212,7 @@ namespace Vesna.Controls {
 
 		private void Wheel_DoubleClick(object sender, EventArgs e) {
 			if (ModifierKeys == Keys.Shift) {
-				tb_nag.Enabled = true;
+				tb_scales_value.Enabled = true;
 			}
 		}
 
@@ -236,7 +233,7 @@ namespace Vesna.Controls {
 
 		private void WheelControl_MouseEnter(object sender, EventArgs e) {
 			if (Program.User == "Admin") {
-				tb_nag.Enabled = true;
+				tb_scales_value.Enabled = true;
 				Fix();
 			}
 		}

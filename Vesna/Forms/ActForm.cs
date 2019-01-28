@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Windows.Forms;
 using Vesna.Business;
-using Vesna.Utils;
+using Vesna.Business.Utils;
 
 namespace Vesna.Forms {
 	public partial class ActForm : Form {
 		private Auto _auto;
+		private AutoRepository _autoRepository = new AutoRepository();
 
 		public ActForm() {
 			InitializeComponent();
@@ -249,7 +250,7 @@ namespace Vesna.Forms {
 
 			//this.tb_primecanie.Text = curTC.Primechanie;
 
-			l_razm_usherba.Text = _auto.FullDamage.ToString();
+			l_razm_usherba.Text = _auto.FullAutoDamage.ToString();
 			//this.l_kom_index.Text =  curTC.SpecIndex.ToString();
 
 		}
@@ -271,7 +272,7 @@ namespace Vesna.Forms {
 		private int FillAndSaveTc() {
 			if (CheckIt()) {
 				FillCurTCFromAct();
-				int r = _auto.Save();
+				int r = _autoRepository.Save(_auto);
 				SetCanEditAct(_auto.IsCanEdit);
 				l_nomer_act.Text = _auto.CarId + "." + _auto.Id;
 				return r;

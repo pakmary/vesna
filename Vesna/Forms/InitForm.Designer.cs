@@ -36,7 +36,6 @@
 			this.cb_Vid_Dor = new System.Windows.Forms.ComboBox();
 			this.cb_Level = new System.Windows.Forms.ComboBox();
 			this.cb_Clothes = new System.Windows.Forms.ComboBox();
-			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
@@ -45,66 +44,69 @@
 			// label_14
 			// 
 			this.label_14.AutoSize = true;
-			this.label_14.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-			this.label_14.Location = new System.Drawing.Point(12, 341);
+			this.label_14.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.label_14.Location = new System.Drawing.Point(11, 300);
 			this.label_14.Name = "label_14";
-			this.label_14.Size = new System.Drawing.Size(49, 18);
+			this.label_14.Size = new System.Drawing.Size(43, 20);
 			this.label_14.TabIndex = 53;
 			this.label_14.Text = "Весы:";
 			// 
 			// cb_vesi_zavod_nomer
 			// 
+			this.cb_vesi_zavod_nomer.BackColor = System.Drawing.Color.Snow;
 			this.cb_vesi_zavod_nomer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cb_vesi_zavod_nomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+			this.cb_vesi_zavod_nomer.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.cb_vesi_zavod_nomer.FormattingEnabled = true;
-			this.cb_vesi_zavod_nomer.Location = new System.Drawing.Point(164, 338);
+			this.cb_vesi_zavod_nomer.Location = new System.Drawing.Point(162, 297);
 			this.cb_vesi_zavod_nomer.Name = "cb_vesi_zavod_nomer";
-			this.cb_vesi_zavod_nomer.Size = new System.Drawing.Size(578, 26);
+			this.cb_vesi_zavod_nomer.Size = new System.Drawing.Size(578, 28);
 			this.cb_vesi_zavod_nomer.TabIndex = 52;
 			this.cb_vesi_zavod_nomer.SelectedIndexChanged += new System.EventHandler(this.cb_vesi_zavod_nomer_SelectedValueChanged);
 			// 
 			// label12
 			// 
 			this.label12.AutoSize = true;
-			this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-			this.label12.Location = new System.Drawing.Point(12, 171);
+			this.label12.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.label12.Location = new System.Drawing.Point(11, 133);
 			this.label12.Name = "label12";
-			this.label12.Size = new System.Drawing.Size(127, 18);
+			this.label12.Size = new System.Drawing.Size(104, 20);
 			this.label12.TabIndex = 51;
 			this.label12.Text = "Место контроля:";
 			// 
 			// label13
 			// 
 			this.label13.AutoSize = true;
-			this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-			this.label13.Location = new System.Drawing.Point(12, 137);
+			this.label13.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.label13.Location = new System.Drawing.Point(11, 101);
 			this.label13.Name = "label13";
-			this.label13.Size = new System.Drawing.Size(54, 18);
+			this.label13.Size = new System.Drawing.Size(45, 20);
 			this.label13.TabIndex = 50;
 			this.label13.Text = "ППВК:";
 			// 
 			// cb_mesto_prov
 			// 
-			this.cb_mesto_prov.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+			this.cb_mesto_prov.BackColor = System.Drawing.Color.Snow;
+			this.cb_mesto_prov.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.cb_mesto_prov.FormattingEnabled = true;
-			this.cb_mesto_prov.Location = new System.Drawing.Point(164, 168);
+			this.cb_mesto_prov.Location = new System.Drawing.Point(162, 130);
 			this.cb_mesto_prov.Name = "cb_mesto_prov";
-			this.cb_mesto_prov.Size = new System.Drawing.Size(578, 26);
+			this.cb_mesto_prov.Size = new System.Drawing.Size(578, 28);
 			this.cb_mesto_prov.TabIndex = 49;
 			// 
 			// cb_imya_ppvk
 			// 
-			this.cb_imya_ppvk.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+			this.cb_imya_ppvk.BackColor = System.Drawing.Color.Snow;
+			this.cb_imya_ppvk.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.cb_imya_ppvk.FormattingEnabled = true;
-			this.cb_imya_ppvk.Location = new System.Drawing.Point(164, 134);
+			this.cb_imya_ppvk.Location = new System.Drawing.Point(162, 98);
 			this.cb_imya_ppvk.Name = "cb_imya_ppvk";
-			this.cb_imya_ppvk.Size = new System.Drawing.Size(578, 26);
+			this.cb_imya_ppvk.Size = new System.Drawing.Size(578, 28);
 			this.cb_imya_ppvk.TabIndex = 48;
 			// 
 			// l_VesiAbout
 			// 
-			this.l_VesiAbout.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-			this.l_VesiAbout.Location = new System.Drawing.Point(160, 382);
+			this.l_VesiAbout.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.l_VesiAbout.Location = new System.Drawing.Point(159, 346);
 			this.l_VesiAbout.Name = "l_VesiAbout";
 			this.l_VesiAbout.Size = new System.Drawing.Size(421, 25);
 			this.l_VesiAbout.TabIndex = 54;
@@ -112,98 +114,93 @@
 			// 
 			// button2
 			// 
-			this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold);
-			this.button2.Location = new System.Drawing.Point(581, 439);
+			this.button2.BackColor = System.Drawing.Color.Snow;
+			this.button2.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.button2.Location = new System.Drawing.Point(617, 394);
 			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(161, 44);
+			this.button2.Size = new System.Drawing.Size(124, 37);
 			this.button2.TabIndex = 56;
 			this.button2.Text = "Войти";
-			this.button2.UseVisualStyleBackColor = true;
+			this.button2.UseVisualStyleBackColor = false;
 			this.button2.Click += new System.EventHandler(this.button2_Click);
 			// 
 			// label10
 			// 
 			this.label10.AutoSize = true;
-			this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-			this.label10.Location = new System.Drawing.Point(12, 222);
+			this.label10.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.label10.Location = new System.Drawing.Point(11, 181);
 			this.label10.Name = "label10";
-			this.label10.Size = new System.Drawing.Size(92, 18);
+			this.label10.Size = new System.Drawing.Size(76, 20);
 			this.label10.TabIndex = 58;
 			this.label10.Text = "Вид дороги:";
 			// 
 			// cb_Vid_Dor
 			// 
+			this.cb_Vid_Dor.BackColor = System.Drawing.Color.Snow;
 			this.cb_Vid_Dor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cb_Vid_Dor.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+			this.cb_Vid_Dor.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.cb_Vid_Dor.FormattingEnabled = true;
-			this.cb_Vid_Dor.Location = new System.Drawing.Point(164, 219);
+			this.cb_Vid_Dor.Location = new System.Drawing.Point(162, 178);
 			this.cb_Vid_Dor.Name = "cb_Vid_Dor";
-			this.cb_Vid_Dor.Size = new System.Drawing.Size(578, 26);
+			this.cb_Vid_Dor.Size = new System.Drawing.Size(578, 28);
 			this.cb_Vid_Dor.TabIndex = 57;
 			// 
 			// cb_Level
 			// 
+			this.cb_Level.BackColor = System.Drawing.Color.Snow;
 			this.cb_Level.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cb_Level.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+			this.cb_Level.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.cb_Level.FormattingEnabled = true;
 			this.cb_Level.Items.AddRange(new object[] {
             "Федерального значения",
             "Регионального, межмуниципального, местного значения, частные дороги "});
-			this.cb_Level.Location = new System.Drawing.Point(164, 253);
+			this.cb_Level.Location = new System.Drawing.Point(162, 212);
 			this.cb_Level.Name = "cb_Level";
-			this.cb_Level.Size = new System.Drawing.Size(578, 26);
+			this.cb_Level.Size = new System.Drawing.Size(578, 28);
 			this.cb_Level.TabIndex = 61;
 			// 
 			// cb_Clothes
 			// 
+			this.cb_Clothes.BackColor = System.Drawing.Color.Snow;
 			this.cb_Clothes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cb_Clothes.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+			this.cb_Clothes.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.cb_Clothes.FormattingEnabled = true;
 			this.cb_Clothes.Items.AddRange(new object[] {
             "С твёрдым покрытием",
             "С одеждой переходного типа"});
-			this.cb_Clothes.Location = new System.Drawing.Point(164, 287);
+			this.cb_Clothes.Location = new System.Drawing.Point(162, 246);
 			this.cb_Clothes.Name = "cb_Clothes";
-			this.cb_Clothes.Size = new System.Drawing.Size(578, 26);
+			this.cb_Clothes.Size = new System.Drawing.Size(578, 28);
 			this.cb_Clothes.TabIndex = 62;
-			// 
-			// label1
-			// 
-			this.label1.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.label1.Location = new System.Drawing.Point(13, 9);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(730, 28);
-			this.label1.TabIndex = 63;
-			this.label1.Text = "\"Весна\"";
 			// 
 			// label2
 			// 
 			this.label2.AutoSize = true;
 			this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Strikeout))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.label2.Location = new System.Drawing.Point(13, 93);
+			this.label2.Location = new System.Drawing.Point(11, 75);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(729, 20);
+			this.label2.Size = new System.Drawing.Size(734, 20);
 			this.label2.TabIndex = 64;
 			this.label2.Text = "                                                                                 " +
-    "                                                               ";
+    "                                                                ";
 			// 
 			// label3
 			// 
 			this.label3.AutoSize = true;
 			this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Strikeout))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.label3.Location = new System.Drawing.Point(13, 416);
+			this.label3.Location = new System.Drawing.Point(11, 371);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(729, 20);
+			this.label3.Size = new System.Drawing.Size(734, 20);
 			this.label3.TabIndex = 65;
 			this.label3.Text = "                                                                                 " +
-    "                                                               ";
+    "                                                                ";
 			// 
 			// label4
 			// 
-			this.label4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.label4.Location = new System.Drawing.Point(13, 37);
+			this.label4.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.label4.Location = new System.Drawing.Point(11, 9);
 			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(730, 56);
+			this.label4.Size = new System.Drawing.Size(730, 66);
 			this.label4.TabIndex = 66;
 			this.label4.Text = "Программа расчета осевых нагрузок \r\nи платы за провоз тяжеловесных грузов \r\nпри п" +
     "роезде по автомобильным дорогам общего пользования.";
@@ -213,11 +210,10 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
-			this.ClientSize = new System.Drawing.Size(762, 496);
+			this.ClientSize = new System.Drawing.Size(762, 444);
 			this.Controls.Add(this.label4);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.label2);
-			this.Controls.Add(this.label1);
 			this.Controls.Add(this.cb_Clothes);
 			this.Controls.Add(this.cb_Level);
 			this.Controls.Add(this.label10);
@@ -230,7 +226,7 @@
 			this.Controls.Add(this.label13);
 			this.Controls.Add(this.cb_mesto_prov);
 			this.Controls.Add(this.cb_imya_ppvk);
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
@@ -256,7 +252,6 @@
 		private System.Windows.Forms.ComboBox cb_Vid_Dor;
 		private System.Windows.Forms.ComboBox cb_Level;
 		private System.Windows.Forms.ComboBox cb_Clothes;
-		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Label label4;

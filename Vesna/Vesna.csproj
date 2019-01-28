@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\NUnit.3.11.0\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.11.0\build\NUnit.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
@@ -13,6 +14,8 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -40,17 +43,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AForge.Video">
-      <HintPath>bin\Release\Lib\AForge.Video.dll</HintPath>
+      <HintPath>..\Lib\AForge.Video.dll</HintPath>
     </Reference>
     <Reference Include="AForge.Video.DirectShow">
-      <HintPath>bin\Release\Lib\AForge.Video.DirectShow.dll</HintPath>
+      <HintPath>..\Lib\AForge.Video.DirectShow.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Office.Interop.Word, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
-    <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Release\nunit.framework.dll</HintPath>
+    <Reference Include="nunit.framework, Version=3.11.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.11.0\lib\net40\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -61,13 +63,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Business\AutoFactory.cs" />
-    <Compile Include="Business\AxisBlockType.cs" />
-    <Compile Include="Business\AxisType.cs" />
+    <Compile Include="Business\AutoRepository.cs" />
+    <Compile Include="Business\Data\AxisBlockType.cs" />
+    <Compile Include="Business\Data\AxisType.cs" />
     <Compile Include="Business\Calculator.cs" />
-    <Compile Include="Business\AutoType.cs" />
-    <Compile Include="Business\Parst\AxisBlock.cs" />
-    <Compile Include="Business\RoadType.cs" />
+    <Compile Include="Business\Data\AutoType.cs" />
+    <Compile Include="Business\Data\AxisBlock.cs" />
+    <Compile Include="Business\Data\RoadType.cs" />
     <Compile Include="Controls\CheckButtonControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -82,12 +84,12 @@
       <DependentUpon>InitForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Tests\AutoTests.cs" />
-    <Compile Include="Utils\COMInfo.cs" />
-    <Compile Include="Utils\SpravochnikUtil.cs" />
-    <Compile Include="Utils\VideoUtil.cs" />
-    <Compile Include="VesnaEventArgs\WheelNagruzkaArgs.cs" />
-    <Compile Include="VesnaEventArgs\WheelRastoyanArgs.cs" />
-    <Compile Include="VesnaEventArgs\WheelStatusArgs.cs" />
+    <Compile Include="Business\Utils\COMInfo.cs" />
+    <Compile Include="Business\Utils\SpravochnikUtil.cs" />
+    <Compile Include="Business\Utils\VideoUtil.cs" />
+    <Compile Include="Business\Events\WheelNagruzkaArgs.cs" />
+    <Compile Include="Business\Events\WheelRastoyanArgs.cs" />
+    <Compile Include="Business\Events\WheelStatusArgs.cs" />
     <Compile Include="database_inspectorDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -129,14 +131,14 @@
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Business\Parst\Road.cs" />
-    <Compile Include="Business\Parst\AutoMass.cs" />
-    <Compile Include="Business\Parst\Axis.cs" />
-    <Compile Include="Business\Parst\Trailer.cs" />
+    <Compile Include="Business\Data\Road.cs" />
+    <Compile Include="Business\Data\AutoMass.cs" />
+    <Compile Include="Business\Data\Axis.cs" />
+    <Compile Include="Business\Data\Trailer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Business\Auto.cs" />
-    <Compile Include="Business\Parst\Scales.cs" />
+    <Compile Include="Business\Data\Auto.cs" />
+    <Compile Include="Business\Data\Scales.cs" />
     <Compile Include="Controls\VideoPictuceControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -155,7 +157,7 @@
     <Compile Include="Controls\WheelListControl.Designer.cs">
       <DependentUpon>WheelListControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Utils\WordExportUtil.cs" />
+    <Compile Include="Business\Utils\WordExportUtil.cs" />
     <EmbeddedResource Include="Controls\CheckButtonControl.resx">
       <DependentUpon>CheckButtonControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -199,6 +201,9 @@
     <EmbeddedResource Include="Controls\WheelListControl.resx">
       <DependentUpon>WheelListControl.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="act.doc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="app.config" />
     <None Include="database_inspectorDataSet.xsc">
       <DependentUpon>database_inspectorDataSet.xsd</DependentUpon>
@@ -211,6 +216,7 @@
     <None Include="database_inspectorDataSet.xss">
       <DependentUpon>database_inspectorDataSet.xsd</DependentUpon>
     </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -255,6 +261,12 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\NUnit.3.11.0\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit.3.11.0\build\NUnit.props'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -1,7 +1,6 @@
 using System;
 
-namespace Vesna.Business.Parst {
-	[Serializable]
+namespace Vesna.Business.Data {
 	public class AutoRoad {
 		public RoadType RoadType { get; set; }
 		public string WayText { get; set; }

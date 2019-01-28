@@ -3,107 +3,123 @@ using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Vesna.Business.Parst;
+using Vesna.Business.Data;
 using Vesna.Properties;
 
 namespace Vesna.Business {
 	static class Calculator {
-
-		#region Prop
-
-		/// <summary>
-		/// Т-тг
-		/// </summary>
-		public static float YearIndex {
-			get { return Settings.Default.YearIndex; }
-			set { Settings.Default.YearIndex = value; }
-		}
-
-		/// <summary>
-		/// К-ДКЗ
-		/// </summary>
-		public static float ConstDorojhnoKlimatZon {
-			get { return Settings.Default.ConstDorojhnoKlimatZon; }
-			set { Settings.Default.ConstDorojhnoKlimatZon = value; }
-		}
-
-		/// <summary>
-		/// К-кап.рем.
-		/// </summary>
-		public static float ConstKapitalniyRemont {
-			get { return Settings.Default.ConstKapitalniyRemont; }
-			set { Settings.Default.ConstKapitalniyRemont = value; }
-		}
-
-		/// <summary>
-		/// К-сез.
-		/// </summary>
-		public static float ConstKlimat {
-			get { return Settings.Default.Klimat_usloviya ? 1f : 0.35f; }
-		}
-
-		/// <summary>
-		/// К-пм.
-		/// </summary>
-		public static float ConstMassInfluence(bool isFedaral) {
-			return isFedaral ? 1f : 0.285f;
-		}
-
-		/// <summary>
-		/// P-исх.
-		/// </summary>
-		public static float ConstDamageDefault(RoadType roadType) {
-			string damageDefault = Program.GetAccess(string.Format("SELECT DamageDefault FROM TypesRoad WHERE Id = {0}", (int)roadType)).Rows[0]["DamageDefault"].ToString();
+		private static float YearIndex => Settings.Default.YearIndex;
+		private static float ConstDorojhnoKlimatZon => Settings.Default.ConstDorojhnoKlimatZon;
+		private static float ConstKapitalniyRemont => Settings.Default.ConstKapitalniyRemont;
+		private static bool KlimatUsloviya => Settings.Default.Klimat_usloviya;
+		private static float ConstKlimatAxisMult => Settings.Default.ConstKlimatAxisMult;
+		private static float ConstRegionRoad => Settings.Default.ConstRegionRoad;
+		private static float ConstKlimat => Settings.Default.Klimat_usloviya ? 1f : 0.35f;
+		private static float ConstMassInfluence(bool isFedaral) => isFedaral ? 1f : 0.285f;
+		
+		private static float ConstDamageDefault(RoadType roadType) {
+			string damageDefault = Program.GetAccess("SELECT DamageDefault " 
+			                                         + "FROM TypesRoad " 
+			                                         + $"WHERE Id = {(int)roadType}").Rows[0]["DamageDefault"].ToString();
 			return float.Parse(damageDefault);
 		}
 
-		public static float ConstH(RoadType roadType) {
-			string h = Program.GetAccess(string.Format("SELECT H FROM TypesRoad WHERE Id = {0}", (int)roadType)).Rows[0]["H"].ToString();
-			return float.Parse(h);
+		private static float ConstH(RoadType roadType) => GetRoadTypeIndex(roadType, "H");
+		private static float ConstA(RoadType roadType) => GetRoadTypeIndex(roadType, "a");
+		private static float ConstB(RoadType roadType) => GetRoadTypeIndex(roadType,"b");
+		private static float ConstC(RoadType roadType) => GetRoadTypeIndex(roadType, "c");
+		private static float ConstD(RoadType roadType) => GetRoadTypeIndex(roadType, "d");
+
+		public static void Populate(Auto auto) {
+			if (!auto.IsCanEdit) {
+				return;
+			}
+			AxisBlock[] axisBlocks = SplitAxisOnBlocks(auto);
+			PopulateAxisLoadLimits(axisBlocks, auto.Road.RoadType);
+
+			auto.FullWeightData.Value = auto.AxisList.Sum(a => a.WeightValue);
+			auto.FullWeightData.Limit = GetFullAutoLimit(auto.AutoType, auto.AxisList.Count);
+			auto.FullWeightData.Damage = GetFullAutoDamage(auto.Road, auto.FullWeightData.PercentageExceeded);
+
+			auto.AxisList.ForEach(a => a.Damage = GetAxisDamage(auto.Road, a));
+
+			auto.FullAutoDamage = GetAutoFullDamage(auto.FullWeightData.Damage, auto.AxisList.Select(a => a.Damage), auto.Road.Distance);
 		}
 
-		public static float ConstA(RoadType roadType) {
-			string a = Program.GetAccess(string.Format("SELECT a FROM TypesRoad WHERE Id = {0}", (int)roadType)).Rows[0]["a"].ToString();
-			return float.Parse(a);
+		private static AxisBlock[] SplitAxisOnBlocks(Auto auto) {
+			var blocks = new List<AxisBlock>();
+			for (int i = 0; i < auto.AxisList.Count; i++) {
+				int blockCount = 1;
+				int j = 0;
+				while (i + j < auto.AxisList.Count - 1 && auto.AxisList[i + j].DistanceToNext <= 2.0) {
+					blockCount++;
+					j++;
+				}
+				var blockType = AxisBlockType.Single;
+				if (blockCount != 1) {
+					if (blockCount == 2) {
+						blockType = AxisBlockType.Dual;
+					} else if (blockCount == 3) {
+						blockType = AxisBlockType.Triple;
+					} else if (blockCount > 3 && blockCount < 8) {
+						blockType = AxisBlockType.MoreThree;
+					} else if (blockCount >= 8) {
+						blockType = AxisBlockType.EightOrMore;
+					}
+				}
+				var block = new AxisBlock { BlockType = blockType };
+				for (int i2 = 0; i2 < blockCount; i2++) {
+					auto.AxisList[i + i2].BlockType = blockType;
+					block.Axises.Add(auto.AxisList[i + i2]);
+				}
+				i = i + j;
+				blocks.Add(block);
+			}
+			return blocks.ToArray();
 		}
 
-		public static float ConstB(RoadType roadType) {
-			string b = Program.GetAccess(string.Format("SELECT b FROM TypesRoad WHERE Id = {0}", (int)roadType)).Rows[0]["b"].ToString();
-			return float.Parse(b);
+		private static void PopulateAxisLoadLimits(IEnumerable<AxisBlock> axisBlocks, RoadType roadType) {
+			foreach (AxisBlock axisBlock in axisBlocks) {
+				List<Axis> axises = axisBlock.Axises;
+				if (axisBlock.BlockType == AxisBlockType.Single) {
+					Axis singleAxis = axises.Single();
+					singleAxis.LoadLimit = GetLimitForAxisesBlock(roadType, AxisBlockType.Single, singleAxis.IsDouble, singleAxis.IsPnevmo, 0);
+					continue;
+				}
+				for (int i = 0; i < axises.Count; i++) {
+					Axis axis = axises[i];
+					float dist;
+					if (i == 0) {
+						dist = axis.DistanceToNext;
+					} else if (i == axises.Count - 1) {
+						dist = axises[i - 1].DistanceToNext;
+					} else {
+						dist = Math.Min(axis.DistanceToNext, axises[i - 1].DistanceToNext);
+					}
+
+					axisBlock.BlockLimit = GetLimitForAxisesBlock(roadType, axisBlock.BlockType, axis.IsDouble, axis.IsPnevmo, dist);
+					if (axisBlock.BlockType == AxisBlockType.Dual || axisBlock.BlockType == AxisBlockType.Triple) {
+						axis.LoadLimit = axisBlock.BlockLimit / axises.Count;
+					} else {
+						axis.LoadLimit = axisBlock.BlockLimit;
+					}
+				}
+				if (axisBlock.BlockType == AxisBlockType.Dual) {
+					Axis[] uploadAxis = axises.Where(a => a.IsUpload).ToArray();
+					if (uploadAxis.Length == 1) {
+						uploadAxis[0].LoadLimit = axisBlock.BlockLimit * 0.4f;
+						axises.Except(new[] { uploadAxis[0] }).First().LoadLimit = axisBlock.BlockLimit * 0.6f;
+					}
+				}
+			}
 		}
 
-		public static float ConstC(RoadType roadType) {
-			string c = Program.GetAccess(string.Format("SELECT c FROM TypesRoad WHERE Id = {0}", (int)roadType)).Rows[0]["c"].ToString();
-			return float.Parse(c);
-		}
-
-		public static float ConstD(RoadType roadType) {
-			string d = Program.GetAccess(string.Format("SELECT d FROM TypesRoad WHERE Id = {0}", (int)roadType)).Rows[0]["d"].ToString();
-			return float.Parse(d);
-		}
-
-		public static bool KlimatUsloviya {
-			get { return Settings.Default.Klimat_usloviya; }
-			set { Settings.Default.Klimat_usloviya = value; }
-		}
-
-		public static float ConstKlimatAxisMult {
-			get { return Settings.Default.ConstKlimatAxisMult; }
-			set { Settings.Default.ConstKlimatAxisMult = value; }
-		}
-
-		public static float ConstRegionRoad {
-			get { return Settings.Default.ConstRegionRoad; }
-			set { Settings.Default.ConstRegionRoad = value; }
-		}
-
-#endregion
-
-		public static float GetMaxForAxis(RoadType roadType, AxisBlockType blockType, bool isDouble, bool isPnevno, float distance) {
+		private static float GetLimitForAxisesBlock(RoadType roadType, AxisBlockType blockType, bool isDouble, bool isPnevno, float distanceToNext) {
+			string distance = distanceToNext.ToString(NumberFormatInfo.InvariantInfo);
+			DataRow maxAxisRow = Program.GetAccess($"SELECT TOP 1 * FROM (SELECT * FROM MaxAxis" +
+			                                       $" WHERE  {distance} <= Distance" +
+			                                       $" AND TypeAxisId = {(int)blockType} )" +
+			                                       $" ORDER BY Distance ASC").Rows[0];
 			string columnStart = string.Empty;
 			if (roadType == RoadType.R10Tc) {
 				columnStart = "R10";
@@ -114,12 +130,9 @@ namespace Vesna.Business {
 			} else if (roadType == RoadType.R5Tc) {
 				return ConstH(roadType);
 			}
-			string singleColumn = columnStart + "_Single";
-			string pnevmoColumn = columnStart + "_Pnevmo";
-			string doubleColumn = columnStart + "_Double";
-			DataRow maxAxisRow = Program.GetAccess(string.Format("SELECT TOP 1 * FROM (SELECT * FROM MaxAxis WHERE  {0} <= Distance AND TypeAxisId = {1} ) ORDER BY Distance ASC",
-				distance.ToString(NumberFormatInfo.InvariantInfo), (int)blockType)).Rows[0];
-
+			string singleColumn = $"{columnStart}_Single";
+			string pnevmoColumn = $"{columnStart}_Pnevmo";
+			string doubleColumn = $"{columnStart}_Double";
 			if (isPnevno && !string.IsNullOrEmpty(maxAxisRow[pnevmoColumn].ToString())) {
 				return float.Parse(maxAxisRow[pnevmoColumn].ToString());
 			}
@@ -129,10 +142,12 @@ namespace Vesna.Business {
 			return float.Parse(maxAxisRow[singleColumn].ToString());
 		}
 
-		public static float GetMaxForMass(AutoType autoType, int osCount) {
-			if (autoType == 0 || osCount <= 2 && autoType == AutoType.Autotrain ||
-			    osCount > 5 && autoType == AutoType.Automobile || osCount <= 1 ) {
-						throw new ArgumentException("GetDopustimMass arguments error");
+		private static float GetFullAutoLimit(AutoType autoType, int osCount) {
+			if (autoType == 0
+			    || osCount <= 2 && autoType == AutoType.Autotrain
+			    || osCount > 5 && autoType == AutoType.Automobile
+			    || osCount <= 1) {
+				throw new ArgumentException("Method GetLimitForAuto()");
 			}
 
 			string column = string.Empty;
@@ -147,22 +162,25 @@ namespace Vesna.Business {
 			} else if (osCount >= 6) {
 				column = "Axis6OrMore";
 			}
-			DataTable dt = Program.GetAccess(string.Format("SELECT {0} FROM MaxMass " + 
-																										 " WHERE AutoTypeId = {1}", column, (int)autoType));
+			DataTable dt = Program.GetAccess($"SELECT {column} FROM MaxMass WHERE AutoTypeId = {(int)autoType}");
 			return float.Parse(dt.Rows[0][column].ToString());
 		}
 
-		public static float GetAxisDamage(AutoRoad road, Axis axis) {////SELECT TOP 1 * FROM (SELECT * FROM MaxAxis WHERE  1.3 <= Distance AND TypeAxisId = 2 ) ORDER BY Distance ASC
-			if (axis.Over <= 0 || axis.Procent <= 5) {
+		private static float GetAxisDamage(AutoRoad road, Axis axis) {////SELECT TOP 1 * FROM (SELECT * FROM MaxAxis WHERE  1.3 <= Distance AND TypeAxisId = 2 ) ORDER BY Distance ASC
+			float over = axis.GetOver();
+			float overPercent = axis.GetOverPercent();
+			if (over <= 0 || overPercent <= 5) {
 				return 0;
 			}
 			
 			float damage = -1;
 			if (road.IsFederalRoad && (road.RoadType == RoadType.R10Tc || road.RoadType == RoadType.R115Tc)) {
-				DataRow damageAxisRow = Program.GetAccess(string.Format(
-					"SELECT TOP 1 * FROM " +
-					"(SELECT Damage, ProcentLimit FROM DamageAxis WHERE  {0} <= ProcentLimit AND TypeRoadId = {1} ORDER BY ProcentLimit ASC)",
-							axis.Procent.ToString(NumberFormatInfo.InvariantInfo), (int)road.RoadType)).Rows[0];
+				string percent = overPercent.ToString(NumberFormatInfo.InvariantInfo);
+				DataRow damageAxisRow = Program.GetAccess("SELECT TOP 1 * FROM " 
+				                                          + "(SELECT Damage, ProcentLimit FROM DamageAxis " 
+				                                          + $"WHERE {percent} <= ProcentLimit " 
+				                                          + $"AND TypeRoadId = {(int)road.RoadType} " 
+				                                          + "ORDER BY ProcentLimit ASC)").Rows[0];
 				damage = float.Parse(damageAxisRow["Damage"].ToString());
 				if (damage > -1 && KlimatUsloviya) {
 					damage *= ConstKlimatAxisMult;
@@ -174,7 +192,7 @@ namespace Vesna.Business {
 			return (float)Math.Round(damage, 2);
 		}
 
-		public static float GetAxisDamageByFormula(AutoRoad road, Axis axis) {
+		private static float GetAxisDamageByFormula(AutoRoad road, Axis axis) {
 			float damage;
 			RoadType t = road.RoadType;
 			float KD = ConstDorojhnoKlimatZon;
@@ -185,36 +203,37 @@ namespace Vesna.Business {
 			float b = ConstB(t);
 			float H = ConstH(t);
 
+			float over = axis.GetOver();
 			if (!road.IsSoftClothes) {
-				var pOver = (float)Math.Pow(axis.Over, 1.92f);
+				var pOver = (float)Math.Pow(over, 1.92f);
 				damage = KD*KK*KC*P*(1 + 0.2f*pOver*(a/H - b));
 			} else {
-				var pOver = (float)Math.Pow(axis.Over, 1.24f);
+				var pOver = (float)Math.Pow(over, 1.24f);
 				damage = KK*KC*P*(1 + 0.14f*pOver*(a/H + b));
 			}
 			return damage;
 		}
 
-		public static float GetMassDamage(AutoRoad road, float massOverProcent) {
-			if (massOverProcent <= 5) {
+		private static float GetFullAutoDamage(AutoRoad road, float massOverPercent) {
+			if (massOverPercent <= 5) {
 				return 0;
 			}
 
 			DataRow damageMassRow = Program.GetAccess(string.Format(
 				"SELECT TOP 1 * FROM " +
 				"(SELECT Damage, ProcentLimit FROM DamageMass WHERE {0} <= ProcentLimit ORDER BY ProcentLimit ASC) ",
-				massOverProcent.ToString(NumberFormatInfo.InvariantInfo))).Rows[0];
+				massOverPercent.ToString(NumberFormatInfo.InvariantInfo))).Rows[0];
 			float damage = float.Parse(damageMassRow["Damage"].ToString());
 			
 			if (damage <= -1) {
-				damage = GetMassDamageByFormula(road, massOverProcent);
+				damage = GetMassDamageByFormula(road, massOverPercent);
 			} else if(!road.IsFederalRoad) {
 				damage = damage * ConstRegionRoad;
 			}
 			return (float)(Math.Round(damage, 2));
 		}
 
-		public static float GetMassDamageByFormula(AutoRoad road, float massOverProcent) {
+		private static float GetMassDamageByFormula(AutoRoad road, float massOverProcent) {
 			RoadType t = road.RoadType;
 			float KK = ConstKapitalniyRemont;
 			float KP = ConstMassInfluence(road.IsFederalRoad);
@@ -223,9 +242,16 @@ namespace Vesna.Business {
 			return KK * KP * (c + d * massOverProcent);
 		}
 
-		public static float GetFullDamage(float massDamage, IEnumerable<float> axisDamages, float distanse) {
-			double fullDamage = (massDamage + axisDamages.Sum()) * (distanse/100f) * YearIndex;
+		private static float GetAutoFullDamage(float massDamage, IEnumerable<float> axisDamages, float distanse) {
+			double fullDamage = (massDamage + axisDamages.Sum()) * (distanse / 100f) * YearIndex;
 			return (float)Math.Round(fullDamage, 2);
+		}
+
+		private static float GetRoadTypeIndex(RoadType roadType, string type) {
+			int roadTypeValue = (int)roadType;
+			DataTable a = Program.GetAccess(string.Format($"SELECT {type} FROM TypesRoad WHERE Id = {roadTypeValue}"));
+			string value = a.Rows[0][type].ToString();
+			return float.Parse(value);
 		}
 	}
 }

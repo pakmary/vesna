@@ -1,7 +1,7 @@
 using System;
 using Vesna.Controls;
 
-namespace Vesna.VesnaEventArgs {
+namespace Vesna.Business.Events {
 	public class WheelStateArgs : EventArgs {
 		public WheelStateArgs(int index, WheelControlState lastStatus, WheelControlState newStatus) {
 			NewStatus = newStatus;

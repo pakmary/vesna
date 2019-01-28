@@ -1,4 +1,4 @@
-﻿namespace Vesna.Business {
+﻿namespace Vesna.Business.Data {
 	public enum AxisBlockType {
 		Single = 1,
 		Dual = 2,

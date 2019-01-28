@@ -40,7 +40,8 @@
 			this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.pictureBox1.BackColor = System.Drawing.Color.LightGray;
+			this.pictureBox1.BackColor = System.Drawing.Color.Snow;
+			this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.pictureBox1.Location = new System.Drawing.Point(0, 0);
 			this.pictureBox1.Name = "pictureBox1";
 			this.pictureBox1.Size = new System.Drawing.Size(140, 133);
@@ -53,13 +54,14 @@
 			// 
 			this.b_action.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.b_action.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-			this.b_action.Location = new System.Drawing.Point(0, 163);
+			this.b_action.BackColor = System.Drawing.Color.Snow;
+			this.b_action.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.b_action.Location = new System.Drawing.Point(0, 162);
 			this.b_action.Name = "b_action";
-			this.b_action.Size = new System.Drawing.Size(140, 38);
+			this.b_action.Size = new System.Drawing.Size(140, 27);
 			this.b_action.TabIndex = 1;
 			this.b_action.Text = "Обзор";
-			this.b_action.UseVisualStyleBackColor = true;
+			this.b_action.UseVisualStyleBackColor = false;
 			this.b_action.Click += new System.EventHandler(this.b_action_Click);
 			// 
 			// comboBox1
@@ -67,11 +69,11 @@
 			this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+			this.comboBox1.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.comboBox1.FormattingEnabled = true;
 			this.comboBox1.Location = new System.Drawing.Point(0, 134);
 			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(140, 25);
+			this.comboBox1.Size = new System.Drawing.Size(140, 28);
 			this.comboBox1.TabIndex = 2;
 			this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
 			// 

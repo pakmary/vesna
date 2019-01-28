@@ -31,5 +31,11 @@
     <Setting Name="ConstKlimatAxisMult" Type="System.Single" Scope="User">
       <Value Profile="(Default)">2.9</Value>
     </Setting>
+    <Setting Name="InaccuracyRoulette" Type="System.Single" Scope="User">
+      <Value Profile="(Default)">0.4</Value>
+    </Setting>
+    <Setting Name="InaccuracyScales" Type="System.Single" Scope="User">
+      <Value Profile="(Default)">0.05</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

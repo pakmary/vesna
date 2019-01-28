@@ -2,10 +2,12 @@
 using System.ComponentModel;
 using System.Windows.Forms;
 using Vesna.Business;
-using Vesna.Utils;
+using Vesna.Business.Utils;
 
 namespace Vesna.Forms {
 	public partial class DataBaseForm : Form {
+		private readonly AutoRepository _autoRepository = new AutoRepository();
+
 		public DataBaseForm() {
 			InitializeComponent();
 			LoadBase();
@@ -25,7 +27,8 @@ namespace Vesna.Forms {
 		private void OpenInWord(object sender, EventArgs e) {
 			if (dataGridView1.SelectedRows.Count != 0) {
 				int id = int.Parse(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
-				WordExportUtil.Export(new Auto(id));
+				Auto auto = _autoRepository.LoadAuto(id);
+				WordExportUtil.Export(auto);
 			}
 		}
 

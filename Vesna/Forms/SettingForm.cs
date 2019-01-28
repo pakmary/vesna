@@ -1,37 +1,52 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
-using Vesna.Business;
-using Vesna.Utils;
+using Vesna.Business.Utils;
+using Vesna.Properties;
 
 namespace Vesna {
 	public partial class SettingForm : Form {
+		private readonly Control[] _adminAccessControlList;
+
 		public SettingForm() {
 			InitializeComponent();
+			_adminAccessControlList = new Control[] {
+				tb_inaccuracy_roulette,
+				tb_inaccuracy_scales,
+				tb_index_goda,
+				label1,
+				label3,
+				label5,
+				label6,
+				tb_id_car,
+				l_run,
+				tb_run,
+				b_run
+			};
 		}
 
 		private void FormSetting_Load(object sender, EventArgs e) {
 			bool adm = Program.User == "Admin";
-
-			tb_index_goda.Enabled = label1.Enabled = label3.Enabled = tb_id_car.Enabled = l_run.Enabled = tb_run.Enabled = b_run.Enabled = adm;
-			tb_index_goda.Text = Calculator.YearIndex.ToString();
-			checkBox1.Checked = Calculator.KlimatUsloviya;
+			foreach (Control control in _adminAccessControlList) {
+				control.Enabled = adm;
+			}
+			tb_index_goda.Text = Settings.Default.YearIndex.ToString();
+			checkBox1.Checked = Settings.Default.Klimat_usloviya;
 			tb_id_car.Text = SpravochnikUtil.IdentificationNumber.ToString();
-			cb_com_name.Text = Properties.Settings.Default.COMPortName;
+			cb_com_name.Text = Settings.Default.COMPortName;
 			cb_com_name.Items.AddRange(ComInfo.GetListCOM());
+			tb_inaccuracy_scales.Text = Settings.Default.InaccuracyScales.ToString();
+			tb_inaccuracy_roulette.Text = Settings.Default.InaccuracyRoulette.ToString();
 		}
 
 		private void button1_Click(object sender, EventArgs e) {
-			Calculator.YearIndex = float.Parse(tb_index_goda.Text);
-			Calculator.KlimatUsloviya = checkBox1.Checked;
+			Settings.Default.YearIndex = float.Parse(tb_index_goda.Text);
+			Settings.Default.Klimat_usloviya = checkBox1.Checked;
 			SpravochnikUtil.IdentificationNumber = int.Parse(tb_id_car.Text);
-			Properties.Settings.Default.COMPortName = cb_com_name.Text;
+			Settings.Default.COMPortName = cb_com_name.Text;
+			Settings.Default.InaccuracyScales = float.Parse(tb_inaccuracy_scales.Text);
+			Settings.Default.InaccuracyRoulette = float.Parse(tb_inaccuracy_roulette.Text);
 
-			Properties.Settings.Default.Save();
+			Settings.Default.Save();
 			Close();
 		}
 

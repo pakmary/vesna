@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Windows.Forms;
 using System.IO.Ports;
+using System.Windows.Forms;
 
-namespace Vesna {
+namespace Vesna.Business.Utils {
 	internal class ComInfo {
 		private static SerialPort _arduino;
 		public string AllData;

@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using AForge.Video;
-using Vesna.Utils;
+using Vesna.Business.Utils;
 
 namespace Vesna {
 	public partial class VideoPictuceControl : UserControl {
