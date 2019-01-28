@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D46273F5-1A47-4055-8249-E37D6B7FAE94}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Vesna</RootNamespace>
+    <AssemblyName>Vesna</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>ico.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AForge.Video">
+      <HintPath>bin\Release\Lib\AForge.Video.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video.DirectShow">
+      <HintPath>bin\Release\Lib\AForge.Video.DirectShow.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Release\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Business\AutoFactory.cs" />
+    <Compile Include="Business\AxisBlockType.cs" />
+    <Compile Include="Business\AxisType.cs" />
+    <Compile Include="Business\Calculator.cs" />
+    <Compile Include="Business\AutoType.cs" />
+    <Compile Include="Business\Parst\AxisBlock.cs" />
+    <Compile Include="Business\RoadType.cs" />
+    <Compile Include="Controls\CheckButtonControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\CheckButtonControl.Designer.cs">
+      <DependentUpon>CheckButtonControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WheelState.cs" />
+    <Compile Include="Forms\InitForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\InitForm.Designer.cs">
+      <DependentUpon>InitForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\AutoTests.cs" />
+    <Compile Include="Utils\COMInfo.cs" />
+    <Compile Include="Utils\SpravochnikUtil.cs" />
+    <Compile Include="Utils\VideoUtil.cs" />
+    <Compile Include="VesnaEventArgs\WheelNagruzkaArgs.cs" />
+    <Compile Include="VesnaEventArgs\WheelRastoyanArgs.cs" />
+    <Compile Include="VesnaEventArgs\WheelStatusArgs.cs" />
+    <Compile Include="database_inspectorDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>database_inspectorDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DataBaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DataBaseForm.Designer.cs">
+      <DependentUpon>DataBaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ActForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ActForm.Designer.cs">
+      <DependentUpon>ActForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SettingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SettingForm.Designer.cs">
+      <DependentUpon>SettingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SpravochnikForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SpravochnikForm.Designer.cs">
+      <DependentUpon>SpravochnikForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Business\Parst\Road.cs" />
+    <Compile Include="Business\Parst\AutoMass.cs" />
+    <Compile Include="Business\Parst\Axis.cs" />
+    <Compile Include="Business\Parst\Trailer.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Business\Auto.cs" />
+    <Compile Include="Business\Parst\Scales.cs" />
+    <Compile Include="Controls\VideoPictuceControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\VideoPictuceControl.Designer.cs">
+      <DependentUpon>VideoPictuceControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WheelControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\WheelControl.Designer.cs">
+      <DependentUpon>WheelControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WheelListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\WheelListControl.Designer.cs">
+      <DependentUpon>WheelListControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\WordExportUtil.cs" />
+    <EmbeddedResource Include="Controls\CheckButtonControl.resx">
+      <DependentUpon>CheckButtonControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\InitForm.resx">
+      <DependentUpon>InitForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DataBaseForm.resx">
+      <DependentUpon>DataBaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ActForm.resx">
+      <DependentUpon>ActForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SettingForm.resx">
+      <DependentUpon>SettingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SpravochnikForm.resx">
+      <DependentUpon>SpravochnikForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Controls\VideoPictuceControl.resx">
+      <DependentUpon>VideoPictuceControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\WheelControl.resx">
+      <DependentUpon>WheelControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\WheelListControl.resx">
+      <DependentUpon>WheelListControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="database_inspectorDataSet.xsc">
+      <DependentUpon>database_inspectorDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="database_inspectorDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>database_inspectorDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="database_inspectorDataSet.xss">
+      <DependentUpon>database_inspectorDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\one.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\one_pnevmo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\two.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\two_pnevmo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\znak.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\connect.png" />
+    <Content Include="ico.ico" />
+    <Content Include="Resources\fix.png" />
+    <None Include="Resources\wheelConnectOff.png" />
+    <None Include="Resources\wheelConnect.png" />
+    <None Include="Resources\wheelUpOff.png" />
+    <None Include="Resources\wheelPnevmo.png" />
+    <None Include="Resources\wheelPnevmoOff.png" />
+    <None Include="Resources\wheelDual.png" />
+    <None Include="Resources\wheelDualOff.png" />
+    <None Include="Resources\wheelUp.png" />
+    <None Include="Resources\fix_true.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

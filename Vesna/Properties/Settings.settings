@@ -1,0 +1,35 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Vesna.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Klimat_usloviya" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="database_inspectorConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\database_inspector.mdb;Persist Security Info=True;Jet OLEDB:Database Password=hfpdbnbt&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.OleDb&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\database_inspector.mdb;Persist Security Info=True;Jet OLEDB:Database Password=hfpdbnbt</Value>
+    </Setting>
+    <Setting Name="YearIndex" Type="System.Single" Scope="User">
+      <Value Profile="(Default)">1.5388</Value>
+    </Setting>
+    <Setting Name="COMPortName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">COM3</Value>
+    </Setting>
+    <Setting Name="ConstDorojhnoKlimatZon" Type="System.Single" Scope="User">
+      <Value Profile="(Default)">2.07</Value>
+    </Setting>
+    <Setting Name="ConstKapitalniyRemont" Type="System.Single" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="ConstRegionRoad" Type="System.Single" Scope="User">
+      <Value Profile="(Default)">0.285</Value>
+    </Setting>
+    <Setting Name="ConstKlimatAxisMult" Type="System.Single" Scope="User">
+      <Value Profile="(Default)">2.9</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
