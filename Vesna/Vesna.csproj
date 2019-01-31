@@ -201,9 +201,6 @@
     <EmbeddedResource Include="Controls\WheelListControl.resx">
       <DependentUpon>WheelListControl.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="act.doc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="app.config" />
     <None Include="database_inspectorDataSet.xsc">
       <DependentUpon>database_inspectorDataSet.xsd</DependentUpon>
@@ -215,6 +212,36 @@
     </None>
     <None Include="database_inspectorDataSet.xss">
       <DependentUpon>database_inspectorDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Files\act.doc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Files\Docs\Постановление о внесении изменений в постановление  №934 №12.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Files\Docs\Постановление о внесении изменений в постановление №934.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Files\Docs\Постановление от 15.04.2011 №272 Об утверждении правил перевозок грузов автомобильным транспортом.doc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Files\Docs\Постановление от 16.11.2009 №934 О возмещении вреда, причиняемого тс, осуществляющими перевозки тяжеловесных грузов.doc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Files\Docs\Постановление от 25.02.2010 №121 О размере вреда, причиняемого тс, осуществляющими перевозки тяжеловесных грузов.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Files\Docs\Постановление Правительства Воронежской обл. от 22.09.2015 N 750.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Files\Docs\Приказ о временном ограничении движения №24 от 02.02.2016.doc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Files\Docs\Приказ о временном ограничении движения №35 от 22.02.2013.doc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Files\Docs\Приказ от 29 марта 2018 №119 ОБ УТВЕРЖДЕНИИ ПОРЯДКА ОСУЩЕСТВЛЕНИЯ ВЕСОВОГО И ГАБАРИТНОГО КОНТРОЛЯ ТC.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -247,6 +274,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\connect.png" />
+    <Content Include="Files\database_inspector.mdb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="ico.ico" />
     <Content Include="Resources\fix.png" />
     <None Include="Resources\wheelConnectOff.png" />

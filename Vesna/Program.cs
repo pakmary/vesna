@@ -2,7 +2,6 @@
 using System.Windows.Forms;
 using System.Data.OleDb;
 using System.Data;
-using Vesna.Business;
 using Vesna.Business.Data;
 using Vesna.Forms;
 
@@ -18,7 +17,7 @@ namespace Vesna {
 
 		private static OleDbConnection _connection;
 		private static readonly OleDbDataAdapter Adapter = new OleDbDataAdapter();
-		private static readonly string MyDbPath = Application.StartupPath + @"\" + "database_inspector.mdb";
+		private static readonly string MyDbPath = $@"{Application.StartupPath}\Files\database_inspector.mdb";
 		private static string ConStr;
 
 		[STAThread]
@@ -30,8 +29,7 @@ namespace Vesna {
 		}
 
 		public static void UpdateBaseFile(string path) {
-			ConStr = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + path +
-																	 ";Jet OLEDB:Database Password=hfpdbnbt";
+			ConStr = $"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={path};Jet OLEDB:Database Password=hfpdbnbt";
 		}
 
 		private static void ConOpen() {
@@ -39,7 +37,7 @@ namespace Vesna {
 				_connection = new OleDbConnection(ConStr);
 				_connection.Open();
 			} catch (Exception e) {
-				MessageBox.Show(string.Format("Ошибка: не удалось загрузить базу данных\n{0}\n{1}", MyDbPath, e.Message));
+				MessageBox.Show($"Ошибка: не удалось загрузить базу данных\n{MyDbPath}\n{e.Message}");
 			}
 		}
 
@@ -47,7 +45,7 @@ namespace Vesna {
 			try {
 				_connection.Close();
 			} catch (Exception e) {
-				MessageBox.Show(string.Format("Ошибка: не удалось закрыть подключение к базе данных\n{0}\n{1}", MyDbPath, e.Message));
+				MessageBox.Show($"Ошибка: не удалось закрыть подключение к базе данных\n{MyDbPath}\n{e.Message}");
 			}
 		}
 
@@ -64,7 +62,7 @@ namespace Vesna {
 				ConClose();
 				return 0;
 			} catch (Exception e) {
-				MessageBox.Show(string.Format("ОШИБКА: Не удалось выполнить запрос\n{0}\n{1}", com.CommandText, e.Message));
+				MessageBox.Show($"ОШИБКА: Не удалось выполнить запрос\n{com.CommandText}\n{e.Message}");
 				return -1;
 			}
 		}
@@ -82,7 +80,7 @@ namespace Vesna {
 				Adapter.SelectCommand = command;
 				Adapter.Fill(dt);
 			} catch (Exception ex) {
-				MessageBox.Show(string.Format("ОШИБКА: Не удалось выполнить запрос \n{0}\n{1}", com, ex.Message));
+				MessageBox.Show($"ОШИБКА: Не удалось выполнить запрос \n{com}\n{ex.Message}");
 			}
 			return dt;
 		}

@@ -3,7 +3,6 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using Vesna.Business;
 using Vesna.Business.Data;
 using Vesna.Business.Utils;
 
@@ -32,17 +31,22 @@ namespace Vesna.Forms {
 		}
 
 		private void LoadFileDocuments() {
-			var dirs = new DirectoryInfo(Application.StartupPath + @"\Docs");
-			if (!dirs.Exists) {
+			var dir = new DirectoryInfo($@"{Application.StartupPath}\Files\Docs");
+			if (!dir.Exists) {
 				return;
 			}
-			foreach (FileInfo f in dirs.GetFiles()) {
+			foreach (FileInfo f in dir.GetFiles()) {
 				Image icon = null;
 				try {
 					icon = Icon.ExtractAssociatedIcon(f.FullName).ToBitmap();
-				} catch { }
-				DocToolStripMenuItem.DropDownItems.Add(new ToolStripMenuItem(f.Name, icon,
-					(o, ev) => Process.Start(Application.StartupPath + @"\Docs\" + ((ToolStripMenuItem)o).Text)));
+				} catch {
+					// ignored
+				}
+				var menu = new ToolStripMenuItem(
+					f.Name, 
+					icon, 
+					(o, ev) => Process.Start($@"{Application.StartupPath}\Files\Docs\{((ToolStripMenuItem)o).Text}"));
+				DocToolStripMenuItem.DropDownItems.Add(menu);
 			}
 		}
 
