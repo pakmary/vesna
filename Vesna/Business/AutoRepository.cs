@@ -177,6 +177,8 @@ namespace Vesna.Business {
 			auto.Scales.CheckDateFrom = TryParseDTOrGetDefault(dt.Rows[0]["vesi_date_OT"].ToString(), "vesi_date_OT");
 			auto.Scales.CheckDateTo = TryParseDTOrGetDefault(dt.Rows[0]["vesi_date_DO"].ToString(), "vesi_date_DO");
 			auto.Scales.Number = dt.Rows[0]["vesi_zavod_nomer"].ToString();
+			auto.Scales.Inaccuracy = TryParseFloatOrGetDefault(dt.Rows[0]["vesi_inaccuracy"].ToString(), "vesi_inaccuracy");
+			auto.InaccuracyRoulette = TryParseFloatOrGetDefault(dt.Rows[0]["inaccuracy_Roulette"].ToString(), "inaccuracy_Roulette");
 
 			string strpath = Application.StartupPath + @"\Foto\" + auto.Id + ".jpg";
 			if (File.Exists(strpath)) {
@@ -216,13 +218,18 @@ namespace Vesna.Business {
 			auto.FullWeightData.Damage = TryParseFloatOrGetDefault(dt.Rows[0]["dmg_massa"].ToString());
 			int count = TryParseIntOrGetDefault(dt.Rows[0]["count_os"].ToString(), "count_os");
 			for (int i = 1; i <= count; i++) {
-				int v = int.Parse(dt.Rows[0]["v_os_" + i].ToString());
-				float nf = TryParseFloatOrGetDefault(dt.Rows[0]["m_f_os_" + i].ToString());
-				float nd = TryParseFloatOrGetDefault(dt.Rows[0]["m_d_os_" + i].ToString());
-				float rs = TryParseFloatOrGetDefault(dt.Rows[0]["r_os_" + i].ToString());
-				float dmg = TryParseFloatOrGetDefault(dt.Rows[0]["os_dmg_" + i].ToString());
-				bool isUp = TryParseBoolOrGetDefault(dt.Rows[0]["is_up_" + i].ToString());
-				auto.AddAxis((AxisType)v, isUp, rs, nf, nd, dmg);
+				int axisType = int.Parse(dt.Rows[0]["v_os_" + i].ToString());
+				float weightValue = TryParseFloatOrGetDefault(dt.Rows[0]["m_f_os_" + i].ToString());
+				float loadLimit = TryParseFloatOrGetDefault(dt.Rows[0]["m_d_os_" + i].ToString());
+				float distanceToNext = TryParseFloatOrGetDefault(dt.Rows[0]["r_os_" + i].ToString());
+				float damage = TryParseFloatOrGetDefault(dt.Rows[0]["os_dmg_" + i].ToString());
+				bool isUpload = TryParseBoolOrGetDefault(dt.Rows[0]["is_up_" + i].ToString());
+				auto.AddLoadedAxis(axisType: (AxisType)axisType, 
+				             isUpload: isUpload, 
+				             distanceToNext: distanceToNext, 
+				             weightValue: weightValue, 
+				             loadLimit: loadLimit, 
+				             damage: damage);
 			}
 			auto.VoditelObyasnenie = dt.Rows[0]["obyas_vodit"].ToString();
 			auto.PrinyatieMery = dt.Rows[0]["prin_mery"].ToString();

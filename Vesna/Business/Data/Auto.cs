@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using Vesna.Business.Data;
 
-namespace Vesna.Business {
+namespace Vesna.Business.Data {
 	public class Auto {
 		public bool IsCanEdit { get; set; } = true;
 		public int Id { get; set; } = -1;
@@ -48,16 +47,25 @@ namespace Vesna.Business {
 
 		public bool HasAxisOver => AxisList.Any(os => os.WeightValue > os.LoadLimit);
 
-		public void AddAxis(AxisType axisType, bool isUpload, float distanceToNext, float weightValue) {
-			if (AxisList.Count < 10) {
-				var axis = new Axis(AxisList.Count - 1, distanceToNext, axisType, isUpload, weightValue);
-				AxisList.Add(axis);
-			}
-		}
+		public void AddNewAxis(AxisType axisType, bool isUpload, float distanceToNext, float weightValue) 
+			=> AddAxis(axisType, isUpload, distanceToNext, weightValue);
 
-		public void AddAxis(AxisType axisType, bool isUpload, float distanceToNext, float weightValue, float loadLimit, float damage) {
+		public void AddLoadedAxis(AxisType axisType, bool isUpload, float distanceToNext, float weightValue, float loadLimit, float damage) 
+			=> AddAxis(axisType, isUpload, distanceToNext, weightValue, loadLimit, damage);
+
+		private void AddAxis(AxisType axisType, bool isUpload, float distanceToNext, float weightValue, float loadLimit = 0, float damage = 0) {
 			if (AxisList.Count < 10) {
-				var axis = new Axis(AxisList.Count - 1, distanceToNext, axisType, isUpload, weightValue, loadLimit, damage);
+				float weightValueWithInaccuracy = Math.Max(weightValue - Scales.Inaccuracy, 0);
+				float distanceToNextWithInaccuracy = distanceToNext + InaccuracyRoulette;
+				var axis = new Axis(index: AxisList.Count - 1,
+				                    type: axisType,
+				                    isUpload: isUpload,
+				                    weightValue: weightValue,
+				                    weightValueWithInaccuracy: weightValueWithInaccuracy,
+				                    distanceToNext: distanceToNext,
+				                    distanceToNextWithInaccuracy: distanceToNextWithInaccuracy,
+				                    loadLimit: loadLimit,
+				                    damage: damage);
 				AxisList.Add(axis);
 			}
 		}

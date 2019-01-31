@@ -38,12 +38,7 @@ namespace Vesna.Controls {
 		private void FillAndPopulateTc() {
 			float inaccuracyScales = Settings.Default.InaccuracyScales;
 			float inaccuracyRoulette = Settings.Default.InaccuracyRoulette;
-
-			_currentAuto.AxisList.Clear();
-			foreach (WheelControl wheel in WheelList.GetRange(0, GetWheelCount())) {
-				AxisType axisType = ConvertToAxisType(wheel.WheelState);
-				_currentAuto.AddAxis(axisType, wheel.IsUpper, wheel.DistanceToNext, wheel.WeightValue);
-			}
+			
 			_currentAuto.Foto = videoPictuce1.GetImage();
 			_currentAuto.MestoKontrolya = Program.ControlPlace;
 			_currentAuto.Ppvk = Program.PPVKName;
@@ -58,6 +53,15 @@ namespace Vesna.Controls {
 			_currentAuto.Road.IsFederalRoad = Program.IsFederalRoad;
 			_currentAuto.AutoType = (AutoType)cb_vid_TC.SelectedIndex + 1;
 			_currentAuto.Road.Distance = float.Parse(tb_Rastoyan.Text);
+
+			_currentAuto.AxisList.Clear();
+			foreach (WheelControl wheel in WheelList.GetRange(0, GetWheelCount())) {
+				AxisType axisType = ConvertToAxisType(wheel.WheelState);
+				_currentAuto.AddNewAxis(axisType: axisType,
+				                     isUpload: wheel.IsUpper,
+				                     distanceToNext: wheel.DistanceToNext,
+				                     weightValue: wheel.WeightValue);
+			}
 
 			Calculator.Populate(_currentAuto);
 		}

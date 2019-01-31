@@ -3,10 +3,13 @@ using System;
 namespace Vesna.Business.Data {
 	public class Axis {
 		public int Index;
-		public float DistanceToNext { get; set; }
-		public AxisType Type { get; set; }
-		public bool IsUpload { get; set; }
-		public float WeightValue { get; set; }
+		public AxisType Type { get; }
+		public bool IsUpload { get; }
+		public float WeightValue { get; }
+		public float WeightValueWithInaccuracy { get; }
+		public float DistanceToNext { get; }
+		public float DistanceToNextWithInaccuracy { get; }
+
 		public float LoadLimit { get; set; }
 		public float Damage { get; set; }
 
@@ -14,22 +17,28 @@ namespace Vesna.Business.Data {
 		public bool IsDouble => Type == AxisType.Double || Type == AxisType.DoubleAndPnevmo;
 		public bool IsPnevmo => Type == AxisType.DoubleAndPnevmo || Type == AxisType.SingleAndPnevmo;
 
-		public Axis(int index, float distanceToNext, AxisType type, bool isUpload, float weightValue) {
+		public Axis(int index, 
+		            AxisType type, 
+		            bool isUpload, 
+		            float weightValue, 
+		            float weightValueWithInaccuracy, 
+		            float distanceToNext, 
+		            float distanceToNextWithInaccuracy, 
+		            float loadLimit,
+		            float damage) {
 			Index = index;
-			DistanceToNext = distanceToNext;
 			Type = type;
 			IsUpload = isUpload;
 			WeightValue = weightValue;
-		}
-
-		public Axis(int index, float distanceToNext, AxisType type, bool isUpload, float weightValue, float loadLimit, float damage)
-			: this(index, distanceToNext, type, isUpload, weightValue) {
+			WeightValueWithInaccuracy = weightValueWithInaccuracy;
+			DistanceToNext = distanceToNext;
+			DistanceToNextWithInaccuracy = distanceToNextWithInaccuracy;
 			LoadLimit = loadLimit;
 			Damage = damage;
 		}
 
 		public float GetOver() {
-			return LoadLimit <= 0 || WeightValue <= LoadLimit ? 0 : (WeightValue - LoadLimit);
+			return LoadLimit <= 0 || WeightValueWithInaccuracy <= LoadLimit ? 0 : (WeightValueWithInaccuracy - LoadLimit);
 		}
 
 		public float GetOverPercent() {

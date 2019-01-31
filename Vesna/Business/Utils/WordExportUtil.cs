@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Forms;
+using Vesna.Business.Data;
 using Application = System.Windows.Forms.Application;
 
 namespace Vesna.Business.Utils {
@@ -53,8 +54,8 @@ namespace Vesna.Business.Utils {
 
 				Replace("[ИМЯ_СОБСТВЕНИКА]", auto.Sobstvenik, ref doc);
 				Replace("[АДРЕС_СОБСТННИКА]", auto.SobstvenikAddess, ref doc);
-				Replace("[ИМЯ_ОРГАНИЗАЦИИ]", auto.OrganName, ref doc);
-				Replace("[АДР_ОРГ]", auto.OrganAddress, ref doc);
+				//Replace("[ИМЯ_ОРГАНИЗАЦИИ]", auto.OrganName, ref doc);
+				//Replace("[АДР_ОРГ]", auto.OrganAddress, ref doc);
 
 				Replace("[МЕСТО_КОНТР]", auto.MestoKontrolya, ref doc);
 
@@ -70,34 +71,42 @@ namespace Vesna.Business.Utils {
 				Replace("[МАССА_ДОПУСТ]", auto.FullWeightData.Limit.ToString(), ref doc);
 				Replace("[МАССА_ФАКТИЧ]", auto.FullWeightData.Value.ToString(), ref doc);
 
-				string tempStringRazmerVredaOs = "";
+				string tempStringRazmerVredaOs = string.Empty;
 				float tempSumRazmerVreda = 0;
 				for (int i = 0; i < 10; i++) {
 					string axisDistanceToNext = string.Empty;
+					string axisDistanceToNextWithInaccuracy = string.Empty;
 					string axisWeightValue = string.Empty;
+					string axisWeightValueWithInaccuracy = string.Empty;
 					string axisLoadLimit = string.Empty;
 					string axisOver = string.Empty;
 					string axisOverPercent = string.Empty;
 					bool isPnevmo = false;
 					bool isDouble = false;
 					bool isUp = false;
-					if (i < auto.AxisList.Count - 1) {
-						axisDistanceToNext = auto.AxisList[i].DistanceToNext.ToString(CultureInfo.InvariantCulture);
-					}
+					
 					if (i < auto.AxisList.Count) {
-						axisWeightValue = auto.AxisList[i].WeightValue.ToString(CultureInfo.InvariantCulture);
-						axisLoadLimit = auto.AxisList[i].LoadLimit.ToString(CultureInfo.InvariantCulture);
-						axisOver = Math.Round(auto.AxisList[i].GetOver(), 2).ToString(CultureInfo.InvariantCulture);
-						axisOverPercent = Math.Round(auto.AxisList[i].GetOverPercent(), 2) + "%";
-						isPnevmo = auto.AxisList[i].IsPnevmo;
-						isDouble = auto.AxisList[i].IsDouble;
-						isUp = auto.AxisList[i].IsUpload;
-						tempStringRazmerVredaOs += auto.AxisList[i].Damage + ((auto.AxisList.Count - 1 != i) ? "+" : "=");
-						tempSumRazmerVreda += auto.AxisList[i].Damage;
+						Axis axis = auto.AxisList[i];
+						axisWeightValue = axis.WeightValue.ToString(CultureInfo.InvariantCulture);
+						axisWeightValueWithInaccuracy = axis.WeightValueWithInaccuracy.ToString(CultureInfo.InvariantCulture);
+						axisLoadLimit = axis.LoadLimit.ToString(CultureInfo.InvariantCulture);
+						axisOver = Math.Round(axis.GetOver(), 2).ToString(CultureInfo.InvariantCulture);
+						axisOverPercent = Math.Round(axis.GetOverPercent(), 2) + "%";
+						isPnevmo = axis.IsPnevmo;
+						isDouble = axis.IsDouble;
+						isUp = axis.IsUpload;
+						tempStringRazmerVredaOs += axis.Damage + ((auto.AxisList.Count - 1 != i) ? "+" : "=");
+						tempSumRazmerVreda += axis.Damage;
+						if (i < auto.AxisList.Count - 1) {
+							axisDistanceToNext = axis.DistanceToNext.ToString(CultureInfo.InvariantCulture);
+							axisDistanceToNextWithInaccuracy = axis.DistanceToNextWithInaccuracy.ToString(CultureInfo.InvariantCulture);
+						}
 					}
 
 					Replace("[О" + (i + 1) + "]", axisDistanceToNext, ref doc);
+					Replace("[ОИ" + (i + 1) + "]", axisDistanceToNextWithInaccuracy, ref doc);
 					Replace("[Н_Ф" + (i + 1) + "]", axisWeightValue, ref doc);
+					Replace("[Н_И" + (i + 1) + "]", axisWeightValueWithInaccuracy, ref doc);
 					Replace("[Н_Д" + (i + 1) + "]", axisLoadLimit, ref doc);
 					Replace("[Н_П" + (i + 1) + "]", axisOver, ref doc);
 					Replace("[Н_Р" + (i + 1) + "]", axisOverPercent, ref doc);
@@ -107,7 +116,7 @@ namespace Vesna.Business.Utils {
 				//Replace("[ДР_НАРУШ]", tb_drug_narush.Text, ref doc);
 				Replace("[ОБЬЯС_ВОД]", auto.VoditelObyasnenie, ref doc);
 				//Replace("[ВОД_УДС]", tb_nomer_udost.Text, ref doc);
-				Replace("[ПРИН_МЕРЫ]", auto.PrinyatieMery, ref doc);
+				//Replace("[ПРИН_МЕРЫ]", auto.PrinyatieMery, ref doc);
 				//Replace("[РАЗМ_УЩБ]", tb_razmer_usherb.Text, ref doc, indexRow);
 				Replace("[ФИО_ОПР]", auto.ImyaOperator, ref doc);
 				Replace("[ФИО_ИНСП]", auto.ImyaInspektora, ref doc);
