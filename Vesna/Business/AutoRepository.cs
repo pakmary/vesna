@@ -142,7 +142,7 @@ namespace Vesna.Business {
 					auto.Id = int.Parse(Program.GetAccess("SELECT TOP 1 id FROM MainTable ORDER BY id DESC ").Rows[0]["id"].ToString());
 					try {
 						if (auto.Foto != null) {
-							string fullPath = $"{Application.StartupPath}\\Foto\\{auto.Id}.jpg";
+							string fullPath = $"{Application.StartupPath}\\Files\\Foto\\{auto.Id}.jpg";
 							if (!File.Exists(fullPath)) {
 								auto.Foto.Save(fullPath, System.Drawing.Imaging.ImageFormat.Jpeg);
 							}
@@ -180,7 +180,7 @@ namespace Vesna.Business {
 			auto.Scales.Inaccuracy = TryParseFloatOrGetDefault(dt.Rows[0]["vesi_inaccuracy"].ToString(), "vesi_inaccuracy");
 			auto.InaccuracyRoulette = TryParseFloatOrGetDefault(dt.Rows[0]["inaccuracy_Roulette"].ToString(), "inaccuracy_Roulette");
 
-			string strpath = Application.StartupPath + @"\Foto\" + auto.Id + ".jpg";
+			string strpath = $@"{Application.StartupPath}\Files\Foto\{auto.Id}.jpg";
 			if (File.Exists(strpath)) {
 				auto.Foto = Image.FromFile(strpath);
 			}

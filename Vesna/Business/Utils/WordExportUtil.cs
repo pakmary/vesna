@@ -132,7 +132,7 @@ namespace Vesna.Business.Utils {
 					try {
 						Microsoft.Office.Interop.Word.Range rr = doc.Range();
 						rr.Find.Execute(FindText: "[ИЗОБРАЖЕНИЕ]", ReplaceWith: "");
-						doc.Shapes.AddPicture(Application.StartupPath + @"\Foto\" + auto.Id + ".jpg", Width: 125, Height: 125, Anchor: rr);
+						doc.Shapes.AddPicture($@"{Application.StartupPath}\Files\Foto\{auto.Id}.jpg", Width: 125, Height: 125, Anchor: rr);
 						//doc.InlineShapes.AddPicture(, );
 					} catch (Exception e) {
 						MessageBox.Show("Не удалось добавить в акт изображение\n" + e.Message);
