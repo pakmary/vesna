@@ -16,7 +16,7 @@ namespace Vesna.Controls {
 
 		public WheelListControl() {
 			InitializeComponent();
-			WheelList = new List<WheelControl> {os1, os2, os3, os4, os5, os6, os7, os8, os9, os10}; //создаем элементы управления
+			WheelList = new List<WheelControl> {os1, os2, os3, os4, os5, os6, os7, os8, os9, os10};
 		}
 
 		public Auto GetTC() {
@@ -27,7 +27,7 @@ namespace Vesna.Controls {
 		}
 
 		public bool PopulateAndUpdate() {
-			if (!CheckIt()) {
+			if (!WheelListChecker.CheckIt(this, cb_vid_TC, tb_Rastoyan)) {
 				return false;
 			}
 			FillAndPopulateTc();
@@ -60,7 +60,7 @@ namespace Vesna.Controls {
 				_currentAuto.AddNewAxis(axisType: axisType,
 				                     isUpload: wheel.IsUpper,
 				                     distanceToNext: wheel.DistanceToNext,
-				                     weightValue: wheel.WeightValue);
+				                     weightValue: wheel.ScalesValue);
 			}
 
 			Calculator.Populate(_currentAuto);
@@ -68,68 +68,19 @@ namespace Vesna.Controls {
 
 		private void UpdateView() {
 			l_kol_os.Text = _currentAuto.AxisList.Count.ToString();
-			l_mass.Text = _currentAuto.FullWeightData.Value.ToString();
-			l_massDopus.Text = _currentAuto.FullWeightData.Limit.ToString();
+			l_mass.Text = _currentAuto.FullWeightData.Value.ToString(CultureInfo.InvariantCulture);
+			l_massDopus.Text = _currentAuto.FullWeightData.Limit.ToString(CultureInfo.InvariantCulture);
 			foreach (Axis axis in _currentAuto.AxisList) {
 				WheelControl wheelControl = GetWheelByIndex(axis.Index);
-				wheelControl.NagruzkaDopust = axis.LoadLimit;
+				wheelControl.SetWeightValueWithInaccuracy(axis.WeightValueWithInaccuracy);
+				wheelControl.SetDistanceToNextWithInaccuracy(axis.DistanceToNextWithInaccuracy);
+				wheelControl.SetLoadLimit(axis.LoadLimit);
+				wheelControl.SetOver(axis.GetOver());
+				wheelControl.SetOverPercent(axis.GetOverPercent());
 			}
 			if (Program.User == "Admin") {
 				tb_razmerUsherba.Text = $"Размер ущерба (руб): {_currentAuto.FullAutoDamage}";
 			}
-		}
-		
-		public bool CheckIt() {
-			int wheelsCount = GetWheelCount();
-			foreach (WheelControl wheel in WheelList.GetRange(0, GetWheelCount())) {
-				if (!wheel.IsFixed) {
-					MessageBox.Show("ОШИБКА: Вес на всех осях должен быть зафиксирован");
-					return false;
-				}
-				if (wheel.WeightValue == 0) {
-					MessageBox.Show("ОШИБКА: Нагрузка на ось не может быть равной нулю");
-					return false;
-				}
-				if (wheel.WeightValue >= 50) {
-					MessageBox.Show("ОШИБКА: Нагрузка на ось слишком большая");
-					return false;
-				}
-				if (wheel.Index != wheelsCount - 1) {
-					if (wheel.DistanceToNext == 0) {
-						MessageBox.Show("ОШИБКА: Расстояние между осями не может быть равным нулю");
-						return false;
-					}
-					if (wheel.DistanceToNext >= 20) {
-						MessageBox.Show("ОШИБКА: Расстояние между осями слишком большое");
-						return false;
-					}
-				}
-			}
-
-			if (cb_vid_TC.SelectedItem.ToString() == string.Empty) {
-				MessageBox.Show("ОШИБКА: Не выбран тип ТС");
-				return false;
-			}
-			if ((AutoType)cb_vid_TC.SelectedIndex +1 == AutoType.Automobile) {
-				if (wheelsCount <= 1) {
-					MessageBox.Show("ОШИБКА: У автомобиля должно быть минимум 2 оси");
-					return false;
-				}
-				if (wheelsCount > 5) {
-					MessageBox.Show("ОШИБКА: У автомобиля должно быть меньше 6 осей");
-					return false;
-				}
-			} else if ((AutoType)cb_vid_TC.SelectedIndex + 1 == AutoType.Autotrain) {
-				if (wheelsCount <= 2) {
-					MessageBox.Show("ОШИБКА: У автопоезда должно быть минимум 3 оси");
-					return false;
-				}
-			}
-			if (tb_Rastoyan.Value.ToString() == "0" || tb_Rastoyan.Text == string.Empty) {
-				MessageBox.Show("ОШИБКА: Нужно заполнить поле растояние маршрута движения");
-				return false;
-			}
-			return true;
 		}
 
 		public void FillComboBox() {
@@ -139,13 +90,9 @@ namespace Vesna.Controls {
 
 		#region Help
 		
-		public int GetWheelCount() {
-			return WheelList.Count(w => w.WheelState != WheelControlState.Nothing && w.WheelState != WheelControlState.Plus);
-		}
+		public int GetWheelCount() => WheelList.Count(w => w.WheelState != WheelControlState.Nothing && w.WheelState != WheelControlState.Plus);
 
-		public WheelControl GetWheelByIndex(int index) {
-			return WheelList.FirstOrDefault(c => c.Index == index);
-		}
+		public WheelControl GetWheelByIndex(int index) => WheelList.FirstOrDefault(c => c.Index == index);
 
 		public void Clear() {
 			_currentAuto = new Auto();
@@ -162,9 +109,7 @@ namespace Vesna.Controls {
 			WheelControl lastWheel = WheelList.Find(w => w.WheelState == WheelControlState.Plus);
 			if (lastWheel != null) {
 				lastWheel.WheelState = WheelControlState.One;
-				lastWheel.WeightValue = 0;
-				lastWheel.NagruzkaDopust = 0;
-				lastWheel.DistanceToNext = 0;
+				lastWheel.ClearWheelValues();
 			}
 		}
 
@@ -191,7 +136,7 @@ namespace Vesna.Controls {
 				//если ось была добавлена
 				foreach (WheelControl c in WheelList) {
 					if (c.Index == e.Index - 1) {//ищем предыдущую ось
-						c.tb_ras.Visible = true;
+						c.tb_distanceToNext.Visible = c.tb_distanceToNextWithInaccuracy.Visible = true;
 					}
 					if (c.Index == e.Index + 1) {//ищем след ось
 						c.WheelState = WheelControlState.Plus;
@@ -204,7 +149,7 @@ namespace Vesna.Controls {
 						c.WheelState = WheelControlState.Nothing;
 					}
 					if (c.Index >= e.Index - 1) {//ищем предыдущую ось
-						c.tb_ras.Visible = false;
+						c.tb_distanceToNext.Visible = c.tb_distanceToNextWithInaccuracy.Visible = false;
 					}
 				}
 			}
@@ -212,7 +157,7 @@ namespace Vesna.Controls {
 
 		private void cb_vid_TC_SelectedIndexChanged(object sender, EventArgs e) {
 			if (_currentAuto != null) {
-				_currentAuto.AutoType = (AutoType)cb_vid_TC.SelectedIndex+1;
+				_currentAuto.AutoType = (AutoType)cb_vid_TC.SelectedIndex + 1;
 			}
 		}
 
@@ -234,11 +179,12 @@ namespace Vesna.Controls {
 
 		private void timer1_Tick(object sender, EventArgs e) {
 			if (!DesignMode) {
+				float scalesValue = ComInfo.GetVes().Ves;
+
+				l_ves.Text = scalesValue.ToString(CultureInfo.InvariantCulture);
 				int count = GetWheelCount();
-				float nag = ComInfo.GetVes().Ves;
-				l_ves.Text = nag.ToString(CultureInfo.InvariantCulture);
 				if (count > 0 && !WheelList[count - 1].IsFixed) {
-					WheelList[count - 1].WeightValue = nag;
+					WheelList[count - 1].ScalesValue = scalesValue;
 				}
 			}
 		}

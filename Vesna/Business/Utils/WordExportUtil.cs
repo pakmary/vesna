@@ -20,7 +20,7 @@ namespace Vesna.Business.Utils {
 
 		private static void Fill(Auto auto) {
 			try {
-				Object fileName = Application.StartupPath + "\\act.doc";
+				string fileName = $"{Application.StartupPath}\\Files\\act.doc";
 				_wordApp = new Microsoft.Office.Interop.Word.Application();
 
 				Microsoft.Office.Interop.Word.Document doc = _wordApp.Documents.Add(fileName);
@@ -54,6 +54,12 @@ namespace Vesna.Business.Utils {
 
 				Replace("[ИМЯ_СОБСТВЕНИКА]", auto.Sobstvenik, ref doc);
 				Replace("[АДРЕС_СОБСТННИКА]", auto.SobstvenikAddess, ref doc);
+				Replace("[№_СВИД-ВА]", auto.SobstvenikSvidetelstvo, ref doc);
+				Replace("[ИМЯ_СОБСТВЕННИКА_ПРИЦЕПА]", auto.SobstvenikPricep, ref doc);
+				Replace("[АДРЕС_СОБСТННИКА_ПРИЦЕПА]", auto.SobstvenikPricepAddess, ref doc);
+				Replace("[№_СВИД-ВА_ПРИЦЕПА]", auto.SobstvenikPricepSvidetelstvo, ref doc);
+				Replace("[ФИО_ВОД]", auto.Driver, ref doc);
+				Replace("[СЕРИЯ_И_№_ВОД_УДОСТ-Я]", auto.DriverLicense, ref doc);
 				//Replace("[ИМЯ_ОРГАНИЗАЦИИ]", auto.OrganName, ref doc);
 				//Replace("[АДР_ОРГ]", auto.OrganAddress, ref doc);
 
@@ -118,10 +124,10 @@ namespace Vesna.Business.Utils {
 				//Replace("[ВОД_УДС]", tb_nomer_udost.Text, ref doc);
 				//Replace("[ПРИН_МЕРЫ]", auto.PrinyatieMery, ref doc);
 				//Replace("[РАЗМ_УЩБ]", tb_razmer_usherb.Text, ref doc, indexRow);
-				Replace("[ФИО_ОПР]", auto.ImyaOperator, ref doc);
-				Replace("[ФИО_ИНСП]", auto.ImyaInspektora, ref doc);
-				Replace("[ФИО_ВОД]", auto.ImyaVodit, ref doc);
-				Replace("[ФИО_ВОД]", auto.ImyaVodit, ref doc);
+				Replace("[ФИО_ОПР]", auto.OperatorPVK, ref doc);
+				Replace("[ФИО_ИНСП]", auto.InspectorGIBDD, ref doc);
+				Replace("[ФИО_ВОД]", auto.Driver, ref doc);
+				Replace("[ФИО_ВОД]", auto.Driver, ref doc);
 				Replace("[РАЗМ_УЩЕРБА]", auto.FullAutoDamage.ToString(), ref doc);
 
 				Replace("[РАЗМЕР_ВРЕДА_МАССА]", auto.FullWeightData.Damage.ToString(), ref doc);

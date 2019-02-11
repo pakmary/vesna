@@ -23,44 +23,46 @@
 		/// содержимое данного метода при помощи редактора кода.
 		/// </summary>
 		private void InitializeComponent() {
-			this.label1 = new System.Windows.Forms.Label();
+			this.lebel10 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
-			this.l_nagDop = new System.Windows.Forms.Label();
-			this.l_pereves = new System.Windows.Forms.Label();
-			this.l_procent = new System.Windows.Forms.Label();
-			this.tb_ras = new System.Windows.Forms.NumericUpDown();
+			this.l_loadLimit = new System.Windows.Forms.Label();
+			this.l_over = new System.Windows.Forms.Label();
+			this.l_overPercent = new System.Windows.Forms.Label();
+			this.tb_distanceToNext = new System.Windows.Forms.NumericUpDown();
 			this.b_add = new System.Windows.Forms.Button();
 			this.tb_scales_value = new System.Windows.Forms.NumericUpDown();
 			this.pb_fix = new System.Windows.Forms.PictureBox();
 			this.WheelPic = new System.Windows.Forms.PictureBox();
+			this.tb_weightValueWithInaccuracy = new System.Windows.Forms.Label();
+			this.tb_distanceToNextWithInaccuracy = new System.Windows.Forms.Label();
 			this.cbUpper = new Vesna.Controls.CheckButtonControl();
 			this.cbPnevmo = new Vesna.Controls.CheckButtonControl();
 			this.cbDouble = new Vesna.Controls.CheckButtonControl();
-			this.tb_nagruz = new System.Windows.Forms.Label();
-			((System.ComponentModel.ISupportInitialize)(this.tb_ras)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.tb_distanceToNext)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.tb_scales_value)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pb_fix)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.WheelPic)).BeginInit();
 			this.SuspendLayout();
 			// 
-			// label1
+			// lebel10
 			// 
-			this.label1.AutoSize = true;
-			this.label1.BackColor = System.Drawing.Color.Transparent;
-			this.label1.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.label1.ForeColor = System.Drawing.Color.Red;
-			this.label1.Location = new System.Drawing.Point(-4, 256);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(114, 20);
-			this.label1.TabIndex = 0;
-			this.label1.Text = "                                   ";
+			this.lebel10.AutoSize = true;
+			this.lebel10.BackColor = System.Drawing.Color.Transparent;
+			this.lebel10.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.lebel10.ForeColor = System.Drawing.Color.Red;
+			this.lebel10.Location = new System.Drawing.Point(-4, 256);
+			this.lebel10.Name = "lebel10";
+			this.lebel10.Size = new System.Drawing.Size(114, 20);
+			this.lebel10.TabIndex = 0;
+			this.lebel10.Text = "                                   ";
 			// 
 			// label3
 			// 
 			this.label3.AutoSize = true;
 			this.label3.BackColor = System.Drawing.Color.Transparent;
 			this.label3.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.label3.ForeColor = System.Drawing.Color.MediumBlue;
 			this.label3.Location = new System.Drawing.Point(-5, 233);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(114, 20);
@@ -78,65 +80,65 @@
 			this.label4.TabIndex = 0;
 			this.label4.Text = "                                   ";
 			// 
-			// l_nagDop
+			// l_loadLimit
 			// 
-			this.l_nagDop.AutoSize = true;
-			this.l_nagDop.BackColor = System.Drawing.Color.Transparent;
-			this.l_nagDop.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.l_nagDop.ForeColor = System.Drawing.Color.Red;
-			this.l_nagDop.Location = new System.Drawing.Point(3, 252);
-			this.l_nagDop.Name = "l_nagDop";
-			this.l_nagDop.Size = new System.Drawing.Size(16, 20);
-			this.l_nagDop.TabIndex = 8;
-			this.l_nagDop.Text = "0";
+			this.l_loadLimit.AutoSize = true;
+			this.l_loadLimit.BackColor = System.Drawing.Color.Transparent;
+			this.l_loadLimit.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.l_loadLimit.ForeColor = System.Drawing.Color.Red;
+			this.l_loadLimit.Location = new System.Drawing.Point(3, 252);
+			this.l_loadLimit.Name = "l_loadLimit";
+			this.l_loadLimit.Size = new System.Drawing.Size(16, 20);
+			this.l_loadLimit.TabIndex = 8;
+			this.l_loadLimit.Text = "0";
 			// 
-			// l_pereves
+			// l_over
 			// 
-			this.l_pereves.AutoSize = true;
-			this.l_pereves.BackColor = System.Drawing.Color.Transparent;
-			this.l_pereves.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.l_pereves.Location = new System.Drawing.Point(3, 275);
-			this.l_pereves.Name = "l_pereves";
-			this.l_pereves.Size = new System.Drawing.Size(16, 20);
-			this.l_pereves.TabIndex = 11;
-			this.l_pereves.Text = "0";
-			this.l_pereves.Visible = false;
+			this.l_over.AutoSize = true;
+			this.l_over.BackColor = System.Drawing.Color.Transparent;
+			this.l_over.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.l_over.Location = new System.Drawing.Point(3, 275);
+			this.l_over.Name = "l_over";
+			this.l_over.Size = new System.Drawing.Size(16, 20);
+			this.l_over.TabIndex = 11;
+			this.l_over.Text = "0";
+			this.l_over.Visible = false;
 			// 
-			// l_procent
+			// l_overPercent
 			// 
-			this.l_procent.AutoSize = true;
-			this.l_procent.BackColor = System.Drawing.Color.Transparent;
-			this.l_procent.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.l_procent.Location = new System.Drawing.Point(3, 298);
-			this.l_procent.Name = "l_procent";
-			this.l_procent.Size = new System.Drawing.Size(16, 20);
-			this.l_procent.TabIndex = 12;
-			this.l_procent.Text = "0";
-			this.l_procent.Visible = false;
+			this.l_overPercent.AutoSize = true;
+			this.l_overPercent.BackColor = System.Drawing.Color.Transparent;
+			this.l_overPercent.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.l_overPercent.Location = new System.Drawing.Point(3, 298);
+			this.l_overPercent.Name = "l_overPercent";
+			this.l_overPercent.Size = new System.Drawing.Size(16, 20);
+			this.l_overPercent.TabIndex = 12;
+			this.l_overPercent.Text = "0";
+			this.l_overPercent.Visible = false;
 			// 
-			// tb_ras
+			// tb_distanceToNext
 			// 
-			this.tb_ras.DecimalPlaces = 2;
-			this.tb_ras.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.tb_ras.Increment = new decimal(new int[] {
+			this.tb_distanceToNext.DecimalPlaces = 2;
+			this.tb_distanceToNext.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.tb_distanceToNext.Increment = new decimal(new int[] {
             1,
             0,
             0,
             131072});
-			this.tb_ras.Location = new System.Drawing.Point(42, 93);
-			this.tb_ras.Maximum = new decimal(new int[] {
+			this.tb_distanceToNext.Location = new System.Drawing.Point(42, 73);
+			this.tb_distanceToNext.Maximum = new decimal(new int[] {
             99,
             0,
             0,
             0});
-			this.tb_ras.Name = "tb_ras";
-			this.tb_ras.Size = new System.Drawing.Size(63, 25);
-			this.tb_ras.TabIndex = 13;
-			this.tb_ras.Visible = false;
-			this.tb_ras.Enter += new System.EventHandler(this.tb_Enter);
-			this.tb_ras.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_KeyPress);
-			this.tb_ras.Leave += new System.EventHandler(this.tb_ras_Leave);
-			this.tb_ras.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tb_MouseClick);
+			this.tb_distanceToNext.Name = "tb_distanceToNext";
+			this.tb_distanceToNext.Size = new System.Drawing.Size(63, 25);
+			this.tb_distanceToNext.TabIndex = 13;
+			this.tb_distanceToNext.Visible = false;
+			this.tb_distanceToNext.Enter += new System.EventHandler(this.tb_Enter);
+			this.tb_distanceToNext.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_KeyPress);
+			this.tb_distanceToNext.Leave += new System.EventHandler(this.tb_ras_Leave);
+			this.tb_distanceToNext.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tb_MouseClick);
 			// 
 			// b_add
 			// 
@@ -160,9 +162,9 @@
             0,
             0,
             65536});
-			this.tb_scales_value.Location = new System.Drawing.Point(-1, 202);
+			this.tb_scales_value.Location = new System.Drawing.Point(5, 202);
 			this.tb_scales_value.Name = "tb_scales_value";
-			this.tb_scales_value.Size = new System.Drawing.Size(73, 25);
+			this.tb_scales_value.Size = new System.Drawing.Size(68, 25);
 			this.tb_scales_value.TabIndex = 18;
 			this.tb_scales_value.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_KeyPress);
 			this.tb_scales_value.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tb_MouseClick);
@@ -187,6 +189,32 @@
 			this.WheelPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.WheelPic.TabIndex = 0;
 			this.WheelPic.TabStop = false;
+			// 
+			// tb_weightValueWithInaccuracy
+			// 
+			this.tb_weightValueWithInaccuracy.AutoSize = true;
+			this.tb_weightValueWithInaccuracy.BackColor = System.Drawing.Color.Transparent;
+			this.tb_weightValueWithInaccuracy.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.tb_weightValueWithInaccuracy.ForeColor = System.Drawing.Color.MediumBlue;
+			this.tb_weightValueWithInaccuracy.Location = new System.Drawing.Point(3, 229);
+			this.tb_weightValueWithInaccuracy.Name = "tb_weightValueWithInaccuracy";
+			this.tb_weightValueWithInaccuracy.Size = new System.Drawing.Size(16, 20);
+			this.tb_weightValueWithInaccuracy.TabIndex = 22;
+			this.tb_weightValueWithInaccuracy.Text = "0";
+			this.tb_weightValueWithInaccuracy.Visible = false;
+			// 
+			// tb_distanceToNextWithInaccuracy
+			// 
+			this.tb_distanceToNextWithInaccuracy.AutoSize = true;
+			this.tb_distanceToNextWithInaccuracy.BackColor = System.Drawing.Color.Transparent;
+			this.tb_distanceToNextWithInaccuracy.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.tb_distanceToNextWithInaccuracy.ForeColor = System.Drawing.Color.MediumBlue;
+			this.tb_distanceToNextWithInaccuracy.Location = new System.Drawing.Point(41, 101);
+			this.tb_distanceToNextWithInaccuracy.Name = "tb_distanceToNextWithInaccuracy";
+			this.tb_distanceToNextWithInaccuracy.Size = new System.Drawing.Size(16, 20);
+			this.tb_distanceToNextWithInaccuracy.TabIndex = 23;
+			this.tb_distanceToNextWithInaccuracy.Text = "0";
+			this.tb_distanceToNextWithInaccuracy.Visible = false;
 			// 
 			// cbUpper
 			// 
@@ -227,45 +255,33 @@
 			this.cbDouble.TabIndex = 19;
 			this.cbDouble.StatusChanged += new Vesna.Controls.CheckButtonControl.StatusChangedHander(this.CheckButton_Click);
 			// 
-			// tb_nagruz
-			// 
-			this.tb_nagruz.AutoSize = true;
-			this.tb_nagruz.BackColor = System.Drawing.Color.Transparent;
-			this.tb_nagruz.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.tb_nagruz.Location = new System.Drawing.Point(3, 229);
-			this.tb_nagruz.Name = "tb_nagruz";
-			this.tb_nagruz.Size = new System.Drawing.Size(16, 20);
-			this.tb_nagruz.TabIndex = 22;
-			this.tb_nagruz.Text = "0";
-			this.tb_nagruz.Visible = false;
-			// 
 			// WheelControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.Snow;
 			this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.Controls.Add(this.tb_distanceToNextWithInaccuracy);
 			this.Controls.Add(this.tb_scales_value);
-			this.Controls.Add(this.tb_nagruz);
+			this.Controls.Add(this.tb_weightValueWithInaccuracy);
 			this.Controls.Add(this.cbUpper);
 			this.Controls.Add(this.cbPnevmo);
 			this.Controls.Add(this.cbDouble);
 			this.Controls.Add(this.b_add);
 			this.Controls.Add(this.pb_fix);
-			this.Controls.Add(this.tb_ras);
-			this.Controls.Add(this.l_procent);
-			this.Controls.Add(this.l_pereves);
-			this.Controls.Add(this.l_nagDop);
+			this.Controls.Add(this.tb_distanceToNext);
+			this.Controls.Add(this.l_overPercent);
+			this.Controls.Add(this.l_over);
+			this.Controls.Add(this.l_loadLimit);
 			this.Controls.Add(this.WheelPic);
-			this.Controls.Add(this.label1);
+			this.Controls.Add(this.lebel10);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.label4);
 			this.Name = "WheelControl";
 			this.Size = new System.Drawing.Size(104, 320);
 			this.DoubleClick += new System.EventHandler(this.Wheel_DoubleClick);
 			this.MouseEnter += new System.EventHandler(this.WheelControl_MouseEnter);
-			this.MouseHover += new System.EventHandler(this.WheelControl_MouseHover);
-			((System.ComponentModel.ISupportInitialize)(this.tb_ras)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.tb_distanceToNext)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.tb_scales_value)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pb_fix)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.WheelPic)).EndInit();
@@ -276,20 +292,21 @@
 
 		#endregion
 
-		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Label lebel10;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.PictureBox WheelPic;
-		private System.Windows.Forms.Label l_nagDop;
-		private System.Windows.Forms.Label l_pereves;
-		private System.Windows.Forms.Label l_procent;
-		public System.Windows.Forms.NumericUpDown tb_ras;
+		private System.Windows.Forms.Label l_loadLimit;
+		private System.Windows.Forms.Label l_over;
+		private System.Windows.Forms.Label l_overPercent;
+		public System.Windows.Forms.NumericUpDown tb_distanceToNext;
 		private System.Windows.Forms.PictureBox pb_fix;
 		private System.Windows.Forms.Button b_add;
 		private System.Windows.Forms.NumericUpDown tb_scales_value;
 		private Controls.CheckButtonControl cbDouble;
 		private Controls.CheckButtonControl cbPnevmo;
 		private Controls.CheckButtonControl cbUpper;
-		private System.Windows.Forms.Label tb_nagruz;
+		private System.Windows.Forms.Label tb_weightValueWithInaccuracy;
+		public System.Windows.Forms.Label tb_distanceToNextWithInaccuracy;
 	}
 }

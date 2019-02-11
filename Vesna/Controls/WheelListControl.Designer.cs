@@ -49,6 +49,7 @@
 			this.tb_razmerUsherba = new System.Windows.Forms.Label();
 			this.label14 = new System.Windows.Forms.Label();
 			this.label13 = new System.Windows.Forms.Label();
+			this.os1 = new Vesna.Controls.WheelControl();
 			this.videoPictuce1 = new Vesna.VideoPictuceControl();
 			this.os10 = new Vesna.Controls.WheelControl();
 			this.os9 = new Vesna.Controls.WheelControl();
@@ -59,7 +60,6 @@
 			this.os4 = new Vesna.Controls.WheelControl();
 			this.os3 = new Vesna.Controls.WheelControl();
 			this.os2 = new Vesna.Controls.WheelControl();
-			this.os1 = new Vesna.Controls.WheelControl();
 			((System.ComponentModel.ISupportInitialize)(this.tb_Rastoyan)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -67,11 +67,12 @@
 			// 
 			this.label1.AutoSize = true;
 			this.label1.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.label1.ForeColor = System.Drawing.Color.MediumBlue;
 			this.label1.Location = new System.Drawing.Point(17, 362);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(109, 20);
+			this.label1.Size = new System.Drawing.Size(115, 20);
 			this.label1.TabIndex = 21;
-			this.label1.Text = "фактическая:        ";
+			this.label1.Text = "применяемая:        ";
 			// 
 			// label2
 			// 
@@ -99,6 +100,7 @@
 			// 
 			this.l_mass.AutoSize = true;
 			this.l_mass.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.l_mass.ForeColor = System.Drawing.Color.MediumBlue;
 			this.l_mass.Location = new System.Drawing.Point(164, 362);
 			this.l_mass.Name = "l_mass";
 			this.l_mass.Size = new System.Drawing.Size(16, 20);
@@ -307,6 +309,7 @@
 			this.label14.AutoSize = true;
 			this.label14.BackColor = System.Drawing.Color.Transparent;
 			this.label14.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.label14.ForeColor = System.Drawing.Color.MediumBlue;
 			this.label14.Location = new System.Drawing.Point(17, 242);
 			this.label14.Name = "label14";
 			this.label14.Size = new System.Drawing.Size(205, 20);
@@ -324,6 +327,22 @@
 			this.label13.TabIndex = 58;
 			this.label13.Text = "показания весов:        ";
 			// 
+			// os1
+			// 
+			this.os1.BackColor = System.Drawing.Color.Snow;
+			this.os1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.os1.DistanceToNext = 0F;
+			this.os1.Index = 0;
+			this.os1.IsUpper = false;
+			this.os1.Location = new System.Drawing.Point(160, 8);
+			this.os1.Name = "os1";
+			this.os1.ScalesValue = 0F;
+			this.os1.Size = new System.Drawing.Size(106, 324);
+			this.os1.TabIndex = 0;
+			this.os1.WheelState = Vesna.Controls.WheelControlState.Plus;
+			this.os1.WheelStatusChanged += new Vesna.Controls.WheelControl.WheelStatusChangedHandler(this.os_WheelStateChanged);
+			this.os1.ButtonAddClick += new System.EventHandler(this.os1_ButtonAddClick);
+			// 
 			// videoPictuce1
 			// 
 			this.videoPictuce1.BackColor = System.Drawing.Color.White;
@@ -336,13 +355,12 @@
 			// 
 			this.os10.BackColor = System.Drawing.Color.Snow;
 			this.os10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.os10.DistanceToNext = 0F;
 			this.os10.Index = 9;
 			this.os10.IsUpper = false;
 			this.os10.Location = new System.Drawing.Point(1114, 8);
-			this.os10.WeightValue = 0F;
-			this.os10.NagruzkaDopust = 0F;
 			this.os10.Name = "os10";
-			this.os10.DistanceToNext = 0F;
+			this.os10.ScalesValue = 0F;
 			this.os10.Size = new System.Drawing.Size(106, 324);
 			this.os10.TabIndex = 9;
 			this.os10.WheelState = Vesna.Controls.WheelControlState.Nothing;
@@ -353,13 +371,12 @@
 			// 
 			this.os9.BackColor = System.Drawing.Color.Snow;
 			this.os9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.os9.DistanceToNext = 0F;
 			this.os9.Index = 8;
 			this.os9.IsUpper = false;
 			this.os9.Location = new System.Drawing.Point(1008, 8);
-			this.os9.WeightValue = 0F;
-			this.os9.NagruzkaDopust = 0F;
 			this.os9.Name = "os9";
-			this.os9.DistanceToNext = 0F;
+			this.os9.ScalesValue = 0F;
 			this.os9.Size = new System.Drawing.Size(106, 324);
 			this.os9.TabIndex = 8;
 			this.os9.WheelState = Vesna.Controls.WheelControlState.Nothing;
@@ -370,13 +387,12 @@
 			// 
 			this.os8.BackColor = System.Drawing.Color.Snow;
 			this.os8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.os8.DistanceToNext = 0F;
 			this.os8.Index = 7;
 			this.os8.IsUpper = false;
 			this.os8.Location = new System.Drawing.Point(902, 8);
-			this.os8.WeightValue = 0F;
-			this.os8.NagruzkaDopust = 0F;
 			this.os8.Name = "os8";
-			this.os8.DistanceToNext = 0F;
+			this.os8.ScalesValue = 0F;
 			this.os8.Size = new System.Drawing.Size(106, 324);
 			this.os8.TabIndex = 7;
 			this.os8.WheelState = Vesna.Controls.WheelControlState.Nothing;
@@ -387,13 +403,12 @@
 			// 
 			this.os7.BackColor = System.Drawing.Color.Snow;
 			this.os7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.os7.DistanceToNext = 0F;
 			this.os7.Index = 6;
 			this.os7.IsUpper = false;
 			this.os7.Location = new System.Drawing.Point(796, 8);
-			this.os7.WeightValue = 0F;
-			this.os7.NagruzkaDopust = 0F;
 			this.os7.Name = "os7";
-			this.os7.DistanceToNext = 0F;
+			this.os7.ScalesValue = 0F;
 			this.os7.Size = new System.Drawing.Size(106, 324);
 			this.os7.TabIndex = 6;
 			this.os7.WheelState = Vesna.Controls.WheelControlState.Nothing;
@@ -404,13 +419,12 @@
 			// 
 			this.os6.BackColor = System.Drawing.Color.Snow;
 			this.os6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.os6.DistanceToNext = 0F;
 			this.os6.Index = 5;
 			this.os6.IsUpper = false;
 			this.os6.Location = new System.Drawing.Point(690, 8);
-			this.os6.WeightValue = 0F;
-			this.os6.NagruzkaDopust = 0F;
 			this.os6.Name = "os6";
-			this.os6.DistanceToNext = 0F;
+			this.os6.ScalesValue = 0F;
 			this.os6.Size = new System.Drawing.Size(106, 324);
 			this.os6.TabIndex = 5;
 			this.os6.WheelState = Vesna.Controls.WheelControlState.Nothing;
@@ -421,13 +435,12 @@
 			// 
 			this.os5.BackColor = System.Drawing.Color.Snow;
 			this.os5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.os5.DistanceToNext = 0F;
 			this.os5.Index = 4;
 			this.os5.IsUpper = false;
 			this.os5.Location = new System.Drawing.Point(584, 8);
-			this.os5.WeightValue = 0F;
-			this.os5.NagruzkaDopust = 0F;
 			this.os5.Name = "os5";
-			this.os5.DistanceToNext = 0F;
+			this.os5.ScalesValue = 0F;
 			this.os5.Size = new System.Drawing.Size(106, 324);
 			this.os5.TabIndex = 4;
 			this.os5.WheelState = Vesna.Controls.WheelControlState.Nothing;
@@ -438,13 +451,12 @@
 			// 
 			this.os4.BackColor = System.Drawing.Color.Snow;
 			this.os4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.os4.DistanceToNext = 0F;
 			this.os4.Index = 3;
 			this.os4.IsUpper = false;
 			this.os4.Location = new System.Drawing.Point(478, 8);
-			this.os4.WeightValue = 0F;
-			this.os4.NagruzkaDopust = 0F;
 			this.os4.Name = "os4";
-			this.os4.DistanceToNext = 0F;
+			this.os4.ScalesValue = 0F;
 			this.os4.Size = new System.Drawing.Size(106, 324);
 			this.os4.TabIndex = 3;
 			this.os4.WheelState = Vesna.Controls.WheelControlState.Nothing;
@@ -455,13 +467,12 @@
 			// 
 			this.os3.BackColor = System.Drawing.Color.Snow;
 			this.os3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.os3.DistanceToNext = 0F;
 			this.os3.Index = 2;
 			this.os3.IsUpper = false;
 			this.os3.Location = new System.Drawing.Point(372, 8);
-			this.os3.WeightValue = 0F;
-			this.os3.NagruzkaDopust = 0F;
 			this.os3.Name = "os3";
-			this.os3.DistanceToNext = 0F;
+			this.os3.ScalesValue = 0F;
 			this.os3.Size = new System.Drawing.Size(106, 324);
 			this.os3.TabIndex = 2;
 			this.os3.WheelState = Vesna.Controls.WheelControlState.Nothing;
@@ -472,35 +483,17 @@
 			// 
 			this.os2.BackColor = System.Drawing.Color.Snow;
 			this.os2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.os2.DistanceToNext = 0F;
 			this.os2.Index = 1;
 			this.os2.IsUpper = false;
 			this.os2.Location = new System.Drawing.Point(266, 8);
-			this.os2.WeightValue = 0F;
-			this.os2.NagruzkaDopust = 0F;
 			this.os2.Name = "os2";
-			this.os2.DistanceToNext = 0F;
+			this.os2.ScalesValue = 0F;
 			this.os2.Size = new System.Drawing.Size(106, 324);
 			this.os2.TabIndex = 1;
 			this.os2.WheelState = Vesna.Controls.WheelControlState.Nothing;
 			this.os2.WheelStatusChanged += new Vesna.Controls.WheelControl.WheelStatusChangedHandler(this.os_WheelStateChanged);
 			this.os2.ButtonAddClick += new System.EventHandler(this.os1_ButtonAddClick);
-			// 
-			// os1
-			// 
-			this.os1.BackColor = System.Drawing.Color.Snow;
-			this.os1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.os1.Index = 0;
-			this.os1.IsUpper = false;
-			this.os1.Location = new System.Drawing.Point(160, 8);
-			this.os1.WeightValue = 0F;
-			this.os1.NagruzkaDopust = 0F;
-			this.os1.Name = "os1";
-			this.os1.DistanceToNext = 0F;
-			this.os1.Size = new System.Drawing.Size(106, 324);
-			this.os1.TabIndex = 0;
-			this.os1.WheelState = Vesna.Controls.WheelControlState.Plus;
-			this.os1.WheelStatusChanged += new Vesna.Controls.WheelControl.WheelStatusChangedHandler(this.os_WheelStateChanged);
-			this.os1.ButtonAddClick += new System.EventHandler(this.os1_ButtonAddClick);
 			// 
 			// WheelListControl
 			// 

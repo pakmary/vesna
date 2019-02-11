@@ -17,7 +17,7 @@ namespace Vesna.Business.Data {
 		public bool IsDouble => Type == AxisType.Double || Type == AxisType.DoubleAndPnevmo;
 		public bool IsPnevmo => Type == AxisType.DoubleAndPnevmo || Type == AxisType.SingleAndPnevmo;
 
-		public Axis(int index, 
+		internal Axis(int index, 
 		            AxisType type, 
 		            bool isUpload, 
 		            float weightValue, 

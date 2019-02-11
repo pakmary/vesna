@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Reflection;
 using System.Windows.Forms;
 using Vesna.Business.Data;
 using Vesna.Business.Utils;
@@ -10,6 +11,7 @@ namespace Vesna.Forms {
 	public partial class MainForm : Form {
 		public MainForm() {
 			InitializeComponent();
+			Text += $" {Assembly.GetExecutingAssembly().GetName().Version}";
 			//wheelsControl1.CreateNewTC();
 			if (!DesignMode) {
 				wheelListControl.FillComboBox();

@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Reflection;
 using System.Windows.Forms;
-using Vesna.Business;
 using Vesna.Business.Data;
 using Vesna.Business.Utils;
 
@@ -15,6 +8,7 @@ namespace Vesna.Forms {
 	public partial class InitForm : Form {
 		public InitForm() {
 			InitializeComponent();
+			Text += $" {Assembly.GetExecutingAssembly().GetName().Version}";
 			cb_imya_ppvk.Items.AddRange(SpravochnikUtil.GetItemCollections("sp_ppvk", "name_ppvk"));
 			cb_vesi_zavod_nomer.Items.AddRange(SpravochnikUtil.GetItemCollections("sp_Vesi", "Zavod_nomer"));
 			cb_mesto_prov.Items.AddRange(SpravochnikUtil.GetItemCollections("sp_Dis_Point", "Disl_point"));

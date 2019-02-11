@@ -16,6 +16,21 @@
     <TargetFrameworkProfile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>3.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -76,6 +91,7 @@
     <Compile Include="Controls\CheckButtonControl.Designer.cs">
       <DependentUpon>CheckButtonControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Business\Utils\WheelListChecker.cs" />
     <Compile Include="Controls\WheelState.cs" />
     <Compile Include="Forms\InitForm.cs">
       <SubType>Form</SubType>
@@ -87,8 +103,6 @@
     <Compile Include="Business\Utils\COMInfo.cs" />
     <Compile Include="Business\Utils\SpravochnikUtil.cs" />
     <Compile Include="Business\Utils\VideoUtil.cs" />
-    <Compile Include="Business\Events\WheelNagruzkaArgs.cs" />
-    <Compile Include="Business\Events\WheelRastoyanArgs.cs" />
     <Compile Include="Business\Events\WheelStatusArgs.cs" />
     <Compile Include="database_inspectorDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -293,7 +307,13 @@
     <None Include="Resources\wheelUp.png" />
     <None Include="Resources\fix_true.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -19,8 +19,10 @@ namespace Vesna.Business.Data {
 		public string RegNumber { get; set; }
 		public string Sobstvenik { get; set; }
 		public string SobstvenikAddess { get; set; }
-		public string OrganName { get; set; }
-		public string OrganAddress { get; set; }
+		public string SobstvenikSvidetelstvo { get; set; }
+		public string SobstvenikPricep { get; set; }
+		public string SobstvenikPricepAddess { get; set; }
+		public string SobstvenikPricepSvidetelstvo { get; set; }
 		public AutoRoad Road { get; set; } = new AutoRoad();
 		public string HarakterGruza { get; set; }
 		public string VidGruza { get; set; }
@@ -32,12 +34,11 @@ namespace Vesna.Business.Data {
 		public List<Axis> AxisList { get; set; } = new List<Axis>();
 
 		public string VoditelObyasnenie { get; set; }
-		public string VoditelUdostoverenie { get; set; }
-		public string PrinyatieMery { get; set; }
 
-		public string ImyaOperator { get; set; }
-		public string ImyaVodit { get; set; }
-		public string ImyaInspektora { get; set; }
+		public string OperatorPVK { get; set; }
+		public string Driver { get; set; }
+		public string DriverLicense { get; set; }
+		public string InspectorGIBDD { get; set; }
 
 		public string Primechanie { get; set; }
 
@@ -45,7 +46,7 @@ namespace Vesna.Business.Data {
 		public float InaccuracyRoulette { get; set; }
 		public float FullAutoDamage { get; set; }
 
-		public bool HasAxisOver => AxisList.Any(os => os.WeightValue > os.LoadLimit);
+		public bool HasAxisOver => AxisList.Any(os => os.WeightValueWithInaccuracy > os.LoadLimit);
 
 		public void AddNewAxis(AxisType axisType, bool isUpload, float distanceToNext, float weightValue) 
 			=> AddAxis(axisType, isUpload, distanceToNext, weightValue);
@@ -57,7 +58,7 @@ namespace Vesna.Business.Data {
 			if (AxisList.Count < 10) {
 				float weightValueWithInaccuracy = Math.Max(weightValue - Scales.Inaccuracy, 0);
 				float distanceToNextWithInaccuracy = distanceToNext + InaccuracyRoulette;
-				var axis = new Axis(index: AxisList.Count - 1,
+				var axis = new Axis(index: AxisList.Count,
 				                    type: axisType,
 				                    isUpload: isUpload,
 				                    weightValue: weightValue,

@@ -27,10 +27,12 @@ namespace Vesna.Business {
 				             + " vesi_date_OT, "
 				             + " vesi_date_DO, "
 				             + " vesi_zavod_nomer, "
-				             //foto
-				             //+ " harakter_narush, "
+				             + " vesi_inaccuracy, "
+							 + " inaccuracy_roulette, "
+							 //foto
+							 //+ " harakter_narush, "
 
-				             + " AutoTypeId, "
+							 + " AutoTypeId, "
 				             + " tab_1_mark, "
 				             + " tab_1_model, "
 				             + " tab_1_reg, "
@@ -47,9 +49,11 @@ namespace Vesna.Business {
 
 				             + " sobstvenik, "
 				             + " address_sobstvenik, "
-				             + " organ, "
-				             + " address_org, "
-				             + " strana, "
+				             + " sobstvenik_svidetelstvo, "
+				             + " sobstvenik_pricep, "
+				             + " sobstvenik_pricep_address, "
+							 + " sobstvenik_pricep_svidetelstvo, "
+							 + " strana, "
 				             + " sub, "
 				             + " kog_strani, "
 
@@ -67,12 +71,12 @@ namespace Vesna.Business {
 				             + comAxisInBase
 
 				             + " obyas_vodit, "
-				             //+ " udostov_vodit, "
-				             + " prin_mery, "
+				             //+ " prin_mery, "
 
 				             + " oper_ppvk, "
 				             + " vodit, "
-				             + " insp_police, "
+				             + " udostov_vodit, "
+							 + " insp_police, "
 
 
 				             + " primechanie, "
@@ -90,10 +94,12 @@ namespace Vesna.Business {
 				             + auto.Scales.CheckDateFrom + "' , '"
 				             + auto.Scales.CheckDateTo + "' , '"
 				             + auto.Scales.Number + "' , '"
-				             //+ Foto + "' , '"
-				             //+ HarakterNarush + "' , '"
+				             + auto.Scales.Inaccuracy + "' , '"
+				             + auto.InaccuracyRoulette + "' , '"
+							 //+ Foto + "' , '"
+							 //+ HarakterNarush + "' , '"
 
-				             + (int)auto.AutoType + "' , '"
+							 + (int)auto.AutoType + "' , '"
 				             + auto.Mark + "' , '"
 				             + auto.Model + "' , '"
 				             + auto.RegNumber + "' , "
@@ -103,9 +109,11 @@ namespace Vesna.Business {
 
 				             + auto.Sobstvenik + "' , '"
 				             + auto.SobstvenikAddess + "' , '"
-				             + auto.OrganName + "' , '"
-				             + auto.OrganAddress + "' , '"
-				             + auto.Road.County + "' , '"
+				             + auto.SobstvenikSvidetelstvo + "' , '"
+				             + auto.SobstvenikPricep + "' , '"
+				             + auto.SobstvenikPricepAddess + "' , '"
+				             + auto.SobstvenikPricepSvidetelstvo + "' , '"
+							 + auto.Road.County + "' , '"
 				             + auto.Road.Region + "' , '"
 				             + auto.Road.RegionKode + "' , '"
 
@@ -123,11 +131,12 @@ namespace Vesna.Business {
 
 				             + auto.VoditelObyasnenie + "' , '"
 				             //+ auto.Voditel_udostoverenie + "' , '"
-				             + auto.PrinyatieMery + "' , '"
+				             //+ auto.PrinyatieMery + "' , '"
 
-				             + auto.ImyaOperator + "' , '"
-				             + auto.ImyaVodit + "' , '"
-				             + auto.ImyaInspektora + "' , '"
+				             + auto.OperatorPVK + "' , '"
+				             + auto.Driver + "' , '"
+				             + auto.DriverLicense + "' , '"
+							 + auto.InspectorGIBDD + "' , '"
 
 				             + auto.Primechanie + "' , '"
 
@@ -177,8 +186,8 @@ namespace Vesna.Business {
 			auto.Scales.CheckDateFrom = TryParseDTOrGetDefault(dt.Rows[0]["vesi_date_OT"].ToString(), "vesi_date_OT");
 			auto.Scales.CheckDateTo = TryParseDTOrGetDefault(dt.Rows[0]["vesi_date_DO"].ToString(), "vesi_date_DO");
 			auto.Scales.Number = dt.Rows[0]["vesi_zavod_nomer"].ToString();
-			auto.Scales.Inaccuracy = TryParseFloatOrGetDefault(dt.Rows[0]["vesi_inaccuracy"].ToString(), "vesi_inaccuracy");
-			auto.InaccuracyRoulette = TryParseFloatOrGetDefault(dt.Rows[0]["inaccuracy_Roulette"].ToString(), "inaccuracy_Roulette");
+			auto.Scales.Inaccuracy = TryParseFloatOrGetDefault(dt.Rows[0]["vesi_inaccuracy"].ToString(), def:0);
+			auto.InaccuracyRoulette = TryParseFloatOrGetDefault(dt.Rows[0]["inaccuracy_roulette"].ToString(), def: 0);
 
 			string strpath = $@"{Application.StartupPath}\Files\Foto\{auto.Id}.jpg";
 			if (File.Exists(strpath)) {
@@ -200,8 +209,10 @@ namespace Vesna.Business {
 
 			auto.Sobstvenik = dt.Rows[0]["sobstvenik"].ToString();
 			auto.SobstvenikAddess = dt.Rows[0]["address_sobstvenik"].ToString();
-			auto.OrganName = dt.Rows[0]["organ"].ToString();
-			auto.OrganAddress = dt.Rows[0]["address_org"].ToString();
+			auto.SobstvenikSvidetelstvo = dt.Rows[0]["sobstvenik_svidetelstvo"].ToString();
+			auto.SobstvenikPricep = dt.Rows[0]["sobstvenik_pricep"].ToString();
+			auto.SobstvenikPricepAddess = dt.Rows[0]["sobstvenik_pricep_address"].ToString();
+			auto.SobstvenikPricepSvidetelstvo = dt.Rows[0]["sobstvenik_pricep_svidetelstvo"].ToString();
 			auto.Road.County = dt.Rows[0]["strana"].ToString();
 			auto.Road.Region = dt.Rows[0]["sub"].ToString();
 
@@ -232,11 +243,11 @@ namespace Vesna.Business {
 				             damage: damage);
 			}
 			auto.VoditelObyasnenie = dt.Rows[0]["obyas_vodit"].ToString();
-			auto.PrinyatieMery = dt.Rows[0]["prin_mery"].ToString();
 
-			auto.ImyaOperator = dt.Rows[0]["oper_ppvk"].ToString();
-			auto.ImyaVodit = dt.Rows[0]["vodit"].ToString();
-			auto.ImyaInspektora = dt.Rows[0]["insp_police"].ToString();
+			auto.OperatorPVK = dt.Rows[0]["oper_ppvk"].ToString();
+			auto.Driver = dt.Rows[0]["vodit"].ToString();
+			auto.DriverLicense = dt.Rows[0]["udostov_vodit"].ToString();
+			auto.InspectorGIBDD = dt.Rows[0]["insp_police"].ToString();
 
 			auto.Primechanie = dt.Rows[0]["primechanie"].ToString();
 
@@ -245,10 +256,6 @@ namespace Vesna.Business {
 
 			#endregion
 			
-			/*Calculator.GetMassDamage();
-			for (int i = 0; i < AxisList.Count; i++) {
-				Calculator.GetAxisDamage(i);
-			}*/
 			return auto;
 		}
 

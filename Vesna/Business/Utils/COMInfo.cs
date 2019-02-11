@@ -5,13 +5,14 @@ using System.Windows.Forms;
 namespace Vesna.Business.Utils {
 	internal class ComInfo {
 		private static SerialPort _arduino;
-		public string AllData;
-		public string Znak;
-		public float Ves;
-		public int CountPoint;
-		public string Control;
-		public bool HaveError = false;
-		public string ErrorMessage;
+
+		public string AllData { get; set; }
+		public string Znak { get; set; }
+		public float Ves { get; set; }
+		public int CountPoint { get; set; }
+		public string Control { get; set; }
+		public bool HaveError { get; set; } = false;
+		public string ErrorMessage { get; set; }
 
 		public static string[] GetListCOM() {
 			return SerialPort.GetPortNames();
@@ -37,14 +38,14 @@ namespace Vesna.Business.Utils {
 		}
 
 		private static string GetData() {
-			//Random r = new Random();
-			//return "+00" + r.Next(1000, 9999) + "01F\x3";
-			//Open();
+			var r = new Random();
+			return "+00" + r.Next(1000, 9999) + "01F\x3";
+			////Open();
 
-			if (_arduino != null && _arduino.IsOpen) {
-				return _arduino.ReadExisting();
-			}
-			return string.Empty;
+			//if (_arduino != null && _arduino.IsOpen) {
+			//	return _arduino.ReadExisting();
+			//}
+			//return string.Empty;
 		}
 
 		public static ComInfo GetVes() {

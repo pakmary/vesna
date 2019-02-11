@@ -233,9 +233,9 @@
 			this.label5.Location = new System.Drawing.Point(12, 115);
 			this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(122, 20);
+			this.label5.Size = new System.Drawing.Size(141, 20);
 			this.label5.TabIndex = 15;
-			this.label5.Text = "Погрешность весов";
+			this.label5.Text = "Погрешность весов, (т)";
 			// 
 			// tb_inaccuracy_roulette
 			// 
@@ -264,9 +264,9 @@
 			this.label6.Location = new System.Drawing.Point(12, 146);
 			this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(130, 20);
+			this.label6.Size = new System.Drawing.Size(149, 20);
 			this.label6.TabIndex = 17;
-			this.label6.Text = "Погрешность рулетки";
+			this.label6.Text = "Погрешность рулетки (м)";
 			// 
 			// SettingForm
 			// 

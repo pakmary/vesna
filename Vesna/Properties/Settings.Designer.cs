@@ -120,7 +120,7 @@ namespace Vesna.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.4")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.04")]
         public float InaccuracyRoulette {
             get {
                 return ((float)(this["InaccuracyRoulette"]));

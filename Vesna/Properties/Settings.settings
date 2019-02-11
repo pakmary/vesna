@@ -32,7 +32,7 @@
       <Value Profile="(Default)">2.9</Value>
     </Setting>
     <Setting Name="InaccuracyRoulette" Type="System.Single" Scope="User">
-      <Value Profile="(Default)">0.4</Value>
+      <Value Profile="(Default)">0.04</Value>
     </Setting>
     <Setting Name="InaccuracyScales" Type="System.Single" Scope="User">
       <Value Profile="(Default)">0.05</Value>

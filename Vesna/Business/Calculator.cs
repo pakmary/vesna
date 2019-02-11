@@ -37,7 +37,7 @@ namespace Vesna.Business {
 			AxisBlock[] axisBlocks = SplitAxisOnBlocks(auto);
 			PopulateAxisLoadLimits(axisBlocks, auto.Road.RoadType);
 
-			auto.FullWeightData.Value = auto.AxisList.Sum(a => a.WeightValue);
+			auto.FullWeightData.Value = auto.AxisList.Sum(a => a.WeightValueWithInaccuracy);
 			auto.FullWeightData.Limit = GetFullAutoLimit(auto.AutoType, auto.AxisList.Count);
 			auto.FullWeightData.Damage = GetFullAutoDamage(auto.Road, auto.FullWeightData.PercentageExceeded);
 
