@@ -38,14 +38,14 @@ namespace Vesna.Business.Utils {
 		}
 
 		private static string GetData() {
-			var r = new Random();
-			return "+00" + r.Next(1000, 9999) + "01F\x3";
-			////Open();
+			//Random r = new Random();
+			//return "+00" + r.Next(1000, 9999) + "01F\x3";
+			//Open();
 
-			//if (_arduino != null && _arduino.IsOpen) {
-			//	return _arduino.ReadExisting();
-			//}
-			//return string.Empty;
+			if (_arduino != null && _arduino.IsOpen) {
+				return _arduino.ReadExisting();
+			}
+			return string.Empty;
 		}
 
 		public static ComInfo GetVes() {
