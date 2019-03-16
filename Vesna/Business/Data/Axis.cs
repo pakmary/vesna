@@ -4,7 +4,6 @@ namespace Vesna.Business.Data {
 	public class Axis {
 		public int Index;
 		public AxisType Type { get; }
-		public bool IsUpload { get; }
 		public float WeightValue { get; }
 		public float WeightValueWithInaccuracy { get; }
 		public float DistanceToNext { get; }
@@ -19,7 +18,6 @@ namespace Vesna.Business.Data {
 
 		internal Axis(int index, 
 		            AxisType type, 
-		            bool isUpload, 
 		            float weightValue, 
 		            float weightValueWithInaccuracy, 
 		            float distanceToNext, 
@@ -28,7 +26,6 @@ namespace Vesna.Business.Data {
 		            float damage) {
 			Index = index;
 			Type = type;
-			IsUpload = isUpload;
 			WeightValue = weightValue;
 			WeightValueWithInaccuracy = weightValueWithInaccuracy;
 			DistanceToNext = distanceToNext;
@@ -49,10 +46,6 @@ namespace Vesna.Business.Data {
 		public override string ToString() {
 			float overPercent = GetOverPercent();
 			return $"L:'{LoadLimit}' V:'{WeightValue}' %:{overPercent} D:{Damage} ToNext:'{DistanceToNext}' Type:'{Type}' BlocKType:'{BlockType}";
-		}
-
-		public string ToStringForBase() {
-			return $"'{DistanceToNext}', '{WeightValue}', '{LoadLimit}', '{(int)Type}', '{Convert.ToInt32(IsUpload)}', '{Damage}' ";
 		}
 	}
 }

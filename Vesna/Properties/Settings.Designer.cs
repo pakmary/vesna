@@ -97,12 +97,12 @@ namespace Vesna.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0.285")]
-        public float ConstRegionRoad {
+        public float ConstKpmRegionRoad {
             get {
-                return ((float)(this["ConstRegionRoad"]));
+                return ((float)(this["ConstKpmRegionRoad"]));
             }
             set {
-                this["ConstRegionRoad"] = value;
+                this["ConstKpmRegionRoad"] = value;
             }
         }
         
@@ -163,6 +163,18 @@ namespace Vesna.Properties {
             }
             set {
                 this["DopustimiyProcentFullMass"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public float ConstKpmFederalRoad {
+            get {
+                return ((float)(this["ConstKpmFederalRoad"]));
+            }
+            set {
+                this["ConstKpmFederalRoad"] = value;
             }
         }
     }

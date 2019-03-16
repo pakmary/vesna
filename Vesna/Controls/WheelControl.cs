@@ -2,14 +2,11 @@
 using System.Globalization;
 using System.Windows.Forms;
 using Vesna.Business.Events;
-using Point = System.Drawing.Point;
 
 namespace Vesna.Controls {
 	public partial class WheelControl : UserControl {
 		public bool IsFixed;
 		private WheelControlState _wheelState;
-		private readonly Point _upOnPoint = new Point(0, 33);
-		private readonly Point _upOffPoint = new Point(0, 43);
 
 		public delegate void WheelStatusChangedHandler(object o, WheelStateArgs e);
 		public event WheelStatusChangedHandler WheelStatusChanged;
@@ -36,16 +33,9 @@ namespace Vesna.Controls {
 			set => tb_distanceToNext.Text = value.ToString(CultureInfo.InvariantCulture);
 		}
 
-		public bool IsUpper {
-			get => cbUpper.IsOn;
-			set => cbUpper.IsOn = value;
-		}
-
 		public WheelControl() {
 			InitializeComponent();
 			if (!DesignMode) {
-				cbUpper.OffImage = Properties.Resources.wheelUpOff;
-				cbUpper.OnImage = Properties.Resources.wheelUp;
 				cbPnevmo.OffImage = Properties.Resources.wheelPnevmoOff;
 				cbPnevmo.OnImage = Properties.Resources.wheelPnevmo;
 				cbDouble.OffImage = Properties.Resources.wheelDualOff;
@@ -98,7 +88,7 @@ namespace Vesna.Controls {
 				b_add.Visible = true;
 				flag = false;
 			}
-			cbDouble.Visible = cbPnevmo.Visible = cbUpper.Visible = flag;
+			cbDouble.Visible = cbPnevmo.Visible = flag;
 			tb_weightValueWithInaccuracy.Visible = flag;
 			pb_fix.Enabled = l_overPercent.Visible = l_over.Visible = l_loadLimit.Visible = tb_scales_value.Visible = flag;
 		}
@@ -121,7 +111,6 @@ namespace Vesna.Controls {
 			WheelState = cbDouble.IsOn
 				? (cbPnevmo.IsOn ? WheelControlState.TwoPnevmo : WheelControlState.Two)
 				: (cbPnevmo.IsOn ? WheelControlState.OnePnevmo : WheelControlState.One);
-			WheelPic.Location = cbUpper.IsOn ? _upOnPoint : _upOffPoint;
 		}
 
 		private void ClearWheel() {
@@ -132,8 +121,6 @@ namespace Vesna.Controls {
 			IsFixed = false;
 			cbDouble.IsOn = false;
 			cbPnevmo.IsOn = false;
-			cbUpper.IsOn = false;
-			WheelPic.Location = _upOffPoint;
 		}
 
 		public void ClearWheelValues() {
@@ -149,11 +136,6 @@ namespace Vesna.Controls {
 		private void tb_ras_Leave(object sender, EventArgs e) {
 			var value = tb_distanceToNext.Text.Replace('.', ',');
 			DistanceToNext = float.Parse(value);
-		}
-
-		private void tb_nag_Leave(object sender, EventArgs e) {
-			var value = tb_scales_value.Text.Replace('.', ',');
-			ScalesValue = float.Parse(value);
 		}
 
 		private void tb_KeyPress(object sender, KeyPressEventArgs e) {

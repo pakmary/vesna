@@ -299,12 +299,10 @@
     <Content Include="Resources\fix.png" />
     <None Include="Resources\wheelConnectOff.png" />
     <None Include="Resources\wheelConnect.png" />
-    <None Include="Resources\wheelUpOff.png" />
     <None Include="Resources\wheelPnevmo.png" />
     <None Include="Resources\wheelPnevmoOff.png" />
     <None Include="Resources\wheelDual.png" />
     <None Include="Resources\wheelDualOff.png" />
-    <None Include="Resources\wheelUp.png" />
     <None Include="Resources\fix_true.png" />
   </ItemGroup>
   <ItemGroup>

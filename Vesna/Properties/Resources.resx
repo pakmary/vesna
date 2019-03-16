@@ -133,9 +133,6 @@
   <data name="wheelPnevmo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\wheelPnevmo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="wheelUp" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\wheelUp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="one" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\one.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -151,14 +148,8 @@
   <data name="wheelPnevmoOff" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\wheelPnevmoOff.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="wheelUpOff" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\wheelUpOff.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="fix_true" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\fix_true.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="wheelUp1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\wheelUp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="connect" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\connect.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

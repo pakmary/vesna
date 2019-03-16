@@ -14,8 +14,9 @@ namespace Vesna.Business {
 				string comAxis = string.Empty;
 				string comAxisInBase = string.Empty;
 				for (int i = 0; i < auto.AxisList.Count; i++) {
-					comAxis += auto.AxisList[i].ToStringForBase() + ",";
-					comAxisInBase += string.Format(" r_os_{0},  m_f_os_{0},  m_d_os_{0},  v_os_{0}, is_up_{0}, os_dmg_{0}, ", i + 1);
+					Axis axis = auto.AxisList[i];
+					comAxis += $"'{axis.DistanceToNext}', '{axis.WeightValue}', '{axis.LoadLimit}', '{(int)axis.Type}', '{axis.Damage}' ,";
+					comAxisInBase += string.Format(" r_os_{0},  m_f_os_{0},  m_d_os_{0},  v_os_{0}, os_dmg_{0}, ", i + 1);
 				}
 				string com = "INSERT INTO MainTable ( "
 				             + " Car_id, "
@@ -236,7 +237,6 @@ namespace Vesna.Business {
 				float damage = TryParseFloatOrGetDefault(dt.Rows[0]["os_dmg_" + i].ToString());
 				bool isUpload = TryParseBoolOrGetDefault(dt.Rows[0]["is_up_" + i].ToString());
 				auto.AddLoadedAxis(axisType: (AxisType)axisType, 
-				             isUpload: isUpload, 
 				             distanceToNext: distanceToNext, 
 				             weightValue: weightValue, 
 				             loadLimit: loadLimit, 

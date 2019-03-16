@@ -100,7 +100,6 @@ namespace Vesna.Business.Utils {
 						axisOverPercent = Math.Round(axis.GetOverPercent(), 2) + "%";
 						isPnevmo = axis.IsPnevmo;
 						isDouble = axis.IsDouble;
-						isUp = axis.IsUpload;
 						tempStringRazmerVredaOs += axis.Damage + ((auto.AxisList.Count - 1 != i) ? "+" : "=");
 						tempSumRazmerVreda += axis.Damage;
 						if (i < auto.AxisList.Count - 1) {

@@ -48,19 +48,18 @@ namespace Vesna.Business.Data {
 
 		public bool HasAxisOver => AxisList.Any(os => os.WeightValueWithInaccuracy > os.LoadLimit);
 
-		public void AddNewAxis(AxisType axisType, bool isUpload, float distanceToNext, float weightValue) 
-			=> AddAxis(axisType, isUpload, distanceToNext, weightValue);
+		public void AddNewAxis(AxisType axisType, float distanceToNext, float weightValue) 
+			=> AddAxis(axisType, distanceToNext, weightValue);
 
-		public void AddLoadedAxis(AxisType axisType, bool isUpload, float distanceToNext, float weightValue, float loadLimit, float damage) 
-			=> AddAxis(axisType, isUpload, distanceToNext, weightValue, loadLimit, damage);
+		public void AddLoadedAxis(AxisType axisType, float distanceToNext, float weightValue, float loadLimit, float damage) 
+			=> AddAxis(axisType, distanceToNext, weightValue, loadLimit, damage);
 
-		private void AddAxis(AxisType axisType, bool isUpload, float distanceToNext, float weightValue, float loadLimit = 0, float damage = 0) {
+		private void AddAxis(AxisType axisType, float distanceToNext, float weightValue, float loadLimit = 0, float damage = 0) {
 			if (AxisList.Count < 10) {
 				float weightValueWithInaccuracy = Math.Max(weightValue - Scales.Inaccuracy, 0);
 				float distanceToNextWithInaccuracy = distanceToNext + InaccuracyRoulette;
 				var axis = new Axis(index: AxisList.Count,
 				                    type: axisType,
-				                    isUpload: isUpload,
 				                    weightValue: weightValue,
 				                    weightValueWithInaccuracy: weightValueWithInaccuracy,
 				                    distanceToNext: distanceToNext,

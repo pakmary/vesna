@@ -6,7 +6,7 @@ delete from MainTable;
 ALTER TABLE TypesRoad ALTER COLUMN id number
 INSERT INTO TypesRoad VALUES (4, '50 êÍ/5 òñ', 10, 1840, 37.7, 2.4, 7365, 123.4);
 
-//2019
+//2019 ¹1
 
 ALTER TABLE MainTable ADD COLUMN vesi_inaccuracy TEXT(255);
 ALTER TABLE MainTable ADD COLUMN inaccuracy_roulette TEXT(255);
@@ -17,5 +17,7 @@ ALTER TABLE MainTable ADD COLUMN sobstvenik_pricep_address TEXT(255);
 ALTER TABLE MainTable ADD COLUMN sobstvenik_pricep_svidetelstvo TEXT(255);
 ALTER TABLE MainTable ADD COLUMN udostov_vodit TEXT(255);
 
+///2019 ¹2
 
-[ÑÅÐÈß_È_¹_ÂÎÄ_ÓÄÎÑÒ-ß]???áûëî
+UPDATE MaxMass SET Axis5 = 38 WHERE AutoTypeId = 1;
+UPDATE MaxAxis SET R6_Double = 13 WHERE TypeAxisId = 3 AND Distance = 1,3;
