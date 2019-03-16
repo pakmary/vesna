@@ -333,7 +333,6 @@
 			this.os1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.os1.DistanceToNext = 0F;
 			this.os1.Index = 0;
-			this.os1.IsUpper = false;
 			this.os1.Location = new System.Drawing.Point(160, 8);
 			this.os1.Name = "os1";
 			this.os1.ScalesValue = 0F;
@@ -357,7 +356,6 @@
 			this.os10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.os10.DistanceToNext = 0F;
 			this.os10.Index = 9;
-			this.os10.IsUpper = false;
 			this.os10.Location = new System.Drawing.Point(1114, 8);
 			this.os10.Name = "os10";
 			this.os10.ScalesValue = 0F;
@@ -373,7 +371,6 @@
 			this.os9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.os9.DistanceToNext = 0F;
 			this.os9.Index = 8;
-			this.os9.IsUpper = false;
 			this.os9.Location = new System.Drawing.Point(1008, 8);
 			this.os9.Name = "os9";
 			this.os9.ScalesValue = 0F;
@@ -389,7 +386,6 @@
 			this.os8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.os8.DistanceToNext = 0F;
 			this.os8.Index = 7;
-			this.os8.IsUpper = false;
 			this.os8.Location = new System.Drawing.Point(902, 8);
 			this.os8.Name = "os8";
 			this.os8.ScalesValue = 0F;
@@ -405,7 +401,6 @@
 			this.os7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.os7.DistanceToNext = 0F;
 			this.os7.Index = 6;
-			this.os7.IsUpper = false;
 			this.os7.Location = new System.Drawing.Point(796, 8);
 			this.os7.Name = "os7";
 			this.os7.ScalesValue = 0F;
@@ -421,7 +416,6 @@
 			this.os6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.os6.DistanceToNext = 0F;
 			this.os6.Index = 5;
-			this.os6.IsUpper = false;
 			this.os6.Location = new System.Drawing.Point(690, 8);
 			this.os6.Name = "os6";
 			this.os6.ScalesValue = 0F;
@@ -437,7 +431,6 @@
 			this.os5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.os5.DistanceToNext = 0F;
 			this.os5.Index = 4;
-			this.os5.IsUpper = false;
 			this.os5.Location = new System.Drawing.Point(584, 8);
 			this.os5.Name = "os5";
 			this.os5.ScalesValue = 0F;
@@ -453,7 +446,6 @@
 			this.os4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.os4.DistanceToNext = 0F;
 			this.os4.Index = 3;
-			this.os4.IsUpper = false;
 			this.os4.Location = new System.Drawing.Point(478, 8);
 			this.os4.Name = "os4";
 			this.os4.ScalesValue = 0F;
@@ -469,7 +461,6 @@
 			this.os3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.os3.DistanceToNext = 0F;
 			this.os3.Index = 2;
-			this.os3.IsUpper = false;
 			this.os3.Location = new System.Drawing.Point(372, 8);
 			this.os3.Name = "os3";
 			this.os3.ScalesValue = 0F;
@@ -485,7 +476,6 @@
 			this.os2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.os2.DistanceToNext = 0F;
 			this.os2.Index = 1;
-			this.os2.IsUpper = false;
 			this.os2.Location = new System.Drawing.Point(266, 8);
 			this.os2.Name = "os2";
 			this.os2.ScalesValue = 0F;

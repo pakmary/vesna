@@ -58,7 +58,6 @@ namespace Vesna.Controls {
 			foreach (WheelControl wheel in WheelList.GetRange(0, GetWheelCount())) {
 				AxisType axisType = ConvertToAxisType(wheel.WheelState);
 				_currentAuto.AddNewAxis(axisType: axisType,
-				                     isUpload: wheel.IsUpper,
 				                     distanceToNext: wheel.DistanceToNext,
 				                     weightValue: wheel.ScalesValue);
 			}

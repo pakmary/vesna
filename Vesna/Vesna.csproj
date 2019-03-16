@@ -16,6 +16,7 @@
     <TargetFrameworkProfile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -28,7 +29,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>3.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -98,6 +98,11 @@
     </Compile>
     <Compile Include="Forms\InitForm.Designer.cs">
       <DependentUpon>InitForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Tests\AutoTests.cs" />
     <Compile Include="Business\Utils\COMInfo.cs" />
@@ -198,14 +203,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="Controls\VideoPictuceControl.resx">
       <DependentUpon>VideoPictuceControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -299,12 +299,10 @@
     <Content Include="Resources\fix.png" />
     <None Include="Resources\wheelConnectOff.png" />
     <None Include="Resources\wheelConnect.png" />
-    <None Include="Resources\wheelUpOff.png" />
     <None Include="Resources\wheelPnevmo.png" />
     <None Include="Resources\wheelPnevmoOff.png" />
     <None Include="Resources\wheelDual.png" />
     <None Include="Resources\wheelDualOff.png" />
-    <None Include="Resources\wheelUp.png" />
     <None Include="Resources\fix_true.png" />
   </ItemGroup>
   <ItemGroup>

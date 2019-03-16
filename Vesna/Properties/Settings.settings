@@ -25,7 +25,7 @@
     <Setting Name="ConstKapitalniyRemont" Type="System.Single" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
-    <Setting Name="ConstRegionRoad" Type="System.Single" Scope="User">
+    <Setting Name="ConstKpmRegionRoad" Type="System.Single" Scope="User">
       <Value Profile="(Default)">0.285</Value>
     </Setting>
     <Setting Name="ConstKlimatAxisMult" Type="System.Single" Scope="User">
@@ -36,6 +36,9 @@
     </Setting>
     <Setting Name="InaccuracyScales" Type="System.Single" Scope="User">
       <Value Profile="(Default)">0.05</Value>
+    </Setting>
+    <Setting Name="ConstKpmFederalRoad" Type="System.Single" Scope="User">
+      <Value Profile="(Default)">1</Value>
     </Setting>
   </Settings>
 </SettingsFile>

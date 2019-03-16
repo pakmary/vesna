@@ -55,7 +55,8 @@ namespace Vesna {
 		}
 
 		private void b_run_Click(object sender, EventArgs e) {
-			Program.MakeAccess(tb_run.Text);
+			int i = Program.MakeAccess(tb_run.Text);
+			MessageBox.Show($"Результат: {i}");
 		}
 	}
 }

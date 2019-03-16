@@ -36,7 +36,6 @@
 			this.WheelPic = new System.Windows.Forms.PictureBox();
 			this.tb_weightValueWithInaccuracy = new System.Windows.Forms.Label();
 			this.tb_distanceToNextWithInaccuracy = new System.Windows.Forms.Label();
-			this.cbUpper = new Vesna.Controls.CheckButtonControl();
 			this.cbPnevmo = new Vesna.Controls.CheckButtonControl();
 			this.cbDouble = new Vesna.Controls.CheckButtonControl();
 			((System.ComponentModel.ISupportInitialize)(this.tb_distanceToNext)).BeginInit();
@@ -216,25 +215,12 @@
 			this.tb_distanceToNextWithInaccuracy.Text = "0";
 			this.tb_distanceToNextWithInaccuracy.Visible = false;
 			// 
-			// cbUpper
-			// 
-			this.cbUpper.BackColor = System.Drawing.Color.Silver;
-			this.cbUpper.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.cbUpper.IsOn = false;
-			this.cbUpper.Location = new System.Drawing.Point(73, 2);
-			this.cbUpper.Name = "cbUpper";
-			this.cbUpper.OffImage = null;
-			this.cbUpper.OnImage = null;
-			this.cbUpper.Size = new System.Drawing.Size(30, 30);
-			this.cbUpper.TabIndex = 21;
-			this.cbUpper.StatusChanged += new Vesna.Controls.CheckButtonControl.StatusChangedHander(this.CheckButton_Click);
-			// 
 			// cbPnevmo
 			// 
 			this.cbPnevmo.BackColor = System.Drawing.Color.Silver;
 			this.cbPnevmo.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.cbPnevmo.IsOn = false;
-			this.cbPnevmo.Location = new System.Drawing.Point(37, 2);
+			this.cbPnevmo.Location = new System.Drawing.Point(43, 2);
 			this.cbPnevmo.Name = "cbPnevmo";
 			this.cbPnevmo.OffImage = null;
 			this.cbPnevmo.OnImage = null;
@@ -264,7 +250,6 @@
 			this.Controls.Add(this.tb_distanceToNextWithInaccuracy);
 			this.Controls.Add(this.tb_scales_value);
 			this.Controls.Add(this.tb_weightValueWithInaccuracy);
-			this.Controls.Add(this.cbUpper);
 			this.Controls.Add(this.cbPnevmo);
 			this.Controls.Add(this.cbDouble);
 			this.Controls.Add(this.b_add);
@@ -305,7 +290,6 @@
 		private System.Windows.Forms.NumericUpDown tb_scales_value;
 		private Controls.CheckButtonControl cbDouble;
 		private Controls.CheckButtonControl cbPnevmo;
-		private Controls.CheckButtonControl cbUpper;
 		private System.Windows.Forms.Label tb_weightValueWithInaccuracy;
 		public System.Windows.Forms.Label tb_distanceToNextWithInaccuracy;
 	}
