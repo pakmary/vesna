@@ -16,8 +16,11 @@ namespace Vesna {
 
 		private void FormSetting_Load(object sender, EventArgs e) {
 			bool adm = Program.User == "Admin";
-
+			
 			tb_index_goda.Enabled = label1.Enabled = label3.Enabled = tb_id_car.Enabled = l_run.Enabled = tb_run.Enabled = b_run.Enabled = adm;
+
+			tb_dopustAxis.Text = Properties.Settings.Default.DopustimiyProcentAxis.ToString();
+			tb_dopustFullMass.Text = Properties.Settings.Default.DopustimiyProcentFullMass.ToString();
 			tb_index_goda.Text = Calculator.YearIndex.ToString();
 			checkBox1.Checked = Calculator.KlimatUsloviya;
 			tb_id_car.Text = SpravochnikUtil.IdentificationNumber.ToString();
@@ -26,13 +29,20 @@ namespace Vesna {
 		}
 
 		private void button1_Click(object sender, EventArgs e) {
-			Calculator.YearIndex = float.Parse(tb_index_goda.Text);
-			Calculator.KlimatUsloviya = checkBox1.Checked;
-			SpravochnikUtil.IdentificationNumber = int.Parse(tb_id_car.Text);
-			Properties.Settings.Default.COMPortName = cb_com_name.Text;
+			try {
+				Properties.Settings.Default.DopustimiyProcentAxis = float.Parse(tb_dopustAxis.Text);
+				Properties.Settings.Default.DopustimiyProcentFullMass = float.Parse(tb_dopustFullMass.Text);
 
-			Properties.Settings.Default.Save();
-			Close();
+				Calculator.YearIndex = float.Parse(tb_index_goda.Text);
+				Calculator.KlimatUsloviya = checkBox1.Checked;
+				SpravochnikUtil.IdentificationNumber = int.Parse(tb_id_car.Text);
+				Properties.Settings.Default.COMPortName = cb_com_name.Text;
+
+				Properties.Settings.Default.Save();
+				Close();
+			} catch (Exception) {
+				MessageBox.Show("Ошибка: Неверный параметр");
+			}
 		}
 
 		private void button2_Click(object sender, EventArgs e) {

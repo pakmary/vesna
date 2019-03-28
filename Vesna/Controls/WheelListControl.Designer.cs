@@ -60,6 +60,8 @@
 			this.os3 = new Vesna.Controls.WheelControl();
 			this.os2 = new Vesna.Controls.WheelControl();
 			this.os1 = new Vesna.Controls.WheelControl();
+			this.label14 = new System.Windows.Forms.Label();
+			this.l_mass_procent = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.tb_Rastoyan)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -89,7 +91,7 @@
 			this.l_massDopus.AutoSize = true;
 			this.l_massDopus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.l_massDopus.ForeColor = System.Drawing.Color.Red;
-			this.l_massDopus.Location = new System.Drawing.Point(135, 451);
+			this.l_massDopus.Location = new System.Drawing.Point(158, 451);
 			this.l_massDopus.Name = "l_massDopus";
 			this.l_massDopus.Size = new System.Drawing.Size(18, 20);
 			this.l_massDopus.TabIndex = 24;
@@ -99,7 +101,7 @@
 			// 
 			this.l_mass.AutoSize = true;
 			this.l_mass.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.l_mass.Location = new System.Drawing.Point(135, 431);
+			this.l_mass.Location = new System.Drawing.Point(158, 431);
 			this.l_mass.Name = "l_mass";
 			this.l_mass.Size = new System.Drawing.Size(18, 20);
 			this.l_mass.TabIndex = 23;
@@ -496,11 +498,34 @@
 			this.os1.WheelStatusChanged += new Vesna.Controls.WheelControl.WheelStatusChangedHandler(this.os_WheelStateChanged);
 			this.os1.ButtonAddClick += new System.EventHandler(this.os1_ButtonAddClick);
 			// 
+			// label14
+			// 
+			this.label14.AutoSize = true;
+			this.label14.BackColor = System.Drawing.Color.Transparent;
+			this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.label14.Location = new System.Drawing.Point(22, 471);
+			this.label14.Name = "label14";
+			this.label14.Size = new System.Drawing.Size(123, 20);
+			this.label14.TabIndex = 57;
+			this.label14.Text = "превышение%:";
+			// 
+			// l_mass_procent
+			// 
+			this.l_mass_procent.AutoSize = true;
+			this.l_mass_procent.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.l_mass_procent.Location = new System.Drawing.Point(158, 471);
+			this.l_mass_procent.Name = "l_mass_procent";
+			this.l_mass_procent.Size = new System.Drawing.Size(18, 20);
+			this.l_mass_procent.TabIndex = 58;
+			this.l_mass_procent.Text = "0";
+			// 
 			// WheelListControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
+			this.Controls.Add(this.l_mass_procent);
+			this.Controls.Add(this.label14);
 			this.Controls.Add(this.tb_razmerUsherba);
 			this.Controls.Add(this.label13);
 			this.Controls.Add(this.label12);
@@ -536,7 +561,7 @@
 			this.Controls.Add(this.os2);
 			this.Controls.Add(this.os1);
 			this.Name = "WheelListControl";
-			this.Size = new System.Drawing.Size(1228, 476);
+			this.Size = new System.Drawing.Size(1228, 501);
 			((System.ComponentModel.ISupportInitialize)(this.tb_Rastoyan)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
@@ -582,5 +607,7 @@
 		private WheelControl os9;
 		private WheelControl os10;
 		private System.Windows.Forms.Label tb_razmerUsherba;
+		private System.Windows.Forms.Label label14;
+		private System.Windows.Forms.Label l_mass_procent;
 	}
 }

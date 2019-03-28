@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using NUnit.Framework;
 using Vesna.Business;
 using Vesna.Controls;
@@ -10,7 +13,7 @@ namespace Vesna.Tests {
 
 		[TestFixtureSetUp]
 		public void SetUp() {
-			Program.UpdateBaseFile(@"D:\Projects\Vesna\Misc\database_inspector.mdb");
+			Program.UpdateBaseFile(@"C:\Users\Vadim\Desktop\Vesna\Vesna\bin\Release\database_inspector.mdb");
 		}
 
 		[TestCase("4 5 1,3", "10 8 9 10", 
@@ -32,14 +35,6 @@ namespace Vesna.Tests {
 		[TestCase("5 1,38 6 1,2 1,2 8 1,45 1,5", "17 16D 15D 14D 13D 12D 11D 10D 9D", 
 			"2958042,29", AutoType.Autotrain, RoadType.R6Tc, false, 100, true)]
 		[TestCase("5 1,38 6 1,2 1,2 8 1,45 1,5", "9,5 8,3D 8,2D 6,6D 7D 8D 7,8D 10D 10D", "25399,0", AutoType.Autotrain, RoadType.R10Tc, false, 100, false)] // <5%
-		[TestCase("3,72 5,92 1,34 1,34 1,34",
-			"6,25 9,45PD 7,05P 7,40P 7,30P",
-			"47083,39",
-			AutoType.Autotrain,
-			RoadType.R5Tc,
-			false,
-			156,
-			false)] //R5Tc
 		public void PopulateAutoTest(string distancesString, string loadsString, string fullDamage, AutoType autoType, RoadType roadType, bool isFederal, float dist, bool isKlimat) {
 			Calculator.KlimatUsloviya = isKlimat;
 			var auto = new Auto {

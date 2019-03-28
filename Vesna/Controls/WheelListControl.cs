@@ -61,6 +61,7 @@ namespace Vesna.Controls {
 			l_kol_os.Text = _currentAuto.AxisList.Count.ToString();
 			l_mass.Text = _currentAuto.Mass.ValueTon.ToString();
 			l_massDopus.Text = _currentAuto.Mass.LimitTon.ToString();
+			l_mass_procent.Text = string.Format("{0}%", Math.Round(_currentAuto.Mass.OverProcent, 1));
 			foreach (Axis os in _currentAuto.AxisList) {
 				var wheelControl = GetWheelFromIndex(os.Index);
 				wheelControl.NagruzkaDopust = os.LoadLimit;
@@ -143,6 +144,7 @@ namespace Vesna.Controls {
 			videoPictuce1.SetImage(null);
 			l_mass.Text = "0";
 			l_massDopus.Text = "0";
+			l_mass_procent.Text = "0";
 			tb_Rastoyan.Text = "0";
 			l_kol_os.Text = "0";
 			tb_razmerUsherba.Text = "";

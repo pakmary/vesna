@@ -143,7 +143,7 @@ namespace Vesna.Utils {
 
 		private static void Replace(string seach, string replace, ref Microsoft.Office.Interop.Word.Document doc) {
 			Microsoft.Office.Interop.Word.Range r = doc.Range();
-				r.Find.Execute(FindText: seach, ReplaceWith: replace);
+			r.Find.Execute(FindText: seach, ReplaceWith: replace);
 		}
 	}
 }

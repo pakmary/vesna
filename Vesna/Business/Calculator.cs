@@ -3,10 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using Vesna.Business.Parst;
 using Vesna.Properties;
 
@@ -112,7 +108,7 @@ namespace Vesna.Business {
 			} else if (roadType == RoadType.R6Tc) {
 				columnStart = "R6";
 			} else if (roadType == RoadType.R5Tc) {
-				return ConstH(roadType);
+				throw new ArgumentException();
 			}
 			string singleColumn = columnStart + "_Single";
 			string pnevmoColumn = columnStart + "_Pnevmo";
@@ -153,7 +149,7 @@ namespace Vesna.Business {
 		}
 
 		public static float GetAxisDamage(AutoRoad road, Axis axis) {////SELECT TOP 1 * FROM (SELECT * FROM MaxAxis WHERE  1.3 <= Distance AND TypeAxisId = 2 ) ORDER BY Distance ASC
-			if (axis.Over <= 0 || axis.Procent <= 5) {
+			if (axis.Over <= 0 || axis.Procent <= Properties.Settings.Default.DopustimiyProcentAxis) {
 				return 0;
 			}
 			
@@ -174,7 +170,7 @@ namespace Vesna.Business {
 			return (float)Math.Round(damage, 2);
 		}
 
-		public static float GetAxisDamageByFormula(AutoRoad road, Axis axis) {
+		private static float GetAxisDamageByFormula(AutoRoad road, Axis axis) {
 			float damage;
 			RoadType t = road.RoadType;
 			float KD = ConstDorojhnoKlimatZon;
@@ -196,10 +192,9 @@ namespace Vesna.Business {
 		}
 
 		public static float GetMassDamage(AutoRoad road, float massOverProcent) {
-			if (massOverProcent <= 5) {
+			if (massOverProcent <= Properties.Settings.Default.DopustimiyProcentFullMass) {
 				return 0;
 			}
-
 			DataRow damageMassRow = Program.GetAccess(string.Format(
 				"SELECT TOP 1 * FROM " +
 				"(SELECT Damage, ProcentLimit FROM DamageMass WHERE {0} <= ProcentLimit ORDER BY ProcentLimit ASC) ",
@@ -214,7 +209,10 @@ namespace Vesna.Business {
 			return (float)(Math.Round(damage, 2));
 		}
 
-		public static float GetMassDamageByFormula(AutoRoad road, float massOverProcent) {
+		private static float GetMassDamageByFormula(AutoRoad road, float massOverProcent) {
+			if (massOverProcent <= 0) {
+				return 0;
+			}
 			RoadType t = road.RoadType;
 			float KK = ConstKapitalniyRemont;
 			float KP = ConstMassInfluence(road.IsFederalRoad);

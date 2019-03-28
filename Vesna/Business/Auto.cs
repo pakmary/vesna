@@ -147,7 +147,11 @@ namespace Vesna.Business {
 
 		private void PopulateAxisLoadLimits(IEnumerable<AxisBlock> axisBlocks) {
 			foreach (AxisBlock axisBlock in axisBlocks) {
-				var axises = axisBlock.Axis;
+				List<Axis> axises = axisBlock.Axis;
+				if (Road.RoadType == RoadType.R5Tc) {
+					axises.ForEach(a => a.LoadLimit = 5);
+					continue;
+				}
 				if (axisBlock.BlockType == AxisBlockType.Single) {
 					Axis singleAxis = axises.Single();
 					singleAxis.LoadLimit = Calculator.GetMaxForAxis(Road.RoadType, AxisBlockType.Single, singleAxis.IsDouble,
