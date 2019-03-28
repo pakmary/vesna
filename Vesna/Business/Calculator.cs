@@ -81,6 +81,10 @@ namespace Vesna.Business {
 		private static void PopulateAxisLoadLimits(IEnumerable<AxisBlock> axisBlocks, RoadType roadType) {
 			foreach (AxisBlock axisBlock in axisBlocks) {
 				List<Axis> axises = axisBlock.Axises;
+				if (roadType == RoadType.R5Tc) {
+					axises.ForEach(a => a.LoadLimit = 5);
+					continue;
+				}
 				if (axisBlock.BlockType == AxisBlockType.Single) {
 					Axis singleAxis = axises.Single();
 					singleAxis.LoadLimit = GetLimitForAxisesBlock(roadType, AxisBlockType.Single, singleAxis.IsDouble, singleAxis.IsPnevmo, 0);
@@ -128,7 +132,7 @@ namespace Vesna.Business {
 			} else if (roadType == RoadType.R6Tc) {
 				columnStart = "R6";
 			} else if (roadType == RoadType.R5Tc) {
-				return ConstH(roadType);
+				throw new ArgumentException();
 			}
 			string singleColumn = $"{columnStart}_Single";
 			string pnevmoColumn = $"{columnStart}_Pnevmo";
@@ -169,7 +173,7 @@ namespace Vesna.Business {
 		private static float GetAxisDamage(AutoRoad road, Axis axis) {////SELECT TOP 1 * FROM (SELECT * FROM MaxAxis WHERE  1.3 <= Distance AND TypeAxisId = 2 ) ORDER BY Distance ASC
 			float over = axis.GetOver();
 			float overPercent = axis.GetOverPercent();
-			if (over <= 0 || overPercent <= 5) {
+			if (over <= 0 || overPercent <= Settings.Default.DopustimiyProcentAxis) {
 				return 0;
 			}
 			
@@ -215,7 +219,7 @@ namespace Vesna.Business {
 		}
 
 		private static float GetFullAutoDamage(AutoRoad road, float massOverPercent) {
-			if (massOverPercent <= 5) {
+			if (massOverPercent <= Settings.Default.DopustimiyProcentFullMass) {
 				return 0;
 			}
 
@@ -234,6 +238,9 @@ namespace Vesna.Business {
 		}
 
 		private static float GetMassDamageByFormula(AutoRoad road, float massOverProcent) {
+			if (massOverProcent <= 0) {
+				return 0;
+			}
 			RoadType t = road.RoadType;
 			float KK = ConstKapitalniyRemont;
 			float KP = ConstMassInfluence(road.IsFederalRoad);

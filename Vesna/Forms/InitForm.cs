@@ -12,7 +12,7 @@ namespace Vesna.Forms {
 			cb_imya_ppvk.Items.AddRange(SpravochnikUtil.GetItemCollections("sp_ppvk", "name_ppvk"));
 			cb_vesi_zavod_nomer.Items.AddRange(SpravochnikUtil.GetItemCollections("sp_Vesi", "Zavod_nomer"));
 			cb_mesto_prov.Items.AddRange(SpravochnikUtil.GetItemCollections("sp_Dis_Point", "Disl_point"));
-			cb_Vid_Dor.Items.AddRange(SpravochnikUtil.GetItemCollections("TypesRoad", "Description", false, "ORDER BY ID"));
+			cb_Vid_Dor.Items.AddRange(SpravochnikUtil.GetItemCollections("TypesRoad", "Description", false));
 
 			cb_imya_ppvk.Text = SpravochnikUtil.GetDefaultValue("sp_ppvk", "name_ppvk");
 			cb_vesi_zavod_nomer.Text = SpravochnikUtil.GetDefaultValue("sp_Vesi", "Zavod_nomer");

@@ -10,7 +10,7 @@ namespace Vesna.Tests {
 	class AutoTests {
 		[OneTimeSetUp]
 		public void SetUp() {
-			Program.UpdateBaseFile(@"D:\Projects\Vesna\Misc\database_inspector.mdb");
+			Program.UpdateBaseFile(@"D:\Projects\Vesna\Vesna\database_inspector.mdb");
 		}
 
 		[TestCase("4 5 1,3", "10 8 9 10", 
@@ -54,6 +54,7 @@ namespace Vesna.Tests {
 		                             float inaccuracyScales,
 		                             float inaccuracyRoulette) {
 			Settings.Default.Klimat_usloviya = isKlimat;
+			Settings.Default.YearIndex = 1.5388f;
 			var auto = new Auto {
 				InaccuracyRoulette = inaccuracyRoulette,
 				AutoType = autoType,
