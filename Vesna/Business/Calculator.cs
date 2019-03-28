@@ -68,8 +68,9 @@ namespace Vesna.Business {
 				}
 				var block = new AxisBlock { BlockType = blockType };
 				for (int i2 = 0; i2 < blockCount; i2++) {
-					auto.AxisList[i + i2].BlockType = blockType;
-					block.Axises.Add(auto.AxisList[i + i2]);
+					Axis axis = auto.AxisList[i + i2];
+					axis.BlockType = blockType;
+					block.Axises.Add(axis);
 				}
 				i = i + j;
 				blocks.Add(block);
@@ -82,25 +83,33 @@ namespace Vesna.Business {
 				List<Axis> axises = axisBlock.Axises;
 				if (axisBlock.BlockType == AxisBlockType.Single) {
 					Axis singleAxis = axises.Single();
-					singleAxis.LoadLimit = GetLimitForAxisesBlock(roadType, AxisBlockType.Single, singleAxis.IsDouble, singleAxis.IsPnevmo, 0);
+					singleAxis.LoadLimit = GetLimitForAxisesBlock(roadType, AxisBlockType.Single, singleAxis.IsDouble, singleAxis.IsPnevmo, distanceToNext: 0);
 					continue;
 				}
-				for (int i = 0; i < axises.Count; i++) {
-					Axis axis = axises[i];
-					float dist;
-					if (i == 0) {
-						dist = axis.DistanceToNext;
-					} else if (i == axises.Count - 1) {
-						dist = axises[i - 1].DistanceToNext;
-					} else {
-						dist = Math.Min(axis.DistanceToNext, axises[i - 1].DistanceToNext);
-					}
+				if (axisBlock.BlockType == AxisBlockType.Dual || axisBlock.BlockType == AxisBlockType.Triple) {
+					bool blockIsDouble = axises.All(a => a.IsDouble);
+					bool blockIsPnevmo = axises.All(a => a.IsPnevmo);
+					int distanceCount = axises.Count - 1;
+					float averageDistance = axises.Take(distanceCount).Sum(a => a.DistanceToNext) / distanceCount;
 
-					axisBlock.BlockLimit = GetLimitForAxisesBlock(roadType, axisBlock.BlockType, axis.IsDouble, axis.IsPnevmo, dist);
-					if (axisBlock.BlockType == AxisBlockType.Dual || axisBlock.BlockType == AxisBlockType.Triple) {
-						axis.LoadLimit = axisBlock.BlockLimit / axises.Count;
-					} else {
-						axis.LoadLimit = axisBlock.BlockLimit;
+					float blockLimit = GetLimitForAxisesBlock(roadType, axisBlock.BlockType, blockIsDouble, blockIsPnevmo, averageDistance);
+					float axisLimit = blockLimit / axises.Count;
+
+					axises.ForEach(a => a.LoadLimit = axisLimit);
+				} else {
+					for (int i = 0; i < axises.Count; i++) {
+						Axis axis = axises[i];
+						float dist;
+						if (i == 0) {
+							dist = axis.DistanceToNext;
+						} else if (i == axises.Count - 1) {
+							dist = axises[i - 1].DistanceToNext;
+						} else {
+							dist = Math.Min(axis.DistanceToNext, axises[i - 1].DistanceToNext);
+						}
+
+						float blockLimit = GetLimitForAxisesBlock(roadType, axisBlock.BlockType, axis.IsDouble, axis.IsPnevmo, dist);
+						axis.LoadLimit = blockLimit;
 					}
 				}
 			}

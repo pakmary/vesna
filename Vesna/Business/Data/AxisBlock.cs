@@ -2,8 +2,8 @@
 
 namespace Vesna.Business.Data {
 	public class AxisBlock {
-		public readonly List<Axis> Axises = new List<Axis>();
+		public List<Axis> Axises { get; } = new List<Axis>();
 		public AxisBlockType BlockType { get; set; }
-		public float BlockLimit { get; set; }
+		//public float BlockLimit { get; set; }
 	}
 }
