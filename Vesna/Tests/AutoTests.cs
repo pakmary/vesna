@@ -33,8 +33,16 @@ namespace Vesna.Tests {
 			"2958042,29", AutoType.Autotrain, RoadType.R6Tc, false, 100, true, 0f, 0f)]
 		[TestCase("5 1,38 6 1,2 1,2 8 1,45 1,5", "9,5 8,3D 8,2D 6,6D 7D 8D 7,8D 10D 10D", 
 			"25399,0", AutoType.Autotrain, RoadType.R10Tc, false, 100, false, 0f, 0f)] // <5%
-		[TestCase(" 2,1 6 1,29 1,31", "10 12DP 13DP 14DP 15DP 16DP",
-			"122636,43", AutoType.Autotrain, RoadType.R10Tc, false, 100, false, 0.05f, 0.4f)]
+		[TestCase("3,72 5,92 1,34 1,34 1,34",
+			"6,25 9,45D 7,05 7,40 7,30",
+			"47083,39",
+			AutoType.Autotrain,
+			RoadType.R5Tc,
+			false,
+			156,
+			false,
+			0f,
+			0f)] //R5Tc
 		public void PopulateAutoTest(string distancesString, 
 		                             string loadsString, 
 		                             string fullDamage, 
