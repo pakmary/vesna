@@ -21,7 +21,7 @@ namespace Vesna.Tests {
 			"29027", AutoType.Autotrain, RoadType.R5Tc, false, false, 0f, 0f, TestName = "02 ( R5Tc )")] //R5Tc
 		[TestCase("4 2,6 6 1,29 1,31",
 			"10 12DP 13DP 14DP 15DP 16DP",
-			"122636,43",
+			"130783",
 			AutoType.Autotrain, RoadType.R10Tc, false, false, 0f, 0f, TestName = "03")]
 		[TestCase("4 1,9 1,3 1,3 1,3 5 1,1",
 			"14P 15PD 16PD 17PD 18PD 19PD 20PD 21PD",
@@ -57,11 +57,11 @@ namespace Vesna.Tests {
 			AutoType.Autotrain, RoadType.R10Tc, false, false, 0f, 0f, TestName = "11")] // <5%
 		[TestCase("4 2,6 6 1,29 1,31",
 			"10 12DP 13DP 14DP 15DP 16DP",
-			"121185",
+			"129289",
 			AutoType.Autotrain, RoadType.R10Tc, false, false, 0.05f, 0.4f, TestName = "12")]
 		[TestCase("4 2,1 6 1,29 1,31",
 			"10 12DP 13DP 14DP 15DP 16DP",
-			"127015",
+			"135120",
 			AutoType.Autotrain, RoadType.R10Tc, false, false, 0.05f, 0.4f, TestName = "13")]
 		[TestCase("5 1,1",
 			"8 7,3 5,7",
@@ -69,11 +69,11 @@ namespace Vesna.Tests {
 			AutoType.Automobile, RoadType.R10Tc, false, false, 0.05f, 0.4f, TestName = "14 (Группа осей меньше 13. Одна ось больше 6,5 но меньше 9.)")]
 		[TestCase("5 1,1",
 			"8 9,1 3",
-			"2418",
+			"5442",
 			AutoType.Automobile, RoadType.R10Tc, false, false, 0.05f, 0.4f, TestName = "15 (Группа осей меньше 13. Одна ось больше 9)")]
 		[TestCase("5 1,1",
 			"8 11 7",
-			"14343",
+			"17873",
 			AutoType.Automobile, RoadType.R10Tc, false, false, 0.05f, 0.4f, TestName = "16 (Группа осей больше 13)")]
 		public void PopulateAutoTest(string distancesString,
 		                             string loadsString,
