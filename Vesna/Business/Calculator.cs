@@ -55,8 +55,9 @@ namespace Vesna.Business {
 				}
 				var block = new AxisBlock { BlockType = blockType };
 				for (int i2 = 0; i2 < blockCount; i2++) {
-					auto.AxisList[i + i2].BlockType = blockType;
-					block.Axises.Add(auto.AxisList[i + i2]);
+					Axis axis = auto.AxisList[i + i2];
+					axis.BlockType = blockType;
+					block.Axises.Add(axis);
 				}
 				i = i + j;
 				blocks.Add(block);
@@ -73,7 +74,7 @@ namespace Vesna.Business {
 				}
 				if (axisBlock.BlockType == AxisBlockType.Single) {
 					Axis singleAxis = axises.Single();
-					singleAxis.LoadLimit = GetLimitForAxisesBlock(roadType, AxisBlockType.Single, singleAxis.IsDouble, singleAxis.IsPnevmo, 0);
+					singleAxis.LoadLimit = GetLimitForAxisesBlock(roadType, AxisBlockType.Single, singleAxis.IsDouble, singleAxis.IsPnevmo, distanceToNext: 0);
 					continue;
 				}
 				for (int i = 0; i < axises.Count; i++) {
