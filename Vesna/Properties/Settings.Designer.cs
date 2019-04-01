@@ -48,7 +48,7 @@ namespace Vesna.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1.6")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1.9749")]
         public float YearIndex {
             get {
                 return ((float)(this["YearIndex"]));
