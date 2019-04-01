@@ -46,15 +46,15 @@ namespace Vesna.Tests {
 		[TestCase("5 1,38 6 1,2 1,2 8 1,45 1,5",
 			"17 16D 15D 14D 13D 12D 11D 10D 9D",
 			"2958042,29",
-			AutoType.Autotrain, RoadType.R6Tc, false, true, 0f, 0f, TestName = "09")]
+			AutoType.Autotrain, RoadType.R6Tc, false, true, 0f, 0f, TestName = "09 ( R6Tc )")]
 		[TestCase("5 1,38 6 1,2 1,2 8 1,45 1,5",
 			"17 16D 15D 14D 13D 12D 11D 10D 9D",
 			"920359",
-			AutoType.Autotrain, RoadType.R5Tc, false, true, 0f, 0f, TestName = "10 ( R5Tc )")] //R5Tc
+			AutoType.Autotrain, RoadType.R5Tc, false, true, 0f, 0f, TestName = "10 ( R5Tc )")]
 		[TestCase("5 1,38 6 1,2 1,2 8 1,45 1,5",
 			"9,5 8,3D 8,2D 6,6D 7D 8D 7,8D 10D 10D",
 			"25399,0",
-			AutoType.Autotrain, RoadType.R10Tc, false, false, 0f, 0f, TestName = "11")] // <5%
+			AutoType.Autotrain, RoadType.R10Tc, false, false, 0f, 0f, TestName = "11 ( <5% )")]
 		[TestCase("4 2,6 6 1,29 1,31",
 			"10 12DP 13DP 14DP 15DP 16DP",
 			"129289",
@@ -63,18 +63,18 @@ namespace Vesna.Tests {
 			"10 12DP 13DP 14DP 15DP 16DP",
 			"135120",
 			AutoType.Autotrain, RoadType.R10Tc, false, false, 0.05f, 0.4f, TestName = "13")]
-		[TestCase("5 1,1",
-			"8 7,3 5,7",
+		[TestCase("5 5 1,1",
+			"8 8 7,3 5,7",
 			"0",
-			AutoType.Automobile, RoadType.R10Tc, false, false, 0.05f, 0.4f, TestName = "14 (Группа осей меньше 13. Одна ось больше 6,5 но меньше 9.)")]
-		[TestCase("5 1,1",
-			"8 9,1 3",
-			"5442",
-			AutoType.Automobile, RoadType.R10Tc, false, false, 0.05f, 0.4f, TestName = "15 (Группа осей меньше 13. Одна ось больше 9)")]
-		[TestCase("5 1,1",
-			"8 11 7",
-			"17873",
-			AutoType.Automobile, RoadType.R10Tc, false, false, 0.05f, 0.4f, TestName = "16 (Группа осей больше 13)")]
+			AutoType.Autotrain, RoadType.R10Tc, false, false, 0.05f, 0.4f, TestName = "14 (Группа осей меньше 13. Одна ось больше 6,5 но меньше 9.)")]
+		[TestCase("5 5 1,1",
+			"8 8 9,1 3",
+			"5571",
+			AutoType.Autotrain, RoadType.R10Tc, false, false, 0.00f, 0.0f, TestName = "15 (Группа осей меньше 13. Одна ось больше 9)")]
+		[TestCase("5 5 1,1",
+			"8 8 11 7",
+			"14343",
+			AutoType.Autotrain, RoadType.R10Tc, false, false, 0.00f, 0.0f, TestName = "16 (Группа осей больше 13)")]
 		public void PopulateAutoTest(string distancesString,
 		                             string loadsString,
 		                             string fullDamage,

@@ -25,8 +25,7 @@ namespace Vesna.Business {
 			auto.FullWeightData.Damage = GetFullWeightAutoDamage(auto.Road, auto.FullWeightData.PercentageExceeded);
 
 			AxisBlock[] axisBlocks = SplitAxisOnBlocks(auto);
-			PopulateAxisBlockLoadLimits(axisBlocks, auto.Road.RoadType);
-			PopulateAxisBlockDamage(axisBlocks, auto.Road);
+			PopulateAxisBlockLoadLimitsAndDamage(axisBlocks, auto.Road);
 
 			auto.FullAutoDamage = GetAutoFullDamage(auto.FullWeightData.Damage, auto.AxisList.Select(a => a.Damage), auto.Road.Distance);
 		}
@@ -64,70 +63,67 @@ namespace Vesna.Business {
 			return blocks.ToArray();
 		}
 
-		private static void PopulateAxisBlockLoadLimits(IEnumerable<AxisBlock> axisBlocks, RoadType roadType) {
+		private static void PopulateAxisBlockLoadLimitsAndDamage(IEnumerable<AxisBlock> axisBlocks, AutoRoad road) {
+			RoadType roadType = road.RoadType;
+
 			foreach (AxisBlock axisBlock in axisBlocks) {
 				List<Axis> axises = axisBlock.Axises;
+				AxisBlockType blockType = axisBlock.BlockType;
+
 				if (roadType == RoadType.R5Tc) {
 					axises.ForEach(a => a.LoadLimit = 5);
+					axises.ForEach(a => a.Damage = GetAxisDamage(road, a));
 					continue;
 				}
-				if (axisBlock.BlockType == AxisBlockType.Single) {
-					Axis singleAxis = axises.Single();
-					singleAxis.LoadLimit = GetLimitForAxisesBlock(roadType, AxisBlockType.Single, singleAxis.IsDouble, singleAxis.IsPnevmo, distanceToNext: 0);
-				} else if (axisBlock.BlockType == AxisBlockType.Dual || axisBlock.BlockType == AxisBlockType.Triple) {
-					bool blockIsDouble = axises.All(a => a.IsDouble);
-					bool blockIsPnevmo = axises.All(a => a.IsPnevmo);
-					int distanceCount = axises.Count - 1;
-					float averageDistance = axises.Take(distanceCount).Sum(a => a.DistanceToNext) / distanceCount;
+				switch (blockType) {
+					case AxisBlockType.Single: {
+						Axis singleAxis = axises.Single();
+						singleAxis.LoadLimit = GetLimitForAxisesBlock(roadType, AxisBlockType.Single, singleAxis.IsDouble, singleAxis.IsPnevmo, distanceToNext: 0);
+						singleAxis.Damage = GetAxisDamage(road, singleAxis);
+						break;
+					}
+					case AxisBlockType.Dual:
+					case AxisBlockType.Triple: {
+						bool blockIsDouble = axises.All(a => a.IsDouble);
+						bool blockIsPnevmo = axises.All(a => a.IsPnevmo);
+						float blockWeight = axises.Sum(a => a.WeightValueWithInaccuracy);
+						float maxAxisWeight = axises.Max(a => a.WeightValueWithInaccuracy);
+						float singleAxisLimit = GetLimitForAxisesBlock(road.RoadType, AxisBlockType.Single, blockIsDouble, blockIsPnevmo, distanceToNext: 0);
 
-					float blockLimit = GetLimitForAxisesBlock(roadType, axisBlock.BlockType, blockIsDouble, blockIsPnevmo, averageDistance);
-					float axisLimit = blockLimit / axises.Count;
-					
-					axises.ForEach(a => a.LoadLimit = axisLimit);
-				} else if (axisBlock.BlockType == AxisBlockType.MoreThree || axisBlock.BlockType == AxisBlockType.EightOrMore) {
-					for (int i = 0; i < axises.Count; i++) {
-						Axis axis = axises[i];
-						float dist;
-						if (i == 0) {
-							dist = axis.DistanceToNext;
-						} else if (i == axises.Count - 1) {
-							dist = axises[i - 1].DistanceToNext;
+						int distanceCount = axises.Count - 1;
+						float averageDistance = axises.Take(distanceCount).Sum(a => a.DistanceToNext) / distanceCount;
+						float blockLimit = GetLimitForAxisesBlock(roadType, blockType, blockIsDouble, blockIsPnevmo, averageDistance);
+
+						float axisLimit = blockLimit / axises.Count;
+						axises.ForEach(a => a.LoadLimit = axisLimit);
+
+						if (blockWeight <= blockLimit && maxAxisWeight <= singleAxisLimit) {
+							axises.ForEach(a => a.Damage = 0);
 						} else {
-							dist = Math.Min(axis.DistanceToNext, axises[i - 1].DistanceToNext);
+							axises.ForEach(a => a.Damage = GetAxisDamage(road, a));
 						}
-
-						var blockLimit = GetLimitForAxisesBlock(roadType, axisBlock.BlockType, axis.IsDouble, axis.IsPnevmo, dist);
-						axis.LoadLimit = blockLimit;
+						break;
 					}
-				} else {
-					throw new NotImplementedException();
-				}
-			}
-		}
+					case AxisBlockType.MoreThree:
+					case AxisBlockType.EightOrMore: {
+						for (int i = 0; i < axises.Count; i++) {
+							Axis axis = axises[i];
+							float dist;
+							if (i == 0) {
+								dist = axis.DistanceToNext;
+							} else if (i == axises.Count - 1) {
+								dist = axises[i - 1].DistanceToNext;
+							} else {
+								dist = Math.Min(axis.DistanceToNext, axises[i - 1].DistanceToNext);
+							}
 
-		private static void PopulateAxisBlockDamage(AxisBlock[] axisBlocks, AutoRoad road) {
-			foreach (AxisBlock axisBlock in axisBlocks) {
-				AxisBlockType blockType = axisBlock.BlockType;
-				List<Axis> axises = axisBlock.Axises;
-				if (blockType == AxisBlockType.Single) {
-					Axis axis = axises.Single();
-					axis.Damage = GetAxisDamage(road, axis);
-				} else if (blockType == AxisBlockType.Dual || blockType == AxisBlockType.Triple) {
-					bool blockIsDouble = axises.All(a => a.IsDouble);
-					bool blockIsPnevmo = axises.All(a => a.IsPnevmo);
-					float blockWeight = axises.Sum(a => a.WeightValueWithInaccuracy);
-					float blockLimit = axises.Sum(a => a.LoadLimit);
-					float maxAxisWeight = axises.Max(a => a.WeightValueWithInaccuracy);
-					float singleAxisLimit = GetLimitForAxisesBlock(road.RoadType, AxisBlockType.Single, blockIsDouble, blockIsPnevmo, distanceToNext: 0);
-					if (blockWeight <= blockLimit && maxAxisWeight <= singleAxisLimit) {
-						axises.ForEach(a => a.Damage = 0);
-					} else {
-						axises.ForEach(a => a.Damage = GetAxisDamage(road, a));
+							axis.LoadLimit = GetLimitForAxisesBlock(roadType, blockType, axis.IsDouble, axis.IsPnevmo, dist);
+							axis.Damage = GetAxisDamage(road, axis);
+						}
+						break;
 					}
-				} else if (blockType == AxisBlockType.MoreThree || blockType == AxisBlockType.EightOrMore) {
-					axises.ForEach(a => a.Damage = GetAxisDamage(road, a));
-				} else {
-					throw new NotImplementedException();
+					default:
+						throw new NotImplementedException();
 				}
 			}
 		}
