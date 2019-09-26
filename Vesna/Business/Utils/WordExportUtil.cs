@@ -76,7 +76,9 @@ namespace Vesna.Business.Utils {
 				Replace("[ВИД_ГРУЗ]", auto.VidGruza, ref doc);
 				Replace("[МАССА_ДОПУСТ]", auto.FullWeightData.Limit.ToString(), ref doc);
 				Replace("[МАССА_ФАКТИЧ]", auto.FullWeightData.Value.ToString(), ref doc);
-
+                Replace("[МАССА_ПРЕВЫШЕНИЕ]", auto.FullWeightData.Over.ToString(), ref doc);
+                Replace("[МАССА_ПРЕВЫШЕНИЕ_ПРОЦ]", auto.FullWeightData.PercentageExceeded + "%", ref doc);
+                
 				string tempStringRazmerVredaOs = string.Empty;
 				float tempSumRazmerVreda = 0;
 				for (int i = 0; i < 10; i++) {

@@ -1,5 +1,9 @@
-﻿using System;
+﻿// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
+using System;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using NUnit.Framework;
 using Vesna.Business;
 using Vesna.Business.Data;
@@ -10,7 +14,10 @@ namespace Vesna.Tests {
 	class AutoTests {
 		[OneTimeSetUp]
 		public void SetUp() {
-			Program.UpdateBaseFile(@"D:\Projects\Vesna\Vesna\database_inspector.mdb");
+            CultureInfo ci = new CultureInfo("Ru-ru");
+            Thread.CurrentThread.CurrentCulture = ci;
+            Thread.CurrentThread.CurrentUICulture = ci;
+            Program.UpdateBaseFile(@"D:\Projects\Vesna\Vesna\database_inspector.mdb");
 		}
 
 		[TestCase("4 5 1,3",
@@ -57,11 +64,11 @@ namespace Vesna.Tests {
 			AutoType.Autotrain, RoadType.R10Tc, false, false, 0f, 0f, TestName = "11 ( <5% )")]
 		[TestCase("4 2,6 6 1,29 1,31",
 			"10 12DP 13DP 14DP 15DP 16DP",
-			"129289",
+			"129290",
 			AutoType.Autotrain, RoadType.R10Tc, false, false, 0.05f, 0.4f, TestName = "12")]
 		[TestCase("4 2,1 6 1,29 1,31",
 			"10 12DP 13DP 14DP 15DP 16DP",
-			"135120",
+			"135121",
 			AutoType.Autotrain, RoadType.R10Tc, false, false, 0.05f, 0.4f, TestName = "13")]
 		[TestCase("5 5 1,1",
 			"8 8 7,3 5,7",
