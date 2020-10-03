@@ -18,9 +18,9 @@
 
 		#region Код, автоматически созданный конструктором компонентов
 
-		/// <summary> 
-		/// Обязательный метод для поддержки конструктора - не изменяйте 
-		/// содержимое данного метода при помощи редактора кода.
+		/// <summary>
+		/// Required method for Designer support - do not modify
+		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
 			this.components = new System.ComponentModel.Container();
@@ -228,12 +228,7 @@
 			this.tb_Rastoyan.DecimalPlaces = 2;
 			this.tb_Rastoyan.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.tb_Rastoyan.Location = new System.Drawing.Point(160, 479);
-			this.tb_Rastoyan.Maximum = new decimal(new int[] {
-				1000,
-				0,
-				0,
-				0
-			});
+			this.tb_Rastoyan.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
 			this.tb_Rastoyan.Name = "tb_Rastoyan";
 			this.tb_Rastoyan.Size = new System.Drawing.Size(183, 25);
 			this.tb_Rastoyan.TabIndex = 12;
@@ -537,6 +532,8 @@
 			// 
 			// WheelListControl
 			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.Snow;
 			this.Controls.Add(this.l_massOverPercent);
 			this.Controls.Add(this.l_massOver);
