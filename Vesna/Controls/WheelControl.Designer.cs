@@ -214,7 +214,7 @@
 			this.cbPnevmo.OnImage = null;
 			this.cbPnevmo.Size = new System.Drawing.Size(35, 35);
 			this.cbPnevmo.TabIndex = 20;
-			this.cbPnevmo.StatusChanged += new Vesna.Controls.CheckButtonControl.StatusChangedHandler(this.CheckButton_Click);
+			this.cbPnevmo.StatusChanged += new Vesna.Controls.CheckButtonControl.StatusChangedHander(this.CheckButton_Click);
 			// 
 			// cbDouble
 			// 
@@ -227,7 +227,7 @@
 			this.cbDouble.OnImage = null;
 			this.cbDouble.Size = new System.Drawing.Size(35, 35);
 			this.cbDouble.TabIndex = 19;
-			this.cbDouble.StatusChanged += new Vesna.Controls.CheckButtonControl.StatusChangedHandler(this.CheckButton_Click);
+			this.cbDouble.StatusChanged += new Vesna.Controls.CheckButtonControl.StatusChangedHander(this.CheckButton_Click);
 			// 
 			// WheelControl
 			// 
@@ -278,6 +278,6 @@
 		private System.Windows.Forms.Label tb_distanceToNextWithInaccuracy;
 		private Vesna.Controls.CheckButtonControl cbPnevmo;
 		private Vesna.Controls.CheckButtonControl cbDouble;
-		private System.Windows.Forms.NumericUpDown tb_distanceToNext;
+		public System.Windows.Forms.NumericUpDown tb_distanceToNext;
 	}
 }
