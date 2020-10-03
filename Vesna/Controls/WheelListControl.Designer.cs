@@ -54,7 +54,7 @@
 			this.l_massOverPercent = new System.Windows.Forms.Label();
 			this.l_massOver = new System.Windows.Forms.Label();
 			this.os1 = new Vesna.Controls.WheelControl();
-			this.videoPictuce1 = new Vesna.VideoPictuceControl();
+			this.videoPicture1 = new Vesna.VideoPictureControl();
 			this.os10 = new Vesna.Controls.WheelControl();
 			this.os9 = new Vesna.Controls.WheelControl();
 			this.os8 = new Vesna.Controls.WheelControl();
@@ -389,11 +389,11 @@
 			// 
 			// videoPictuce1
 			// 
-			this.videoPictuce1.BackColor = System.Drawing.Color.White;
-			this.videoPictuce1.Location = new System.Drawing.Point(8, 9);
-			this.videoPictuce1.Name = "videoPictuce1";
-			this.videoPictuce1.Size = new System.Drawing.Size(163, 216);
-			this.videoPictuce1.TabIndex = 13;
+			this.videoPicture1.BackColor = System.Drawing.Color.White;
+			this.videoPicture1.Location = new System.Drawing.Point(8, 9);
+			this.videoPicture1.Name = "videoPictuce1";
+			this.videoPicture1.Size = new System.Drawing.Size(163, 216);
+			this.videoPicture1.TabIndex = 13;
 			// 
 			// os10
 			// 
@@ -549,7 +549,7 @@
 			this.Controls.Add(this.label10);
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.label16);
-			this.Controls.Add(this.videoPictuce1);
+			this.Controls.Add(this.videoPicture1);
 			this.Controls.Add(this.tb_Rastoyan);
 			this.Controls.Add(this.label11);
 			this.Controls.Add(this.label9);
@@ -621,6 +621,6 @@
         private Vesna.Controls.WheelControl os3;
         private Vesna.Controls.WheelControl os2;
         private Vesna.Controls.WheelControl os1;
-        private Vesna.VideoPictuceControl videoPictuce1;
+        private Vesna.VideoPictureControl videoPicture1;
 	}
 }

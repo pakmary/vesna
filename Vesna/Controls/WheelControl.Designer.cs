@@ -228,7 +228,7 @@
             this.cbPnevmo.OnImage = null;
             this.cbPnevmo.Size = new System.Drawing.Size(30, 30);
             this.cbPnevmo.TabIndex = 20;
-            this.cbPnevmo.StatusChanged += new Vesna.Controls.CheckButtonControl.StatusChangedHander(this.CheckButton_Click);
+            this.cbPnevmo.StatusChanged += new Vesna.Controls.CheckButtonControl.StatusChangedHandler(this.CheckButton_Click);
             // 
             // cbDouble
             // 
@@ -241,7 +241,7 @@
             this.cbDouble.OnImage = null;
             this.cbDouble.Size = new System.Drawing.Size(30, 30);
             this.cbDouble.TabIndex = 19;
-            this.cbDouble.StatusChanged += new Vesna.Controls.CheckButtonControl.StatusChangedHander(this.CheckButton_Click);
+            this.cbDouble.StatusChanged += new Vesna.Controls.CheckButtonControl.StatusChangedHandler(this.CheckButton_Click);
             // 
             // WheelControl
             // 
