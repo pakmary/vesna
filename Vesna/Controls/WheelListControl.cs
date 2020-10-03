@@ -69,15 +69,19 @@ namespace Vesna.Controls {
 			l_kol_os.Text = _currentAuto.AxisList.Count.ToString();
 			l_mass.Text = _currentAuto.FullWeightData.Value.ToString(CultureInfo.InvariantCulture);
 			l_massDopus.Text = _currentAuto.FullWeightData.Limit.ToString(CultureInfo.InvariantCulture);
+            l_massOver.Text = _currentAuto.FullWeightData.Over.ToString(CultureInfo.InvariantCulture);
+            l_massOverPercent.Text =
+                _currentAuto.FullWeightData.PercentageExceeded.ToString(CultureInfo.InvariantCulture) + "%";
 			foreach (Axis axis in _currentAuto.AxisList) {
 				WheelControl wheelControl = GetWheelByIndex(axis.Index);
 				wheelControl.SetWeightValueWithInaccuracy(axis.WeightValueWithInaccuracy);
 				wheelControl.SetDistanceToNextWithInaccuracy(axis.DistanceToNextWithInaccuracy);
 				wheelControl.SetLoadLimit(axis.LoadLimit);
 				wheelControl.SetOver(axis.GetOver());
+                wheelControl.SetBlockInfo(axis.BlockInfo);
 				wheelControl.SetOverPercent(axis.GetOverPercent());
 			}
-			if (Program.User == "Admin") {
+            if (Program.User == "Admin") {
 				tb_razmerUsherba.Text = $"Размер ущерба (руб): {_currentAuto.FullAutoDamage}";
 			}
 		}
@@ -98,10 +102,12 @@ namespace Vesna.Controls {
 			videoPictuce1.SetImage(null);
 			l_mass.Text = "0";
 			l_massDopus.Text = "0";
+            l_massOver.Text = "0";
+            l_massOverPercent.Text = "0";
 			tb_Rastoyan.Text = "0";
 			l_kol_os.Text = "0";
-			tb_razmerUsherba.Text = "";
-			DeleteAllWheel();
+            tb_razmerUsherba.Text = "";
+            DeleteAllWheel();
 		}
 
 		public void AddWheel() {

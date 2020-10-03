@@ -51,11 +51,20 @@ namespace Vesna.Controls {
 			tb_distanceToNextWithInaccuracy.Text = distanceToNextWithInaccuracy.ToString(CultureInfo.InvariantCulture);
 		}
 
-		public void SetLoadLimit(float loadLimit) {
-			l_loadLimit.Text = loadLimit.ToString(CultureInfo.InvariantCulture);
-		}
+        public void SetLoadLimit(float loadLimit) {
+            l_loadLimit.Text = loadLimit <= 0
+                ? "-"
+                : loadLimit.ToString(CultureInfo.InvariantCulture);
+        }
 
-		public void SetOver(float over) {
+        public void SetBlockInfo(string blockInfo) {
+            if(string.IsNullOrEmpty(blockInfo)) {
+                return;
+            }
+            toolTip1.SetToolTip(this, blockInfo);
+        }
+
+        public void SetOver(float over) {
 			l_over.Text = Math.Round(over, 2).ToString(CultureInfo.InvariantCulture);
 		}
 
@@ -134,23 +143,23 @@ namespace Vesna.Controls {
 		}
 
 		private void tb_ras_Leave(object sender, EventArgs e) {
-			var value = tb_distanceToNext.Text.Replace('.', ',');
-			DistanceToNext = float.Parse(value);
-		}
-
+            var value = tb_distanceToNext.Text.Replace('.', ',');
+            DistanceToNext = float.Parse(value);
+        }
+		
 		private void tb_KeyPress(object sender, KeyPressEventArgs e) {
-			if (e.KeyChar == '.') {
-				e.KeyChar = ',';
-			}
-			//if (((NumericUpDown)sender).SelectionLength > 5) { return; }
-			if (sender is NumericUpDown numCtrl) {
-				if (!char.IsDigit(e.KeyChar) && !(e.KeyChar == ',' && numCtrl.Text.IndexOf(",") == -1 && numCtrl.Text.Length != 0)) {
-					if (e.KeyChar != (char) Keys.Back) {
-						e.Handled = true;
-					}
-				}
-			}
-		}
+            if (e.KeyChar == '.') {
+                e.KeyChar = ',';
+            }
+            //if (((NumericUpDown)sender).SelectionLength > 5) { return; }
+            if (sender is NumericUpDown numCtrl) {
+                if (!char.IsDigit(e.KeyChar) && !(e.KeyChar == ',' && numCtrl.Text.IndexOf(",") == -1 && numCtrl.Text.Length != 0)) {
+                    if (e.KeyChar != (char)Keys.Back) {
+                        e.Handled = true;
+                    }
+                }
+            }
+        }
 
 		private void tb_Enter(object sender, EventArgs e) {
 			if (sender is Label) {

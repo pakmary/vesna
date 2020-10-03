@@ -2,6 +2,8 @@
 using System.Windows.Forms;
 using System.Data.OleDb;
 using System.Data;
+using System.Globalization;
+using System.Threading;
 using Vesna.Business.Data;
 using Vesna.Forms;
 
@@ -22,7 +24,11 @@ namespace Vesna {
 
 		[STAThread]
 		private static void Main() {
-			UpdateBaseFile(MyDbPath);
+            CultureInfo ci = new CultureInfo("ru-Ru");
+            Thread.CurrentThread.CurrentCulture = ci;
+            Thread.CurrentThread.CurrentUICulture = ci;
+
+            UpdateBaseFile(MyDbPath);
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 			Application.Run(new InitForm());

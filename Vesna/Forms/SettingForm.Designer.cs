@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+			System.Windows.Forms.Label label55;
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingForm));
 			this.button1 = new System.Windows.Forms.Button();
 			this.label1 = new System.Windows.Forms.Label();
@@ -46,16 +47,22 @@
 			this.label5 = new System.Windows.Forms.Label();
 			this.tb_inaccuracy_roulette = new System.Windows.Forms.NumericUpDown();
 			this.label6 = new System.Windows.Forms.Label();
+			this.tb_dopustFullMass = new System.Windows.Forms.NumericUpDown();
+			this.label7 = new System.Windows.Forms.Label();
+			this.tb_dopustAxis = new System.Windows.Forms.NumericUpDown();
+			label55 = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.tb_id_car)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.tb_index_goda)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.tb_inaccuracy_scales)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.tb_inaccuracy_roulette)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.tb_dopustFullMass)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.tb_dopustAxis)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// button1
 			// 
 			this.button1.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.button1.Location = new System.Drawing.Point(229, 289);
+			this.button1.Location = new System.Drawing.Point(229, 385);
 			this.button1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(82, 28);
@@ -100,7 +107,7 @@
 			// button2
 			// 
 			this.button2.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.button2.Location = new System.Drawing.Point(317, 289);
+			this.button2.Location = new System.Drawing.Point(317, 385);
 			this.button2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(82, 28);
@@ -158,7 +165,7 @@
 			// 
 			this.label4.AutoSize = true;
 			this.label4.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.label4.Location = new System.Drawing.Point(12, 196);
+			this.label4.Location = new System.Drawing.Point(12, 309);
 			this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(136, 20);
@@ -169,7 +176,7 @@
 			// 
 			this.cb_com_name.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.cb_com_name.FormattingEnabled = true;
-			this.cb_com_name.Location = new System.Drawing.Point(317, 193);
+			this.cb_com_name.Location = new System.Drawing.Point(317, 306);
 			this.cb_com_name.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
 			this.cb_com_name.Name = "cb_com_name";
 			this.cb_com_name.Size = new System.Drawing.Size(82, 28);
@@ -179,7 +186,7 @@
 			// 
 			this.l_run.AutoSize = true;
 			this.l_run.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.l_run.Location = new System.Drawing.Point(12, 230);
+			this.l_run.Location = new System.Drawing.Point(12, 343);
 			this.l_run.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.l_run.Name = "l_run";
 			this.l_run.Size = new System.Drawing.Size(59, 20);
@@ -189,7 +196,7 @@
 			// tb_run
 			// 
 			this.tb_run.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.tb_run.Location = new System.Drawing.Point(77, 227);
+			this.tb_run.Location = new System.Drawing.Point(77, 340);
 			this.tb_run.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
 			this.tb_run.Name = "tb_run";
 			this.tb_run.Size = new System.Drawing.Size(292, 25);
@@ -198,7 +205,7 @@
 			// b_run
 			// 
 			this.b_run.Font = new System.Drawing.Font("Arial Narrow", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.b_run.Location = new System.Drawing.Point(374, 227);
+			this.b_run.Location = new System.Drawing.Point(374, 340);
 			this.b_run.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
 			this.b_run.Name = "b_run";
 			this.b_run.Size = new System.Drawing.Size(24, 25);
@@ -215,7 +222,7 @@
             0,
             0,
             131072});
-			this.tb_inaccuracy_scales.Location = new System.Drawing.Point(317, 113);
+			this.tb_inaccuracy_scales.Location = new System.Drawing.Point(316, 129);
 			this.tb_inaccuracy_scales.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
 			this.tb_inaccuracy_scales.Maximum = new decimal(new int[] {
             100000,
@@ -230,7 +237,7 @@
 			// 
 			this.label5.AutoSize = true;
 			this.label5.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.label5.Location = new System.Drawing.Point(12, 115);
+			this.label5.Location = new System.Drawing.Point(11, 131);
 			this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(141, 20);
@@ -246,7 +253,7 @@
             0,
             0,
             131072});
-			this.tb_inaccuracy_roulette.Location = new System.Drawing.Point(317, 144);
+			this.tb_inaccuracy_roulette.Location = new System.Drawing.Point(316, 160);
 			this.tb_inaccuracy_roulette.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
 			this.tb_inaccuracy_roulette.Maximum = new decimal(new int[] {
             100000,
@@ -261,19 +268,85 @@
 			// 
 			this.label6.AutoSize = true;
 			this.label6.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.label6.Location = new System.Drawing.Point(12, 146);
+			this.label6.Location = new System.Drawing.Point(11, 162);
 			this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(149, 20);
 			this.label6.TabIndex = 17;
 			this.label6.Text = "Погрешность рулетки (м)";
 			// 
+			// tb_dopustFullMass
+			// 
+			this.tb_dopustFullMass.DecimalPlaces = 4;
+			this.tb_dopustFullMass.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.tb_dopustFullMass.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+			this.tb_dopustFullMass.Location = new System.Drawing.Point(316, 239);
+			this.tb_dopustFullMass.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+			this.tb_dopustFullMass.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+			this.tb_dopustFullMass.Name = "tb_dopustFullMass";
+			this.tb_dopustFullMass.Size = new System.Drawing.Size(82, 25);
+			this.tb_dopustFullMass.TabIndex = 22;
+			// 
+			// label7
+			// 
+			this.label7.AutoSize = true;
+			this.label7.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.label7.Location = new System.Drawing.Point(11, 241);
+			this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(194, 20);
+			this.label7.TabIndex = 21;
+			this.label7.Text = "Допустимый общий перевес (%)";
+			// 
+			// tb_dopustAxis
+			// 
+			this.tb_dopustAxis.DecimalPlaces = 4;
+			this.tb_dopustAxis.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.tb_dopustAxis.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+			this.tb_dopustAxis.Location = new System.Drawing.Point(316, 208);
+			this.tb_dopustAxis.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+			this.tb_dopustAxis.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+			this.tb_dopustAxis.Name = "tb_dopustAxis";
+			this.tb_dopustAxis.Size = new System.Drawing.Size(82, 25);
+			this.tb_dopustAxis.TabIndex = 20;
+			// 
+			// label55
+			// 
+			label55.AutoSize = true;
+			label55.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			label55.Location = new System.Drawing.Point(11, 210);
+			label55.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			label55.Name = "label55";
+			label55.Size = new System.Drawing.Size(177, 20);
+			label55.TabIndex = 19;
+			label55.Text = "Допустимый перевес оси (%)";
+			// 
 			// SettingForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.Snow;
-			this.ClientSize = new System.Drawing.Size(418, 329);
+			this.ClientSize = new System.Drawing.Size(418, 429);
+			this.Controls.Add(this.tb_dopustFullMass);
+			this.Controls.Add(this.label7);
+			this.Controls.Add(this.tb_dopustAxis);
+			this.Controls.Add(label55);
 			this.Controls.Add(this.tb_inaccuracy_roulette);
 			this.Controls.Add(this.label6);
 			this.Controls.Add(this.tb_inaccuracy_scales);
@@ -303,6 +376,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.tb_index_goda)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.tb_inaccuracy_scales)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.tb_inaccuracy_roulette)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.tb_dopustFullMass)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.tb_dopustAxis)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -327,5 +402,8 @@
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.NumericUpDown tb_inaccuracy_roulette;
 		private System.Windows.Forms.Label label6;
+		private System.Windows.Forms.NumericUpDown tb_dopustFullMass;
+		private System.Windows.Forms.Label label7;
+		private System.Windows.Forms.NumericUpDown tb_dopustAxis;
 	}
 }

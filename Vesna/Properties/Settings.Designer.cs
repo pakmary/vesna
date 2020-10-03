@@ -48,7 +48,7 @@ namespace Vesna.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1.5388")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1.9749")]
         public float YearIndex {
             get {
                 return ((float)(this["YearIndex"]));
@@ -139,6 +139,30 @@ namespace Vesna.Properties {
             }
             set {
                 this["InaccuracyScales"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public float DopustimiyProcentAxis {
+            get {
+                return ((float)(this["DopustimiyProcentAxis"]));
+            }
+            set {
+                this["DopustimiyProcentAxis"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public float DopustimiyProcentFullMass {
+            get {
+                return ((float)(this["DopustimiyProcentFullMass"]));
+            }
+            set {
+                this["DopustimiyProcentFullMass"] = value;
             }
         }
         

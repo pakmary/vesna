@@ -14,7 +14,7 @@
       <Value Profile="(Default)">Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\database_inspector.mdb;Persist Security Info=True;Jet OLEDB:Database Password=hfpdbnbt</Value>
     </Setting>
     <Setting Name="YearIndex" Type="System.Single" Scope="User">
-      <Value Profile="(Default)">1.5388</Value>
+      <Value Profile="(Default)">1.9749</Value>
     </Setting>
     <Setting Name="COMPortName" Type="System.String" Scope="User">
       <Value Profile="(Default)">COM3</Value>
@@ -36,6 +36,12 @@
     </Setting>
     <Setting Name="InaccuracyScales" Type="System.Single" Scope="User">
       <Value Profile="(Default)">0.05</Value>
+    </Setting>
+    <Setting Name="DopustimiyProcentAxis" Type="System.Single" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="DopustimiyProcentFullMass" Type="System.Single" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="ConstKpmFederalRoad" Type="System.Single" Scope="User">
       <Value Profile="(Default)">1</Value>

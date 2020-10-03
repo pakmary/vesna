@@ -2,7 +2,9 @@
 using System.Data;
 using System.Data.OleDb;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
+using System.Threading;
 using System.Windows.Forms;
 using Vesna.Business.Data;
 using Vesna.Controls;
@@ -10,7 +12,7 @@ using Vesna.Controls;
 namespace Vesna.Business {
 	public class AutoRepository {
 		public int Save(Auto auto) {
-			if (auto.IsCanEdit) {
+            if (auto.IsCanEdit) {
 				string comAxis = string.Empty;
 				string comAxisInBase = string.Empty;
 				for (int i = 0; i < auto.AxisList.Count; i++) {

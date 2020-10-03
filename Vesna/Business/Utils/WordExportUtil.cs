@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Linq;
 using System.Windows.Forms;
 using Vesna.Business.Data;
 using Application = System.Windows.Forms.Application;
@@ -76,7 +77,9 @@ namespace Vesna.Business.Utils {
 				Replace("[ВИД_ГРУЗ]", auto.VidGruza, ref doc);
 				Replace("[МАССА_ДОПУСТ]", auto.FullWeightData.Limit.ToString(), ref doc);
 				Replace("[МАССА_ФАКТИЧ]", auto.FullWeightData.Value.ToString(), ref doc);
-
+                Replace("[МАССА_ПРЕВЫШЕНИЕ]", auto.FullWeightData.Over.ToString(), ref doc);
+                Replace("[МАССА_ПРЕВЫШЕНИЕ_ПРОЦ]", auto.FullWeightData.PercentageExceeded + "%", ref doc);
+                
 				string tempStringRazmerVredaOs = string.Empty;
 				float tempSumRazmerVreda = 0;
 				for (int i = 0; i < 10; i++) {
@@ -89,13 +92,12 @@ namespace Vesna.Business.Utils {
 					string axisOverPercent = string.Empty;
 					bool isPnevmo = false;
 					bool isDouble = false;
-					bool isUp = false;
 					
 					if (i < auto.AxisList.Count) {
 						Axis axis = auto.AxisList[i];
 						axisWeightValue = axis.WeightValue.ToString(CultureInfo.InvariantCulture);
 						axisWeightValueWithInaccuracy = axis.WeightValueWithInaccuracy.ToString(CultureInfo.InvariantCulture);
-						axisLoadLimit = axis.LoadLimit.ToString(CultureInfo.InvariantCulture);
+						axisLoadLimit = axis.LoadLimit <= 0 ? "-" : axis.LoadLimit.ToString(CultureInfo.InvariantCulture);
 						axisOver = Math.Round(axis.GetOver(), 2).ToString(CultureInfo.InvariantCulture);
 						axisOverPercent = Math.Round(axis.GetOverPercent(), 2) + "%";
 						isPnevmo = axis.IsPnevmo;
@@ -115,8 +117,18 @@ namespace Vesna.Business.Utils {
 					Replace("[Н_Д" + (i + 1) + "]", axisLoadLimit, ref doc);
 					Replace("[Н_П" + (i + 1) + "]", axisOver, ref doc);
 					Replace("[Н_Р" + (i + 1) + "]", axisOverPercent, ref doc);
-					Replace("[Д" + (i + 1) + "]", $"{(isDouble ? "+" : "-")} / {(isPnevmo ? "+" : "-")} / {(isUp ? "+" : "-")}", ref doc);
+					Replace("[Д" + (i + 1) + "]", $"{(isDouble ? "+" : "-")} / {(isPnevmo ? "+" : "-")}", ref doc);
 				}
+
+                string[] groupInfos = auto.AxisList.Select(a => a.BlockInfo).Distinct().ToArray();
+                for (int i = 0; i < 10; i++) {
+                    if (i >= groupInfos.Length) {
+                        Replace($"[ИНФО_О_ГРУППЕ{i}]", string.Empty, ref doc);
+                    }
+                    else {
+                        Replace($"[ИНФО_О_ГРУППЕ{i}]", groupInfos[i], ref doc);
+                    }
+                }
 				tempStringRazmerVredaOs += tempSumRazmerVreda;
 				//Replace("[ДР_НАРУШ]", tb_drug_narush.Text, ref doc);
 				Replace("[ОБЬЯС_ВОД]", auto.VoditelObyasnenie, ref doc);

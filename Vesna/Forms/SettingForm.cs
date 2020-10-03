@@ -29,6 +29,8 @@ namespace Vesna {
 			foreach (Control control in _adminAccessControlList) {
 				control.Enabled = adm;
 			}
+			tb_dopustAxis.Text = Settings.Default.DopustimiyProcentAxis.ToString();
+			tb_dopustFullMass.Text = Settings.Default.DopustimiyProcentFullMass.ToString();
 			tb_index_goda.Text = Settings.Default.YearIndex.ToString();
 			checkBox1.Checked = Settings.Default.Klimat_usloviya;
 			tb_id_car.Text = SpravochnikUtil.IdentificationNumber.ToString();
@@ -39,15 +41,22 @@ namespace Vesna {
 		}
 
 		private void button1_Click(object sender, EventArgs e) {
-			Settings.Default.YearIndex = float.Parse(tb_index_goda.Text);
-			Settings.Default.Klimat_usloviya = checkBox1.Checked;
-			SpravochnikUtil.IdentificationNumber = int.Parse(tb_id_car.Text);
-			Settings.Default.COMPortName = cb_com_name.Text;
-			Settings.Default.InaccuracyScales = float.Parse(tb_inaccuracy_scales.Text);
-			Settings.Default.InaccuracyRoulette = float.Parse(tb_inaccuracy_roulette.Text);
+			try {
+				Settings.Default.DopustimiyProcentAxis = float.Parse(tb_dopustAxis.Text);
+				Settings.Default.DopustimiyProcentFullMass = float.Parse(tb_dopustFullMass.Text);
 
-			Settings.Default.Save();
-			Close();
+				Settings.Default.YearIndex = float.Parse(tb_index_goda.Text);
+				Settings.Default.Klimat_usloviya = checkBox1.Checked;
+				SpravochnikUtil.IdentificationNumber = int.Parse(tb_id_car.Text);
+				Settings.Default.COMPortName = cb_com_name.Text;
+				Settings.Default.InaccuracyScales = float.Parse(tb_inaccuracy_scales.Text);
+				Settings.Default.InaccuracyRoulette = float.Parse(tb_inaccuracy_roulette.Text);
+
+				Settings.Default.Save();
+				Close();
+			} catch (Exception) {
+				MessageBox.Show("Ошибка: Неверный параметр");
+			}
 		}
 
 		private void button2_Click(object sender, EventArgs e) {
