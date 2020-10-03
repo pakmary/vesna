@@ -39,7 +39,7 @@ namespace Vesna.Controls {
 			float inaccuracyScales = Settings.Default.InaccuracyScales;
 			float inaccuracyRoulette = Settings.Default.InaccuracyRoulette;
 
-			_currentAuto.Foto = videoPicture1.GetImage();
+			_currentAuto.Foto = videoPictuce1.GetImage();
 			_currentAuto.MestoKontrolya = Program.ControlPlace;
 			_currentAuto.Ppvk = Program.PpvkName;
 			_currentAuto.CarId = SpravochnikUtil.IdentificationNumber;
@@ -91,17 +91,15 @@ namespace Vesna.Controls {
 			cb_vid_TC.SelectedIndex = 0;
 		}
 
-		public int GetWheelCount() {
-			return WheelList.Count(w => w.WheelState != WheelControlState.Nothing && w.WheelState != WheelControlState.Plus);
-		}
+		#region Help
 
-		private WheelControl GetWheelByIndex(int index) {
-			return WheelList.FirstOrDefault(c => c.Index == index);
-		}
+		public int GetWheelCount() => WheelList.Count(w => w.WheelState != WheelControlState.Nothing && w.WheelState != WheelControlState.Plus);
+
+		public WheelControl GetWheelByIndex(int index) => WheelList.FirstOrDefault(c => c.Index == index);
 
 		public void Clear() {
 			_currentAuto = new Auto();
-			videoPicture1.SetImage(null);
+			videoPictuce1.SetImage(null);
 			l_mass.Text = "0";
 			l_massDopus.Text = "0";
 			l_massOver.Text = "0";
@@ -112,7 +110,7 @@ namespace Vesna.Controls {
 			DeleteAllWheel();
 		}
 
-		private void AddWheel() {
+		public void AddWheel() {
 			WheelControl lastWheel = WheelList.Find(w => w.WheelState == WheelControlState.Plus);
 			if (lastWheel != null) {
 				lastWheel.WheelState = WheelControlState.One;
@@ -120,19 +118,23 @@ namespace Vesna.Controls {
 			}
 		}
 
-		private void DeleteLastWheel() {
+		public void DeleteLastWheel() {
 			int i = GetWheelCount();
 			if (i != 0) {
 				WheelList[i - 1].WheelState = WheelControlState.Plus;
 			}
 		}
 
-		private void DeleteAllWheel() {
+		public void DeleteAllWheel() {
 			int c = GetWheelCount();
 			for (int i = 0; i < c; i++) {
 				DeleteLastWheel();
 			}
 		}
+
+		#endregion
+
+		#region Events
 
 		private void os_WheelStateChanged(object sender, WheelStateArgs e) {
 			if (e.LastStatus == WheelControlState.Plus && e.NewStatus != WheelControlState.Nothing && e.NewStatus != WheelControlState.Plus && e.Index != 10) {
@@ -223,5 +225,7 @@ namespace Vesna.Controls {
 			}
 			throw new ArgumentException("ConvertToAxisType error");
 		}
+
+		#endregion
 	}
 }

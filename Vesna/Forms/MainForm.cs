@@ -52,6 +52,8 @@ namespace Vesna.Forms {
 			}
 		}
 
+		#region Events
+
 		private void MainForm_Load(object sender, EventArgs e) {
 			LoadFileDocuments();
 		}	
@@ -83,6 +85,8 @@ namespace Vesna.Forms {
 		private void MainForm_FormClosed(object sender, FormClosedEventArgs e) {
 			VideoUtil.CloseVideoSource();
 		}
+		
+		#endregion
 
 		private void m_runAsAdmin_Click(object sender, EventArgs e) {
 			var login = new LoginForm();

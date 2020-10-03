@@ -1,6 +1,6 @@
 ﻿namespace Vesna
 {
-    partial class VideoPictureControl
+    partial class VideoPictuceControl
     {
         /// <summary> 
         /// Требуется переменная конструктора.

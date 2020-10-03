@@ -4,9 +4,9 @@ using System.Windows.Forms;
 
 namespace Vesna {
 	public partial class SpravochnikForm : Form {
-		private bool _defaultValue = true;
-		private string _tableName = string.Empty;
-		private DataTable _dataTable;
+		private bool _defVal = true;
+		private DataTable _dt;
+		private string _tableName = "";
 
 		public SpravochnikForm() {
 			InitializeComponent();
@@ -14,10 +14,10 @@ namespace Vesna {
 		}
 
 		protected virtual void Fill() {
-			_dataTable = Program.GetAccess("SELECT * FROM " + _tableName);
-			dataGridView1.DataSource = _dataTable;
+			_dt = Program.GetAccess("SELECT * FROM " + _tableName);
+			dataGridView1.DataSource = _dt;
 			if (dataGridView1.RowCount != 0 && dataGridView1.ColumnCount != 0) {
-				dataGridView1.Columns["def"].Visible = _defaultValue;
+				dataGridView1.Columns["def"].Visible = _defVal;
 				dataGridView1.Columns["def"].DisplayIndex = 0;
 				dataGridView1.Columns["def"].HeaderText = "Значение по умолчанию";
 				dataGridView1.Columns["def"].Width = 90;
@@ -53,7 +53,7 @@ namespace Vesna {
 					dataGridView1.Rows[e.RowIndex].Cells["id"].Value = rowID;
 					//Program.AddToLog(DateTime.Now, "Добавлена новая запись в базу справочника " + tableName);
 				}
-				string str = $"UPDATE {_tableName} SET {colName} = '{cell}' WHERE id = {rowID}";
+				string str = string.Format(format: "UPDATE {0} SET {1} = '{2}' WHERE id = {3}", _tableName, colName, cell, rowID);
 				Program.MakeAccess(str);
 				//Program.AddToLog(DateTime.Now, "Внесены изменения в базу справочника " + tableName);
 			}
@@ -81,7 +81,7 @@ namespace Vesna {
 			if (dataGridView1.Rows.Count != 0) {
 				string rowID = dataGridView1.Rows[e.Row.Index].Cells["id"].Value.ToString();
 				if (rowID != "") {
-					Program.MakeAccess($"DELETE FROM {_tableName} WHERE id= {rowID}");
+					Program.MakeAccess("DELETE FROM " + _tableName + " WHERE id= " + rowID);
 					//Program.AddToLog(DateTime.Now, "Удалена запись из базы справочника " + tableName);
 				}
 			}
@@ -91,17 +91,17 @@ namespace Vesna {
 			string si = tv.SelectedNode.Text;
 			if (si == "Пункты весового контроля") {
 				_tableName = "sp_ppvk";
-				_defaultValue = true;
+				_defVal = true;
 				Fill();
 				dataGridView1.Columns["name_ppvk"].HeaderText = "Название ППВК";
 			} else if (si == "Точки дислокации") {
 				_tableName = "sp_Dis_Point";
-				_defaultValue = true;
+				_defVal = true;
 				Fill();
 				dataGridView1.Columns["Disl_point"].HeaderText = "Точка дислокации";
 			} else if (si == "Весовое оборудование") {
 				_tableName = "sp_Vesi";
-				_defaultValue = true;
+				_defVal = true;
 				Fill();
 				dataGridView1.Columns["Zavod_nomer"].HeaderText = "Заводской номер весов";
 				//dataGridView1.Columns["Svidet_nomer"].HeaderText = "Номер свидет-ва";
@@ -110,32 +110,32 @@ namespace Vesna {
 				dataGridView1.Columns["DateDO"].DisplayIndex = dataGridView1.Columns.Count - 1;
 			} else if (si == "Марки ТС") {
 				_tableName = "sp_Mark";
-				_defaultValue = false;
+				_defVal = false;
 				Fill();
 				dataGridView1.Columns["name_Mark"].HeaderText = "Марка";
 			} else if (si == "Организации") {
 				_tableName = "sp_Organ";
-				_defaultValue = false;
+				_defVal = false;
 				Fill();
 				dataGridView1.Columns["name_Organ"].HeaderText = "Название организации";
 			} else if (si == "Виды груза") {
 				_tableName = "sp_Gruz";
-				_defaultValue = false;
+				_defVal = false;
 				Fill();
 				dataGridView1.Columns["name_gruz"].HeaderText = "Вид груза";
 			} else if (si == "Инспектора ГИБДД") {
 				_tableName = "sp_Inspectors";
-				_defaultValue = true;
+				_defVal = true;
 				Fill();
 				dataGridView1.Columns["FIO"].HeaderText = "Имя инспектора";
 			} else if (si == "Инспектора ППВК") {
 				_tableName = "sp_Operators";
-				_defaultValue = true;
+				_defVal = true;
 				Fill();
 				dataGridView1.Columns["FIO"].HeaderText = "Имя оператора";
 			} else if (si == "Водители") {
 				_tableName = "sp_Driver";
-				_defaultValue = false;
+				_defVal = false;
 				Fill();
 				dataGridView1.Columns["name_Driver"].HeaderText = "Имя водителя";
 			}

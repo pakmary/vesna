@@ -5,10 +5,10 @@ using AForge.Video;
 using Vesna.Business.Utils;
 
 namespace Vesna {
-	public partial class VideoPictureControl : UserControl {
+	public partial class VideoPictuceControl : UserControl {
 		private bool _big;
 
-		public VideoPictureControl() {
+		public VideoPictuceControl() {
 			InitializeComponent();
 			//Video.Start(comboBox1.SelectedIndex);
 		}
@@ -39,7 +39,7 @@ namespace Vesna {
 			}
 		}
 
-		private Image ResizeImg(Image b, int nWidth, int nHeight) {
+		public Image ResizeImg(Image b, int nWidth, int nHeight) {
 			var result = new Bitmap(nWidth, nHeight);
 			using (Graphics g = Graphics.FromImage(result)) {
 				g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;

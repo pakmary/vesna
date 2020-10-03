@@ -79,15 +79,10 @@ namespace Vesna.Forms {
 		} // отключаем город и код субьекта при выборе другой страны
 
 		private void FormAct_Load(object sender, EventArgs e) {
-			// заполняем комбобоксы
 			if (_auto.IsCanEdit) {
 				cb_inspekt.Items.AddRange(SpravochnikUtil.GetItemCollections("sp_Inspectors", "FIO"));
 				cb_operat.Items.AddRange(SpravochnikUtil.GetItemCollections("sp_Operators", "FIO"));
-				//cb_imya_ppvk.Items.AddRange(f_spr_PPVK.GetItemCollections());
-				//cb_nomer_svid.Items.AddRange(f_spr_Vesi.GetItemCollections());
-				//cb_mesto_prov.Items.AddRange(f_spr_Disl_point.GetItemCollections());
 				cb_kod_sub.Items.AddRange(SpravochnikUtil.GetItemCollections("sp_Kod_sub", "Kod"));
-				//cb_organ.Items.AddRange(SpravochnikUtil.GetItemCollections("sp_Organ", "name_Organ"));
 				cb_driver.Items.AddRange(SpravochnikUtil.GetItemCollections("sp_Driver", "name_Driver"));
 				cb_vid_gruza.Items.AddRange(SpravochnikUtil.GetItemCollections("sp_Gruz", "name_gruz"));
 				object[] col = SpravochnikUtil.GetItemCollections("sp_Mark", "name_Mark");
@@ -97,9 +92,6 @@ namespace Vesna.Forms {
 
 				cb_inspekt.Text = SpravochnikUtil.GetDefaultValue("sp_Inspectors", "FIO");
 				cb_operat.Text = SpravochnikUtil.GetDefaultValue("sp_Operators", "FIO");
-				//cb_imya_ppvk.Text = f_spr_PPVK.GetDefaultValue();
-				//cb_nomer_svid.Text = f_spr_Vesi.GetDefaultValue();
-				//cb_mesto_prov.Text = f_spr_Disl_point.GetDefaultValue();
 				cb_kod_sub.Text = SpravochnikUtil.GetDefaultValue("sp_Kod_sub", "Kod");
 
 				if (cb_strana.Text == string.Empty) {
@@ -108,23 +100,11 @@ namespace Vesna.Forms {
 			}
 		}
 
-		#region //события изменения комбобоксов
-
 		private void cb_kod_sub_SelectedIndexChanged(object sender, EventArgs e) {
 			if (cb_kod_sub.Text != string.Empty) {
 				l_sub.Text = SpravochnikUtil.GetSubWithKode(cb_kod_sub.Text);
 			}
 		}
-
-		/*private void cb_nomer_svid_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cb_nomer_svid.Text != "")
-            {
-                l_ves_data.Text = f_spr_Vesi.GetDateOT(cb_nomer_svid.Text);
-            }
-        }*/
-
-		#endregion
 
 		private void SetCanEditAct(bool f) {
 			foreach (Control c in Controls) {
