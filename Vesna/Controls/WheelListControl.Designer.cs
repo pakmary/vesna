@@ -535,6 +535,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.Snow;
+			this.Controls.Add(this.videoPictuce1);
 			this.Controls.Add(this.l_massOverPercent);
 			this.Controls.Add(this.l_massOver);
 			this.Controls.Add(this.label7);
@@ -549,7 +550,6 @@
 			this.Controls.Add(this.label10);
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.label16);
-			this.Controls.Add(this.videoPictuce1);
 			this.Controls.Add(this.tb_Rastoyan);
 			this.Controls.Add(this.label11);
 			this.Controls.Add(this.label9);
