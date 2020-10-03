@@ -63,16 +63,15 @@ namespace Vesna.Forms {
 			// новоеТСToolStripMenuItem
 			// 
 			this.новоеТСToolStripMenuItem.Name = "новоеТСToolStripMenuItem";
-			this.новоеТСToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.новоеТСToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
 			this.новоеТСToolStripMenuItem.Text = "Новое ТС";
 			this.новоеТСToolStripMenuItem.Click += new System.EventHandler(this.новоеТСToolStripMenuItem_Click);
 			// 
 			// выходToolStripMenuItem
 			// 
 			this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-			this.выходToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.выходToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
 			this.выходToolStripMenuItem.Text = "Выход";
-			this.выходToolStripMenuItem.Click += new System.EventHandler(this.выходToolStripMenuItem_Click);
 			// 
 			// базаToolStripMenuItem
 			// 
