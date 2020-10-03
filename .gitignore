@@ -1,6 +1,7 @@
 packages/
-Vesna/obj/
-Vesna/bin/
+obj/
+bin/
 .vs/
 Vesna/~$act.doc
 *.tmp
+.idea/
