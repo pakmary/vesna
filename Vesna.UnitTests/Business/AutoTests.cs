@@ -7,15 +7,15 @@ using Vesna.Business;
 using Vesna.Business.Data;
 using Vesna.Properties;
 
-namespace Vesna.Tests.Business {
+namespace Vesna.UnitTests.Business {
 	[TestFixture]
-	class AutoTests {
+	public class AutoTests {
 		[OneTimeSetUp]
 		public void SetUp() {
 			var ci = new CultureInfo("Ru-ru");
 			Thread.CurrentThread.CurrentCulture = ci;
 			Thread.CurrentThread.CurrentUICulture = ci;
-			Program.UpdateBaseFile(@"D:\Projects\Vesna\Vesna\database_inspector.mdb");
+			Program.UpdateBaseFile(@"D:\Projects\Vesna\Misc\database_inspector.mdb");
 		}
 
 		[TestCase("4 5 1,3",
@@ -23,7 +23,7 @@ namespace Vesna.Tests.Business {
 		          "20521,79", AutoType.Automobile, RoadType.R10Tc, false, false, 0f, 0f, TestName = "01")]
 		[TestCase("3,72 5,92 1,34 1,34 1,34",
 		          "6,25 9,45D 7,05 7,40 7,30",
-		          "29027", AutoType.Autotrain, RoadType.R5Tc, false, false, 0f, 0f, TestName = "02 ( R5Tc )")] //R5Tc
+		          "122700", AutoType.Autotrain, RoadType.R5Tc, false, false, 0f, 0f, TestName = "02 ( R5Tc )")] //R5Tc
 		[TestCase("4 2,6 6 1,29 1,31",
 		          "10 12DP 13DP 14DP 15DP 16DP",
 		          "130783",
@@ -54,7 +54,7 @@ namespace Vesna.Tests.Business {
 		          AutoType.Autotrain, RoadType.R6Tc, false, true, 0f, 0f, TestName = "09 ( R6Tc )")]
 		[TestCase("5 1,38 6 1,2 1,2 8 1,45 1,5",
 		          "17 16D 15D 14D 13D 12D 11D 10D 9D",
-		          "920359",
+		          "3688281",
 		          AutoType.Autotrain, RoadType.R5Tc, false, true, 0f, 0f, TestName = "10 ( R5Tc )")]
 		[TestCase("5 1,38 6 1,2 1,2 8 1,45 1,5",
 		          "9,5 8,3D 8,2D 6,6D 7D 8D 7,8D 10D 10D",
