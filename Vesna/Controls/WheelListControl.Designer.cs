@@ -387,11 +387,11 @@
 			this.os1.WheelStatusChanged += new Vesna.Controls.WheelControl.WheelStatusChangedHandler(this.os_WheelStateChanged);
 			this.os1.ButtonAddClick += new System.EventHandler(this.os1_ButtonAddClick);
 			// 
-			// videoPictuce1
+			// videoPicture1
 			// 
 			this.videoPicture1.BackColor = System.Drawing.Color.White;
 			this.videoPicture1.Location = new System.Drawing.Point(8, 9);
-			this.videoPicture1.Name = "videoPictuce1";
+			this.videoPicture1.Name = "videoPicture1";
 			this.videoPicture1.Size = new System.Drawing.Size(163, 216);
 			this.videoPicture1.TabIndex = 13;
 			// 

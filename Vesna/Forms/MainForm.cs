@@ -88,9 +88,5 @@ namespace Vesna.Forms {
 			var login = new LoginForm();
 			login.ShowDialog();
 		}
-
-		private void выходToolStripMenuItem_Click(object sender, EventArgs e) {
-			Close();
-		}
 	}
 }
