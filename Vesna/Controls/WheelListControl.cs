@@ -81,7 +81,7 @@ namespace Vesna.Controls {
                 wheelControl.SetBlockInfo(axis.BlockInfo);
 				wheelControl.SetOverPercent(axis.GetOverPercent());
 			}
-			if (Program.User == "Admin") {
+            if (Program.User == "Admin") {
 				tb_razmerUsherba.Text = $"Размер ущерба (руб): {_currentAuto.FullAutoDamage}";
 			}
 		}
@@ -106,8 +106,8 @@ namespace Vesna.Controls {
             l_massOverPercent.Text = "0";
 			tb_Rastoyan.Text = "0";
 			l_kol_os.Text = "0";
-			tb_razmerUsherba.Text = "";
-			DeleteAllWheel();
+            tb_razmerUsherba.Text = "";
+            DeleteAllWheel();
 		}
 
 		public void AddWheel() {

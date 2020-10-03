@@ -61,7 +61,7 @@ namespace Vesna.Controls {
             if(string.IsNullOrEmpty(blockInfo)) {
                 return;
             }
-            toolTip1.SetToolTip(l_loadLimit, blockInfo);
+            toolTip1.SetToolTip(this, blockInfo);
         }
 
         public void SetOver(float over) {
@@ -143,22 +143,22 @@ namespace Vesna.Controls {
 		}
 
 		private void tb_ras_Leave(object sender, EventArgs e) {
-            string value = tb_distanceToNext.Text;
-            DistanceToNext = float.Parse(value, CultureInfo.InvariantCulture);
+            var value = tb_distanceToNext.Text.Replace('.', ',');
+            DistanceToNext = float.Parse(value);
         }
 
 		private void tb_KeyPress(object sender, KeyPressEventArgs e) {
-			if (e.KeyChar == ',') {
-				e.KeyChar = '.';
-			}
-            //if (!(sender is NumericUpDown numCtrl)) {
-            //    return;
-            //}
-            //if (!char.IsDigit(e.KeyChar) && !(e.KeyChar == ',' && numCtrl.Text.IndexOf(",") == -1 && numCtrl.Text.Length != 0)) {
-            //    if (e.KeyChar != (char) Keys.Back) {
-            //        e.Handled = true;
-            //    }
-            //}
+            if (e.KeyChar == '.') {
+                e.KeyChar = ',';
+            }
+            //if (((NumericUpDown)sender).SelectionLength > 5) { return; }
+            if (sender is NumericUpDown numCtrl) {
+                if (!char.IsDigit(e.KeyChar) && !(e.KeyChar == ',' && numCtrl.Text.IndexOf(",") == -1 && numCtrl.Text.Length != 0)) {
+                    if (e.KeyChar != (char)Keys.Back) {
+                        e.Handled = true;
+                    }
+                }
+            }
         }
 
 		private void tb_Enter(object sender, EventArgs e) {

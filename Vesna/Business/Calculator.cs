@@ -83,7 +83,7 @@ namespace Vesna.Business {
 					continue;
 				}
                 string blockInfo =
-                    $"Группа осей ({string.Join(",", axises.Select(a => a.Index))}){Environment.NewLine}";
+                    $"Группа осей ({string.Join(",", axises.Select(a => a.Index + 1))}){Environment.NewLine}";
 
                 switch (blockType) {
 					case AxisBlockType.Single: {
@@ -118,12 +118,9 @@ namespace Vesna.Business {
                             axises.ForEach(a => a.Damage = GetAxisDamage(road, a));
                         }
 
-                        string type1 = blockIsDouble ? "двухскатная" : "односкатная";
-                        string type2 = blockIsPnevmo ? "на пневмоподвеске" : "без пневмоподвески";
                         blockInfo +=
-                            $"Группа: {type1} и {type2}{Environment.NewLine}" +
-                            $"Фактическая/Допустимая нагрузка на группу: {blockWeight}/{blockLimit}{Environment.NewLine}" +
-                            $"Фактическая/Допустимая максимальная нагрузка на 1 ось: {maxAxisWeight}/{singleAxisLimit}{Environment.NewLine}";
+                            $" - Нагрузка на группу осей (Фактическая/Допустимая): {blockWeight}т./{blockLimit}т.{Environment.NewLine}" +
+                            $" - Нагрузка на наиболее нагруженную ось (Фактическая/Допустимая): {maxAxisWeight}т./{singleAxisLimit}т.{Environment.NewLine}";
                         break;
                     }
 

@@ -303,7 +303,7 @@
             // 
             this.tb_razmerUsherba.AutoSize = true;
             this.tb_razmerUsherba.Font = new System.Drawing.Font("Arial Narrow", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tb_razmerUsherba.Location = new System.Drawing.Point(902, 340);
+            this.tb_razmerUsherba.Location = new System.Drawing.Point(751, 449);
             this.tb_razmerUsherba.Name = "tb_razmerUsherba";
             this.tb_razmerUsherba.Size = new System.Drawing.Size(0, 20);
             this.tb_razmerUsherba.TabIndex = 56;
