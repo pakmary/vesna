@@ -39,7 +39,7 @@ namespace Vesna.Controls {
 			float inaccuracyScales = Settings.Default.InaccuracyScales;
 			float inaccuracyRoulette = Settings.Default.InaccuracyRoulette;
 
-			_currentAuto.Foto = videoPictuce1.GetImage();
+			_currentAuto.Foto = videoPicture1.GetImage();
 			_currentAuto.MestoKontrolya = Program.ControlPlace;
 			_currentAuto.Ppvk = Program.PpvkName;
 			_currentAuto.CarId = SpravochnikUtil.IdentificationNumber;
@@ -101,7 +101,7 @@ namespace Vesna.Controls {
 
 		public void Clear() {
 			_currentAuto = new Auto();
-			videoPictuce1.SetImage(null);
+			videoPicture1.SetImage(null);
 			l_mass.Text = "0";
 			l_massDopus.Text = "0";
 			l_massOver.Text = "0";
