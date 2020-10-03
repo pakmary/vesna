@@ -10,7 +10,6 @@ namespace Vesna {
 
 		public VideoPictuceControl() {
 			InitializeComponent();
-			//Video.Start(comboBox1.SelectedIndex);
 		}
 
 		private void videoSource_NewFrame(object sender, NewFrameEventArgs eventArgs) {
@@ -19,6 +18,9 @@ namespace Vesna {
 		}
 
 		private void VideoPictuce_Load(object sender, EventArgs e) {
+			if (DesignMode) {
+				return;
+			}
 			comboBox1.Items.Add("Из файла");
 			comboBox1.Items.AddRange(VideoUtil.GetCamList());
 			comboBox1.SelectedIndex = 0;

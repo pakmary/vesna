@@ -143,6 +143,10 @@ namespace Vesna.Controls {
 			l_overPercent.Text = "0%";
 		}
 
+		public void SetVisibleForDistanceToNext(bool visible) {
+			tb_distanceToNext.Visible = tb_distanceToNextWithInaccuracy.Visible = visible;
+		}
+
 		private void tb_ras_Leave(object sender, EventArgs e) {
 			var value = tb_distanceToNext.Text.Replace('.', ',');
 			DistanceToNext = float.Parse(value);

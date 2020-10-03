@@ -91,8 +91,6 @@ namespace Vesna.Controls {
 			cb_vid_TC.SelectedIndex = 0;
 		}
 
-		#region Help
-
 		public int GetWheelCount() => WheelList.Count(w => w.WheelState != WheelControlState.Nothing && w.WheelState != WheelControlState.Plus);
 
 		public WheelControl GetWheelByIndex(int index) => WheelList.FirstOrDefault(c => c.Index == index);
@@ -132,17 +130,13 @@ namespace Vesna.Controls {
 			}
 		}
 
-		#endregion
-
-		#region Events
-
 		private void os_WheelStateChanged(object sender, WheelStateArgs e) {
 			if (e.LastStatus == WheelControlState.Plus && e.NewStatus != WheelControlState.Nothing && e.NewStatus != WheelControlState.Plus && e.Index != 10) {
 				//если ось была добавлена
 				foreach (WheelControl c in WheelList) {
 					if (c.Index == e.Index - 1) {
 						//ищем предыдущую ось
-						c.tb_distanceToNext.Visible = c.tb_distanceToNextWithInaccuracy.Visible = true;
+						c.SetVisibleForDistanceToNext(true);
 					}
 					if (c.Index == e.Index + 1) {
 						//ищем след ось
@@ -158,7 +152,7 @@ namespace Vesna.Controls {
 					}
 					if (c.Index >= e.Index - 1) {
 						//ищем предыдущую ось
-						c.tb_distanceToNext.Visible = c.tb_distanceToNextWithInaccuracy.Visible = false;
+						c.SetVisibleForDistanceToNext(false);
 					}
 				}
 			}
@@ -225,7 +219,5 @@ namespace Vesna.Controls {
 			}
 			throw new ArgumentException("ConvertToAxisType error");
 		}
-
-		#endregion
 	}
 }

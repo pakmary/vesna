@@ -4,9 +4,9 @@ using System.Windows.Forms;
 
 namespace Vesna.Controls {
 	public partial class CheckButtonControl : UserControl {
-		public delegate void StatusChangedHander(object sender, EventArgs args);
+		public delegate void StatusChangedHandler(object sender, EventArgs args);
 
-		public event StatusChangedHander StatusChanged;
+		public event StatusChangedHandler StatusChanged;
 
 		private bool _isOn;
 
