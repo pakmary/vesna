@@ -537,8 +537,6 @@
 			// 
 			// WheelListControl
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.Snow;
 			this.Controls.Add(this.l_massOverPercent);
 			this.Controls.Add(this.l_massOver);
@@ -602,25 +600,24 @@
 		private System.Windows.Forms.Label label8;
 		private System.Windows.Forms.Label label9;
 		private System.Windows.Forms.Label label11;
-		//private VideoPictuce videoPictuce1;
 		private System.Windows.Forms.NumericUpDown tb_Rastoyan;
-		private VideoPictuceControl videoPictuce1;
+		private Vesna.VideoPictuceControl videoPictuce1;
 		private System.Windows.Forms.Timer timer1;
 		private System.Windows.Forms.Label l_ves;
 		private System.Windows.Forms.Label label16;
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.Label label10;
 		private System.Windows.Forms.Label label12;
-		private WheelControl os1;
-		private WheelControl os2;
-		private WheelControl os3;
-		private WheelControl os4;
-		private WheelControl os5;
-		private WheelControl os6;
-		private WheelControl os7;
-		private WheelControl os8;
-		private WheelControl os9;
-		private WheelControl os10;
+		private Vesna.Controls.WheelControl os1;
+		private Vesna.Controls.WheelControl os2;
+		private Vesna.Controls.WheelControl os3;
+		private Vesna.Controls.WheelControl os4;
+		private Vesna.Controls.WheelControl os5;
+		private Vesna.Controls.WheelControl os6;
+		private Vesna.Controls.WheelControl os7;
+		private Vesna.Controls.WheelControl os8;
+		private Vesna.Controls.WheelControl os9;
+		private Vesna.Controls.WheelControl os10;
 		private System.Windows.Forms.Label tb_razmerUsherba;
 		private System.Windows.Forms.Label label14;
 		private System.Windows.Forms.Label label13;
