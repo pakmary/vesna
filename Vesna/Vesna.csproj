@@ -74,9 +74,6 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="Vesna, Version=3.2.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>bin\Debug\Vesna.exe</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Business\AutoRepository.cs" />
