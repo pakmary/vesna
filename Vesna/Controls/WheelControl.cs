@@ -146,7 +146,7 @@ namespace Vesna.Controls {
             var value = tb_distanceToNext.Text.Replace('.', ',');
             DistanceToNext = float.Parse(value);
         }
-
+		
 		private void tb_KeyPress(object sender, KeyPressEventArgs e) {
             if (e.KeyChar == '.') {
                 e.KeyChar = ',';

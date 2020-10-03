@@ -53,7 +53,7 @@ namespace Vesna.Business {
 					blockType = AxisBlockType.Dual;
 				} else if (blockCount == 3) {
 					blockType = AxisBlockType.Triple;
-				} else if (blockCount < 8) {
+				} else if (blockCount > 3 && blockCount < 8) {
 					blockType = AxisBlockType.MoreThree;
 				} else {
 					blockType = AxisBlockType.EightOrMore;
