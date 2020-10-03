@@ -1,5 +1,3 @@
-using System;
-
 namespace Vesna.Business.Data {
 	public class Axis {
 		public int Index;
@@ -15,17 +13,17 @@ namespace Vesna.Business.Data {
 		public AxisBlockType BlockType { get; set; }
 		public bool IsDouble => Type == AxisType.Double || Type == AxisType.DoubleAndPnevmo;
 		public bool IsPnevmo => Type == AxisType.DoubleAndPnevmo || Type == AxisType.SingleAndPnevmo;
-        
-        public string BlockInfo { get; set; }
 
-        internal Axis(int index, 
-		            AxisType type, 
-		            float weightValue, 
-		            float weightValueWithInaccuracy, 
-		            float distanceToNext, 
-		            float distanceToNextWithInaccuracy, 
-		            float loadLimit,
-		            float damage) {
+		public string BlockInfo { get; set; }
+
+		internal Axis(int index,
+		              AxisType type,
+		              float weightValue,
+		              float weightValueWithInaccuracy,
+		              float distanceToNext,
+		              float distanceToNextWithInaccuracy,
+		              float loadLimit,
+		              float damage) {
 			Index = index;
 			Type = type;
 			WeightValue = weightValue;

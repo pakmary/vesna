@@ -9,6 +9,7 @@ namespace Vesna.Controls {
 		private WheelControlState _wheelState;
 
 		public delegate void WheelStatusChangedHandler(object o, WheelStateArgs e);
+
 		public event WheelStatusChangedHandler WheelStatusChanged;
 		public event EventHandler ButtonAddClick;
 
@@ -22,7 +23,7 @@ namespace Vesna.Controls {
 				WheelStatusChanged?.Invoke(this, new WheelStateArgs(Index, lastState, _wheelState));
 			}
 		}
-		
+
 		public float ScalesValue {
 			get => GetValueOrDefault(tb_scales_value);
 			set => tb_scales_value.Text = value.ToString(CultureInfo.InvariantCulture).Replace(".", ",");
@@ -51,20 +52,20 @@ namespace Vesna.Controls {
 			tb_distanceToNextWithInaccuracy.Text = distanceToNextWithInaccuracy.ToString(CultureInfo.InvariantCulture);
 		}
 
-        public void SetLoadLimit(float loadLimit) {
-            l_loadLimit.Text = loadLimit <= 0
-                ? "-"
-                : loadLimit.ToString(CultureInfo.InvariantCulture);
-        }
+		public void SetLoadLimit(float loadLimit) {
+			l_loadLimit.Text = loadLimit <= 0
+				                   ? "-"
+				                   : loadLimit.ToString(CultureInfo.InvariantCulture);
+		}
 
-        public void SetBlockInfo(string blockInfo) {
-            if(string.IsNullOrEmpty(blockInfo)) {
-                return;
-            }
-            toolTip1.SetToolTip(this, blockInfo);
-        }
+		public void SetBlockInfo(string blockInfo) {
+			if (string.IsNullOrEmpty(blockInfo)) {
+				return;
+			}
+			toolTip1.SetToolTip(this, blockInfo);
+		}
 
-        public void SetOver(float over) {
+		public void SetOver(float over) {
 			l_over.Text = Math.Round(over, 2).ToString(CultureInfo.InvariantCulture);
 		}
 
@@ -118,8 +119,8 @@ namespace Vesna.Controls {
 				return;
 			}
 			WheelState = cbDouble.IsOn
-				? (cbPnevmo.IsOn ? WheelControlState.TwoPnevmo : WheelControlState.Two)
-				: (cbPnevmo.IsOn ? WheelControlState.OnePnevmo : WheelControlState.One);
+				             ? (cbPnevmo.IsOn ? WheelControlState.TwoPnevmo : WheelControlState.Two)
+				             : (cbPnevmo.IsOn ? WheelControlState.OnePnevmo : WheelControlState.One);
 		}
 
 		private void ClearWheel() {
@@ -143,23 +144,23 @@ namespace Vesna.Controls {
 		}
 
 		private void tb_ras_Leave(object sender, EventArgs e) {
-            var value = tb_distanceToNext.Text.Replace('.', ',');
-            DistanceToNext = float.Parse(value);
-        }
-		
+			var value = tb_distanceToNext.Text.Replace('.', ',');
+			DistanceToNext = float.Parse(value);
+		}
+
 		private void tb_KeyPress(object sender, KeyPressEventArgs e) {
-            if (e.KeyChar == '.') {
-                e.KeyChar = ',';
-            }
-            //if (((NumericUpDown)sender).SelectionLength > 5) { return; }
-            if (sender is NumericUpDown numCtrl) {
-                if (!char.IsDigit(e.KeyChar) && !(e.KeyChar == ',' && numCtrl.Text.IndexOf(",") == -1 && numCtrl.Text.Length != 0)) {
-                    if (e.KeyChar != (char)Keys.Back) {
-                        e.Handled = true;
-                    }
-                }
-            }
-        }
+			if (e.KeyChar == '.') {
+				e.KeyChar = ',';
+			}
+			//if (((NumericUpDown)sender).SelectionLength > 5) { return; }
+			if (sender is NumericUpDown numCtrl) {
+				if (!char.IsDigit(e.KeyChar) && !(e.KeyChar == ',' && numCtrl.Text.IndexOf(",") == -1 && numCtrl.Text.Length != 0)) {
+					if (e.KeyChar != (char)Keys.Back) {
+						e.Handled = true;
+					}
+				}
+			}
+		}
 
 		private void tb_Enter(object sender, EventArgs e) {
 			if (sender is Label) {
@@ -175,7 +176,7 @@ namespace Vesna.Controls {
 				}
 			}
 		}
-		
+
 		private void pictureBox2_Click(object sender, EventArgs e) {
 			pb_fix.Image = Properties.Resources.fix_true;
 			IsFixed = true;

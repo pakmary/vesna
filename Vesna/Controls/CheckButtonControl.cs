@@ -1,23 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
 namespace Vesna.Controls {
 	public partial class CheckButtonControl : UserControl {
-		public delegate void StatusChangedHander(object sender, EventArgs args);
+		public delegate void StatusChangedHandler(object sender, EventArgs args);
 
-		public event StatusChangedHander StatusChanged;
+		public event StatusChangedHandler StatusChanged;
 
 		private bool _isOn;
+
 		public bool IsOn {
-			get { return _isOn; }
+			get => _isOn;
 			set {
 				_isOn = value;
-				if (StatusChanged != null) {
-					StatusChanged.Invoke(this, new EventArgs());
-				}
+				StatusChanged?.Invoke(this, new EventArgs());
 			}
 		}
 

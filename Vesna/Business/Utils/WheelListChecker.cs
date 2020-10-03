@@ -37,7 +37,7 @@ namespace Vesna.Business.Utils {
 				MessageBox.Show("ОШИБКА: Не выбран тип ТС");
 				return false;
 			}
-			if ((AutoType)vidTc.SelectedIndex +1 == AutoType.Automobile) {
+			if ((AutoType)vidTc.SelectedIndex + 1 == AutoType.Automobile) {
 				if (wheelsCount <= 1) {
 					MessageBox.Show("ОШИБКА: У автомобиля должно быть минимум 2 оси");
 					return false;

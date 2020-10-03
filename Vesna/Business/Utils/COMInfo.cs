@@ -11,7 +11,7 @@ namespace Vesna.Business.Utils {
 		public float Ves { get; set; }
 		public int CountPoint { get; set; }
 		public string Control { get; set; }
-		public bool HaveError { get; set; } = false;
+		public bool HaveError { get; set; }
 		public string ErrorMessage { get; set; }
 
 		public static string[] GetListCOM() {
@@ -58,7 +58,7 @@ namespace Vesna.Business.Utils {
 				try {
 					string d = data.Substring(indexEnd - 10, 10);
 					res.Znak = d.Substring(0, 1);
-					res.Ves = (float.Parse(d.Substring(1, 6)))/1000;
+					res.Ves = (float.Parse(d.Substring(1, 6))) / 1000;
 					if (res.Znak == "-") {
 						res.Ves *= -1;
 					}

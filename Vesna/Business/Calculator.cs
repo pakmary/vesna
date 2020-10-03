@@ -1,6 +1,4 @@
-﻿// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
-// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
@@ -82,10 +80,10 @@ namespace Vesna.Business {
 					axises.ForEach(a => a.Damage = GetAxisDamage(road, a));
 					continue;
 				}
-                string blockInfo =
-                    $"Группа осей ({string.Join(",", axises.Select(a => a.Index + 1))}){Environment.NewLine}";
+				string blockInfo =
+					$"Группа осей ({string.Join(",", axises.Select(a => a.Index + 1))}){Environment.NewLine}";
 
-                switch (blockType) {
+				switch (blockType) {
 					case AxisBlockType.Single: {
 						Axis singleAxis = axises.Single();
 						singleAxis.LoadLimit = GetLimitForAxisesBlock(roadType, AxisBlockType.Single, singleAxis.IsDouble, singleAxis.IsPnevmo, distanceToNext: 0);
@@ -93,38 +91,36 @@ namespace Vesna.Business {
 						break;
 					}
 
-                    case AxisBlockType.Dual:
-                    case AxisBlockType.Triple:
-                    {
-                        bool blockIsDouble = axises.All(a => a.IsDouble);
-                        bool blockIsPnevmo = axises.All(a => a.IsPnevmo);
-                        float blockWeight = axises.Sum(a => a.WeightValueWithInaccuracy);
-                        float maxAxisWeight = axises.Max(a => a.WeightValueWithInaccuracy);
-                        float singleAxisLimit = GetLimitForAxisesBlock(road.RoadType, AxisBlockType.Single,
-                            blockIsDouble, blockIsPnevmo, distanceToNext: 0);
+					case AxisBlockType.Dual:
+					case AxisBlockType.Triple: {
+						bool blockIsDouble = axises.All(a => a.IsDouble);
+						bool blockIsPnevmo = axises.All(a => a.IsPnevmo);
+						float blockWeight = axises.Sum(a => a.WeightValueWithInaccuracy);
+						float maxAxisWeight = axises.Max(a => a.WeightValueWithInaccuracy);
+						float singleAxisLimit = GetLimitForAxisesBlock(road.RoadType, AxisBlockType.Single,
+						                                               blockIsDouble, blockIsPnevmo, distanceToNext: 0);
 
-                        int distanceCount = axises.Count - 1;
-                        float averageDistance = axises.Take(distanceCount).Sum(a => a.DistanceToNext) / distanceCount;
-                        float blockLimit = GetLimitForAxisesBlock(roadType, blockType, blockIsDouble, blockIsPnevmo,
-                            averageDistance);
+						int distanceCount = axises.Count - 1;
+						float averageDistance = axises.Take(distanceCount).Sum(a => a.DistanceToNext) / distanceCount;
+						float blockLimit = GetLimitForAxisesBlock(roadType, blockType, blockIsDouble, blockIsPnevmo,
+						                                          averageDistance);
 
-                        if (blockWeight <= blockLimit && maxAxisWeight <= singleAxisLimit) {
-                            axises.ForEach(a => a.LoadLimit = 0);
-                            axises.ForEach(a => a.Damage = 0);
-                        }
-                        else {
-                            float axisLimit = blockLimit / axises.Count;
-                            axises.ForEach(a => a.LoadLimit = axisLimit);
-                            axises.ForEach(a => a.Damage = GetAxisDamage(road, a));
-                        }
+						if (blockWeight <= blockLimit && maxAxisWeight <= singleAxisLimit) {
+							axises.ForEach(a => a.LoadLimit = 0);
+							axises.ForEach(a => a.Damage = 0);
+						} else {
+							float axisLimit = blockLimit / axises.Count;
+							axises.ForEach(a => a.LoadLimit = axisLimit);
+							axises.ForEach(a => a.Damage = GetAxisDamage(road, a));
+						}
 
-                        blockInfo +=
-                            $" - Нагрузка на группу осей (Фактическая/Допустимая): {blockWeight}т./{blockLimit}т.{Environment.NewLine}" +
-                            $" - Нагрузка на наиболее нагруженную ось (Фактическая/Допустимая): {maxAxisWeight}т./{singleAxisLimit}т.{Environment.NewLine}";
-                        break;
-                    }
+						blockInfo +=
+							$" - Нагрузка на группу осей (Фактическая/Допустимая): {blockWeight}т./{blockLimit}т.{Environment.NewLine}" +
+							$" - Нагрузка на наиболее нагруженную ось (Фактическая/Допустимая): {maxAxisWeight}т./{singleAxisLimit}т.{Environment.NewLine}";
+						break;
+					}
 
-                    case AxisBlockType.MoreThree:
+					case AxisBlockType.MoreThree:
 					case AxisBlockType.EightOrMore: {
 						for (int i = 0; i < axises.Count; i++) {
 							Axis axis = axises[i];
@@ -146,16 +142,16 @@ namespace Vesna.Business {
 						throw new NotImplementedException();
 				}
 
-                axises.ForEach(a => a.BlockInfo = blockInfo);
-            }
+				axises.ForEach(a => a.BlockInfo = blockInfo);
+			}
 		}
 
 		private static float GetLimitForAxisesBlock(RoadType roadType, AxisBlockType blockType, bool isDouble, bool isPnevno, float distanceToNext) {
 			string distance = distanceToNext.ToString(NumberFormatInfo.InvariantInfo);
-			DataRow maxAxisRow = Program.GetAccess($"SELECT TOP 1 * FROM (SELECT * FROM MaxAxis" +
+			DataRow maxAxisRow = Program.GetAccess("SELECT TOP 1 * FROM (SELECT * FROM MaxAxis" +
 			                                       $" WHERE  {distance} <= Distance" +
 			                                       $" AND TypeAxisId = {(int)blockType} )" +
-			                                       $" ORDER BY Distance ASC").Rows[0];
+			                                       " ORDER BY Distance ASC").Rows[0];
 			string columnStart = string.Empty;
 			if (roadType == RoadType.R10Tc) {
 				columnStart = "R10";
@@ -241,21 +237,21 @@ namespace Vesna.Business {
 		private static float GetAxisDamageByFormula(AutoRoad road, Axis axis) {
 			float damage;
 			RoadType t = road.RoadType;
-			float KD = ConstDorojhnoKlimatZon;
-			float KK = ConstKapitalniyRemont;
-			float KC = ConstKlimat;
-			float P = ConstDamageDefault(t);
+			float kd = ConstDorojhnoKlimatZon;
+			float kk = ConstKapitalniyRemont;
+			float kc = ConstKlimat;
+			float p = ConstDamageDefault(t);
 			float a = ConstA(t);
 			float b = ConstB(t);
-			float H = ConstH(t);
+			float h = ConstH(t);
 
 			float over = axis.GetOver();
 			if (!road.IsSoftClothes) {
 				var pOver = (float)Math.Pow(over, 1.92f);
-				damage = KD * KK * KC * P * (1 + 0.2f * pOver * (a / H - b));
+				damage = kd * kk * kc * p * (1 + 0.2f * pOver * (a / h - b));
 			} else {
 				var pOver = (float)Math.Pow(over, 1.24f);
-				damage = KK * KC * P * (1 + 0.14f * pOver * (a / H + b));
+				damage = kk * kc * p * (1 + 0.14f * pOver * (a / h + b));
 			}
 			return damage;
 		}
@@ -269,9 +265,9 @@ namespace Vesna.Business {
 			}
 
 			DataRow damageMassRow = Program.GetAccess("SELECT TOP 1 * FROM " +
-			                                          $"(SELECT Damage, ProcentLimit FROM DamageMass " +
+			                                          "(SELECT Damage, ProcentLimit FROM DamageMass " +
 			                                          $"WHERE {massOverPercent.ToString(NumberFormatInfo.InvariantInfo)} <= ProcentLimit " +
-			                                          $"ORDER BY ProcentLimit ASC) ")
+			                                          "ORDER BY ProcentLimit ASC) ")
 			                               .Rows[0];
 			float damage = float.Parse(damageMassRow["Damage"].ToString());
 
@@ -291,11 +287,11 @@ namespace Vesna.Business {
 				return 0;
 			}
 			RoadType t = road.RoadType;
-			float KK = ConstKapitalniyRemont;
-			float KP = ConstMassInfluence(road.IsFederalRoad);
+			float kk = ConstKapitalniyRemont;
+			float kp = ConstMassInfluence(road.IsFederalRoad);
 			float c = ConstC(t);
 			float d = ConstD(t);
-			return KK * KP * (c + d * massOverProcent);
+			return kk * kp * (c + d * massOverProcent);
 		}
 
 		private static float GetAutoFullDamage(float massDamage, IEnumerable<float> axisDamages, float distanse) {

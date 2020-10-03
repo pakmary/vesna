@@ -9,8 +9,8 @@ namespace Vesna.Business.Events {
 			Index = index;
 		}
 
-		public WheelControlState LastStatus { get; private set; } // readonly
-		public WheelControlState NewStatus { get; private set; } // readonly
-		public int Index { get; private set; } // readonly
+		public WheelControlState LastStatus { get; }
+		public WheelControlState NewStatus { get; }
+		public int Index { get; }
 	}
 }

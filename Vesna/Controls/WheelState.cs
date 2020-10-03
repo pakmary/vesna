@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Vesna.Controls {
+﻿namespace Vesna.Controls {
 	public enum WheelControlState {
 		Nothing = -1,
 		Plus = 0,

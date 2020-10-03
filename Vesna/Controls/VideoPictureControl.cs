@@ -5,26 +5,26 @@ using AForge.Video;
 using Vesna.Business.Utils;
 
 namespace Vesna {
-	public partial class VideoPictuceControl : UserControl {
+	public partial class VideoPictureControl : UserControl {
 		private bool _big;
 
-		public VideoPictuceControl() {
+		public VideoPictureControl() {
 			InitializeComponent();
 			//Video.Start(comboBox1.SelectedIndex);
 		}
 
 		private void videoSource_NewFrame(object sender, NewFrameEventArgs eventArgs) {
-			var img = (Bitmap) eventArgs.Frame.Clone();
+			var img = (Bitmap)eventArgs.Frame.Clone();
 			pictureBox1.Image = img;
 		}
 
-		private void VideoPictuce_Load(object sender, System.EventArgs e) {
+		private void VideoPictuce_Load(object sender, EventArgs e) {
 			comboBox1.Items.Add("Из файла");
 			comboBox1.Items.AddRange(VideoUtil.GetCamList());
 			comboBox1.SelectedIndex = 0;
 		}
 
-		private void b_action_Click(object sender, System.EventArgs e) {
+		private void b_action_Click(object sender, EventArgs e) {
 			if (b_action.Text == "Обзор") {
 				if (openFileDialog1.ShowDialog() == DialogResult.OK) {
 					pictureBox1.Image = ResizeImg(Image.FromFile(openFileDialog1.FileName), 300, 300);
@@ -39,7 +39,7 @@ namespace Vesna {
 			}
 		}
 
-		public Image ResizeImg(Image b, int nWidth, int nHeight) {
+		private Image ResizeImg(Image b, int nWidth, int nHeight) {
 			var result = new Bitmap(nWidth, nHeight);
 			using (Graphics g = Graphics.FromImage(result)) {
 				g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;

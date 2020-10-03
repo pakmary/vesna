@@ -24,7 +24,7 @@ namespace Vesna.Forms {
 
 		private void button2_Click(object sender, EventArgs e) {
 			var mf = new MainForm();
-			Program.PPVKName = cb_imya_ppvk.Text;
+			Program.PpvkName = cb_imya_ppvk.Text;
 			Program.ControlPlace = cb_mesto_prov.Text;
 			Program.ScaleNumber = cb_vesi_zavod_nomer.Text;
 			Program.CurrentRoadType = (RoadType)cb_Vid_Dor.SelectedIndex + 1;

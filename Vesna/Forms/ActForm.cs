@@ -175,8 +175,8 @@ namespace Vesna.Forms {
 			_auto.HarakterGruza = cb_harakter_gruza.Text;
 			_auto.VoditelObyasnenie = tb_obyasn_vodit.Text;
 
-			_auto.OperatorPVK = cb_operat.Text;
-			_auto.InspectorGIBDD = cb_inspekt.Text;
+			_auto.OperatorPvk = cb_operat.Text;
+			_auto.InspectorGibdd = cb_inspekt.Text;
 			_auto.Driver = cb_driver.Text;
 			_auto.DriverLicense = tb_driver_license.Text;
 

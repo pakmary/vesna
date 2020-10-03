@@ -3,11 +3,11 @@ using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using Vesna.Business.Data;
-using Application = System.Windows.Forms.Application;
+using Word = Microsoft.Office.Interop.Word;
 
 namespace Vesna.Business.Utils {
 	internal static class WordExportUtil {
-		private static Microsoft.Office.Interop.Word.Application _wordApp;
+		private static Word.Application _wordApp;
 
 		public static void Export(Auto curTc) {
 			Fill(curTc);
@@ -22,17 +22,13 @@ namespace Vesna.Business.Utils {
 		private static void Fill(Auto auto) {
 			try {
 				string fileName = $"{Application.StartupPath}\\Files\\act.doc";
-				_wordApp = new Microsoft.Office.Interop.Word.Application();
+				_wordApp = new Word.Application();
 
-				Microsoft.Office.Interop.Word.Document doc = _wordApp.Documents.Add(fileName);
-				//doc.ReadOnly = true;
-
-				#region Найти заменить в Word
+				Word.Document doc = _wordApp.Documents.Add(fileName);
 
 				Replace("[ДОК_НОМЕР]", auto.CarId + "." + auto.Id, ref doc); ///////////////////////////////////////
 				Replace("[ДАТА]", auto.Datetime.ToString("dd.MM.yyyy HH:mm:ss"), ref doc);
 				Replace("[НОМЕР_ПВК]", auto.Ppvk, ref doc);
-				//Replace("[ВРЕМЯ]", t.ToString("HH:mm:ss"), ref doc);
 				Replace("[МЕСТО_КОНТР]", auto.MestoKontrolya, ref doc);
 				Replace("[ВИД_ДОРОГИ]", SpravochnikUtil.GetRoadDescription(auto.Road.RoadType), ref doc);
 				Replace("[ДАТА_ПОВЕРКИ]", auto.Scales.CheckDateFrom.ToString("dd.MM.yyyy"), ref doc);
@@ -77,9 +73,9 @@ namespace Vesna.Business.Utils {
 				Replace("[ВИД_ГРУЗ]", auto.VidGruza, ref doc);
 				Replace("[МАССА_ДОПУСТ]", auto.FullWeightData.Limit.ToString(), ref doc);
 				Replace("[МАССА_ФАКТИЧ]", auto.FullWeightData.Value.ToString(), ref doc);
-                Replace("[МАССА_ПРЕВЫШЕНИЕ]", auto.FullWeightData.Over.ToString(), ref doc);
-                Replace("[МАССА_ПРЕВЫШЕНИЕ_ПРОЦ]", auto.FullWeightData.PercentageExceeded + "%", ref doc);
-                
+				Replace("[МАССА_ПРЕВЫШЕНИЕ]", auto.FullWeightData.Over.ToString(), ref doc);
+				Replace("[МАССА_ПРЕВЫШЕНИЕ_ПРОЦ]", auto.FullWeightData.PercentageExceeded + "%", ref doc);
+
 				string tempStringRazmerVredaOs = string.Empty;
 				float tempSumRazmerVreda = 0;
 				for (int i = 0; i < 10; i++) {
@@ -92,7 +88,7 @@ namespace Vesna.Business.Utils {
 					string axisOverPercent = string.Empty;
 					bool isPnevmo = false;
 					bool isDouble = false;
-					
+
 					if (i < auto.AxisList.Count) {
 						Axis axis = auto.AxisList[i];
 						axisWeightValue = axis.WeightValue.ToString(CultureInfo.InvariantCulture);
@@ -120,23 +116,18 @@ namespace Vesna.Business.Utils {
 					Replace("[Д" + (i + 1) + "]", $"{(isDouble ? "+" : "-")} / {(isPnevmo ? "+" : "-")}", ref doc);
 				}
 
-                string[] groupInfos = auto.AxisList.Select(a => a.BlockInfo).Distinct().ToArray();
-                for (int i = 0; i < 10; i++) {
-                    if (i >= groupInfos.Length) {
-                        Replace($"[ИНФО_О_ГРУППЕ{i}]", string.Empty, ref doc);
-                    }
-                    else {
-                        Replace($"[ИНФО_О_ГРУППЕ{i}]", groupInfos[i], ref doc);
-                    }
-                }
+				string[] groupInfos = auto.AxisList.Select(a => a.BlockInfo).Distinct().ToArray();
+				for (int i = 0; i < 10; i++) {
+					if (i >= groupInfos.Length) {
+						Replace($"[ИНФО_О_ГРУППЕ{i}]", string.Empty, ref doc);
+					} else {
+						Replace($"[ИНФО_О_ГРУППЕ{i}]", groupInfos[i], ref doc);
+					}
+				}
 				tempStringRazmerVredaOs += tempSumRazmerVreda;
-				//Replace("[ДР_НАРУШ]", tb_drug_narush.Text, ref doc);
 				Replace("[ОБЬЯС_ВОД]", auto.VoditelObyasnenie, ref doc);
-				//Replace("[ВОД_УДС]", tb_nomer_udost.Text, ref doc);
-				//Replace("[ПРИН_МЕРЫ]", auto.PrinyatieMery, ref doc);
-				//Replace("[РАЗМ_УЩБ]", tb_razmer_usherb.Text, ref doc, indexRow);
-				Replace("[ФИО_ОПР]", auto.OperatorPVK, ref doc);
-				Replace("[ФИО_ИНСП]", auto.InspectorGIBDD, ref doc);
+				Replace("[ФИО_ОПР]", auto.OperatorPvk, ref doc);
+				Replace("[ФИО_ИНСП]", auto.InspectorGibdd, ref doc);
 				Replace("[ФИО_ВОД]", auto.Driver, ref doc);
 				Replace("[ФИО_ВОД]", auto.Driver, ref doc);
 				Replace("[РАЗМ_УЩЕРБА]", auto.FullAutoDamage.ToString(), ref doc);
@@ -147,26 +138,23 @@ namespace Vesna.Business.Utils {
 
 				if (auto.Foto != null) {
 					try {
-						Microsoft.Office.Interop.Word.Range rr = doc.Range();
+						Word.Range rr = doc.Range();
 						rr.Find.Execute(FindText: "[ИЗОБРАЖЕНИЕ]", ReplaceWith: "");
 						doc.Shapes.AddPicture($@"{Application.StartupPath}\Files\Foto\{auto.Id}.jpg", Width: 125, Height: 125, Anchor: rr);
-						//doc.InlineShapes.AddPicture(, );
 					} catch (Exception e) {
 						MessageBox.Show("Не удалось добавить в акт изображение\n" + e.Message);
 					}
 				} else {
 					Replace("[ИЗОБРАЖЕНИЕ]", string.Empty, ref doc);
 				}
-				#endregion
-
 			} catch (Exception ex) {
 				MessageBox.Show(ex.Message);
 			}
 		}
 
-		private static void Replace(string seach, string replace, ref Microsoft.Office.Interop.Word.Document doc) {
-			Microsoft.Office.Interop.Word.Range r = doc.Range();
-				r.Find.Execute(FindText: seach, ReplaceWith: replace);
+		private static void Replace(string search, string replace, ref Word.Document doc) {
+			Word.Range r = doc.Range();
+			r.Find.Execute(FindText: search, ReplaceWith: replace);
 		}
 
 		public static string GetHarakterNarush(Auto auto) {

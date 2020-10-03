@@ -2,17 +2,14 @@
 using System.Data;
 using System.Data.OleDb;
 using System.Drawing;
-using System.Globalization;
 using System.IO;
-using System.Threading;
 using System.Windows.Forms;
 using Vesna.Business.Data;
-using Vesna.Controls;
 
 namespace Vesna.Business {
 	public class AutoRepository {
 		public int Save(Auto auto) {
-            if (auto.IsCanEdit) {
+			if (auto.IsCanEdit) {
 				string comAxis = string.Empty;
 				string comAxisInBase = string.Empty;
 				for (int i = 0; i < auto.AxisList.Count; i++) {
@@ -23,7 +20,6 @@ namespace Vesna.Business {
 				string com = "INSERT INTO MainTable ( "
 				             + " Car_id, "
 				             + " Data, "
-				             //+ " VidTS, " -->tab_1_tip
 				             + " RoadTypeId, "
 				             + " punkt_name, "
 				             + " address, "
@@ -31,66 +27,51 @@ namespace Vesna.Business {
 				             + " vesi_date_DO, "
 				             + " vesi_zavod_nomer, "
 				             + " vesi_inaccuracy, "
-							 + " inaccuracy_roulette, "
-							 //foto
-							 //+ " harakter_narush, "
-
-							 + " AutoTypeId, "
+				             + " inaccuracy_roulette, "
+				             + " AutoTypeId, "
 				             + " tab_1_mark, "
 				             + " tab_1_model, "
 				             + " tab_1_reg, "
-
 				             + " tab_2_tip, "
 				             + " tab_2_mark, "
 				             + " tab_2_model, "
 				             + " tab_2_reg, "
-
 				             + " tab_3_tip, "
 				             + " tab_3_mark, "
 				             + " tab_3_model, "
 				             + " tab_3_reg, "
-
 				             + " sobstvenik, "
 				             + " address_sobstvenik, "
 				             + " sobstvenik_svidetelstvo, "
 				             + " sobstvenik_pricep, "
 				             + " sobstvenik_pricep_address, "
-							 + " sobstvenik_pricep_svidetelstvo, "
-							 + " strana, "
+				             + " sobstvenik_pricep_svidetelstvo, "
+				             + " strana, "
 				             + " sub, "
 				             + " kog_strani, "
-
-
 				             + " marshrut, "
 				             + " marshrut_dlina, "
 				             + " marshrut_kol_poezdok, "
 				             + " harakter_gruza, "
 				             + " vid_gruza, "
-
 				             + " fakt_massa, "
 				             + " dopus_massa, "
 				             + " dmg_massa, "
 				             + " count_os, "
 				             + comAxisInBase
-
 				             + " obyas_vodit, "
 				             //+ " prin_mery, "
-
 				             + " oper_ppvk, "
 				             + " vodit, "
 				             + " udostov_vodit, "
-							 + " insp_police, "
-
-
+				             + " insp_police, "
 				             + " primechanie, "
-
 				             + " kom_index, "
 				             + " razmer_usherba ) "
 				             + " VALUES ( '"
 				             //+ IsCanEdit + "' , '"
 				             + auto.CarId + "' , '"
 				             + auto.Datetime.ToString("dd.MM.yyyy HH:mm:ss") + "' , '"
-
 				             + (int)auto.Road.RoadType + "' , '"
 				             + auto.Ppvk + "' , '"
 				             + auto.MestoKontrolya + "' , '"
@@ -99,50 +80,41 @@ namespace Vesna.Business {
 				             + auto.Scales.Number + "' , '"
 				             + auto.Scales.Inaccuracy + "' , '"
 				             + auto.InaccuracyRoulette + "' , '"
-							 //+ Foto + "' , '"
-							 //+ HarakterNarush + "' , '"
-
-							 + (int)auto.AutoType + "' , '"
+				             //+ Foto + "' , '"
+				             //+ HarakterNarush + "' , '"
+				             + (int)auto.AutoType + "' , '"
 				             + auto.Mark + "' , '"
 				             + auto.Model + "' , '"
 				             + auto.RegNumber + "' , "
-
 				             + auto.Trailer1.ToStringForBase() + " , "
 				             + auto.Trailer2.ToStringForBase() + " ,'"
-
 				             + auto.Sobstvenik + "' , '"
 				             + auto.SobstvenikAddess + "' , '"
 				             + auto.SobstvenikSvidetelstvo + "' , '"
 				             + auto.SobstvenikPricep + "' , '"
 				             + auto.SobstvenikPricepAddess + "' , '"
 				             + auto.SobstvenikPricepSvidetelstvo + "' , '"
-							 + auto.Road.County + "' , '"
+				             + auto.Road.County + "' , '"
 				             + auto.Road.Region + "' , '"
 				             + auto.Road.RegionKode + "' , '"
-
 				             + auto.Road.WayText + "' , '"
 				             + auto.Road.Distance + "' , '"
 				             + auto.Road.CountWays + "' , '"
 				             + auto.HarakterGruza + "' , '"
 				             + auto.VidGruza + "' , '"
-
 				             + auto.FullWeightData.Value + "' , '"
 				             + auto.FullWeightData.Limit + "' , '"
 				             + auto.FullWeightData.Damage + "' , '"
 				             + auto.AxisList.Count + "' ,  "
 				             + comAxis + " '"
-
 				             + auto.VoditelObyasnenie + "' , '"
 				             //+ auto.Voditel_udostoverenie + "' , '"
 				             //+ auto.PrinyatieMery + "' , '"
-
-				             + auto.OperatorPVK + "' , '"
+				             + auto.OperatorPvk + "' , '"
 				             + auto.Driver + "' , '"
 				             + auto.DriverLicense + "' , '"
-							 + auto.InspectorGIBDD + "' , '"
-
+				             + auto.InspectorGibdd + "' , '"
 				             + auto.Primechanie + "' , '"
-
 				             + auto.SpecIndex + "' , '"
 				             + auto.FullAutoDamage + "'"
 				             + " )";
@@ -175,9 +147,7 @@ namespace Vesna.Business {
 			auto.Id = id;
 			auto.IsCanEdit = false;
 
-			#region FillFromBase
-
-			DataTable dt = Program.GetAccess("SELECT * FROM MainTable WHERE id = " + id);
+			DataTable dt = Program.GetAccess($"SELECT * FROM MainTable WHERE id = {id}");
 
 			auto.Id = id;
 			auto.CarId = int.Parse(dt.Rows[0]["car_id"].ToString());
@@ -189,7 +159,7 @@ namespace Vesna.Business {
 			auto.Scales.CheckDateFrom = TryParseDTOrGetDefault(dt.Rows[0]["vesi_date_OT"].ToString(), "vesi_date_OT");
 			auto.Scales.CheckDateTo = TryParseDTOrGetDefault(dt.Rows[0]["vesi_date_DO"].ToString(), "vesi_date_DO");
 			auto.Scales.Number = dt.Rows[0]["vesi_zavod_nomer"].ToString();
-			auto.Scales.Inaccuracy = TryParseFloatOrGetDefault(dt.Rows[0]["vesi_inaccuracy"].ToString(), def:0);
+			auto.Scales.Inaccuracy = TryParseFloatOrGetDefault(dt.Rows[0]["vesi_inaccuracy"].ToString(), def: 0);
 			auto.InaccuracyRoulette = TryParseFloatOrGetDefault(dt.Rows[0]["inaccuracy_roulette"].ToString(), def: 0);
 
 			string strpath = $@"{Application.StartupPath}\Files\Foto\{auto.Id}.jpg";
@@ -237,27 +207,24 @@ namespace Vesna.Business {
 				float loadLimit = TryParseFloatOrGetDefault(dt.Rows[0]["m_d_os_" + i].ToString());
 				float distanceToNext = TryParseFloatOrGetDefault(dt.Rows[0]["r_os_" + i].ToString());
 				float damage = TryParseFloatOrGetDefault(dt.Rows[0]["os_dmg_" + i].ToString());
-				bool isUpload = TryParseBoolOrGetDefault(dt.Rows[0]["is_up_" + i].ToString());
-				auto.AddLoadedAxis(axisType: (AxisType)axisType, 
-				             distanceToNext: distanceToNext, 
-				             weightValue: weightValue, 
-				             loadLimit: loadLimit, 
-				             damage: damage);
+				auto.AddLoadedAxis(axisType: (AxisType)axisType,
+				                   distanceToNext: distanceToNext,
+				                   weightValue: weightValue,
+				                   loadLimit: loadLimit,
+				                   damage: damage);
 			}
 			auto.VoditelObyasnenie = dt.Rows[0]["obyas_vodit"].ToString();
 
-			auto.OperatorPVK = dt.Rows[0]["oper_ppvk"].ToString();
+			auto.OperatorPvk = dt.Rows[0]["oper_ppvk"].ToString();
 			auto.Driver = dt.Rows[0]["vodit"].ToString();
 			auto.DriverLicense = dt.Rows[0]["udostov_vodit"].ToString();
-			auto.InspectorGIBDD = dt.Rows[0]["insp_police"].ToString();
+			auto.InspectorGibdd = dt.Rows[0]["insp_police"].ToString();
 
 			auto.Primechanie = dt.Rows[0]["primechanie"].ToString();
 
 			auto.SpecIndex = TryParseFloatOrGetDefault(dt.Rows[0]["kom_index"].ToString(), "kom_index");
 			auto.FullAutoDamage = TryParseFloatOrGetDefault(dt.Rows[0]["razmer_usherba"].ToString(), "razmer_usherba");
 
-			#endregion
-			
 			return auto;
 		}
 
@@ -283,16 +250,6 @@ namespace Vesna.Business {
 
 		private static DateTime TryParseDTOrGetDefault(string value, string fieldName, DateTime def = new DateTime()) {
 			if (DateTime.TryParse(value, out DateTime pValue)) {
-				return pValue;
-			}
-			if (!string.IsNullOrEmpty(fieldName)) {
-				MessageBox.Show("Parse Error: " + fieldName);
-			}
-			return def;
-		}
-
-		private static bool TryParseBoolOrGetDefault(string value, string fieldName = "", bool def = false) {
-			if (bool.TryParse(value, out bool pValue)) {
 				return pValue;
 			}
 			if (!string.IsNullOrEmpty(fieldName)) {

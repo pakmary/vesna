@@ -35,10 +35,10 @@ namespace Vesna.Business.Data {
 
 		public string VoditelObyasnenie { get; set; }
 
-		public string OperatorPVK { get; set; }
+		public string OperatorPvk { get; set; }
 		public string Driver { get; set; }
 		public string DriverLicense { get; set; }
-		public string InspectorGIBDD { get; set; }
+		public string InspectorGibdd { get; set; }
 
 		public string Primechanie { get; set; }
 
@@ -48,10 +48,10 @@ namespace Vesna.Business.Data {
 
 		public bool HasAxisOver => AxisList.Any(os => os.WeightValueWithInaccuracy > os.LoadLimit);
 
-		public void AddNewAxis(AxisType axisType, float distanceToNext, float weightValue) 
+		public void AddNewAxis(AxisType axisType, float distanceToNext, float weightValue)
 			=> AddAxis(axisType, distanceToNext, weightValue);
 
-		public void AddLoadedAxis(AxisType axisType, float distanceToNext, float weightValue, float loadLimit, float damage) 
+		public void AddLoadedAxis(AxisType axisType, float distanceToNext, float weightValue, float loadLimit, float damage)
 			=> AddAxis(axisType, distanceToNext, weightValue, loadLimit, damage);
 
 		private void AddAxis(AxisType axisType, float distanceToNext, float weightValue, float loadLimit = 0, float damage = 0) {

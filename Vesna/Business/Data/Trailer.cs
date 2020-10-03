@@ -1,5 +1,3 @@
-using System;
-
 namespace Vesna.Business.Data {
 	public class Trailer {
 		public string Kind { get; set; }
@@ -8,7 +6,7 @@ namespace Vesna.Business.Data {
 		public string RegNomer { get; set; }
 
 		public string ToStringForBase() {
-			return string.Format("'{0}','{1}','{2}','{3}'", Kind, Mark, Model, RegNomer);
+			return $"'{Kind}','{Mark}','{Model}','{RegNomer}'";
 		}
 	}
 }

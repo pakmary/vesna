@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 
 namespace Vesna {
 	public partial class SpravochnikForm : Form {
-		protected bool defVal = true;
-		private DataTable dt;
-		protected string tableName = "";
+		private bool _defaultValue = true;
+		private string _tableName = string.Empty;
+		private DataTable _dataTable;
 
 		public SpravochnikForm() {
 			InitializeComponent();
@@ -15,10 +14,10 @@ namespace Vesna {
 		}
 
 		protected virtual void Fill() {
-			dt = Program.GetAccess("SELECT * FROM " + tableName);
-			dataGridView1.DataSource = dt;
+			_dataTable = Program.GetAccess("SELECT * FROM " + _tableName);
+			dataGridView1.DataSource = _dataTable;
 			if (dataGridView1.RowCount != 0 && dataGridView1.ColumnCount != 0) {
-				dataGridView1.Columns["def"].Visible = defVal;
+				dataGridView1.Columns["def"].Visible = _defaultValue;
 				dataGridView1.Columns["def"].DisplayIndex = 0;
 				dataGridView1.Columns["def"].HeaderText = "Значение по умолчанию";
 				dataGridView1.Columns["def"].Width = 90;
@@ -35,13 +34,12 @@ namespace Vesna {
 				return;
 			}
 			if (dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null) {
-				string str = string.Empty;
 				string cell = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-				Type cell_type = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].ValueType;
-				string col_name = dataGridView1.Columns[e.ColumnIndex].Name;
-				string row_id = dataGridView1.Rows[e.RowIndex].Cells["id"].Value.ToString();
+				Type cellType = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].ValueType;
+				string colName = dataGridView1.Columns[e.ColumnIndex].Name;
+				string rowID = dataGridView1.Rows[e.RowIndex].Cells["id"].Value.ToString();
 
-				if (cell_type == typeof(Boolean)) {
+				if (cellType == typeof(bool)) {
 					if (cell == "True") {
 						cell = "1";
 					} else if (cell == "False") {
@@ -49,13 +47,13 @@ namespace Vesna {
 					}
 				}
 
-				if (row_id == "") {
-					Program.MakeAccess(string.Format("INSERT INTO {0} default values ", tableName));
-					row_id = Program.GetAccess(string.Format("SELECT TOP 1 id FROM {0} ORDER BY id DESC", tableName)).Rows[0][0].ToString();
-					dataGridView1.Rows[e.RowIndex].Cells["id"].Value = row_id;
+				if (rowID == "") {
+					Program.MakeAccess($"INSERT INTO {_tableName} default values ");
+					rowID = Program.GetAccess($"SELECT TOP 1 id FROM {_tableName} ORDER BY id DESC").Rows[0][0].ToString();
+					dataGridView1.Rows[e.RowIndex].Cells["id"].Value = rowID;
 					//Program.AddToLog(DateTime.Now, "Добавлена новая запись в базу справочника " + tableName);
 				}
-				str = string.Format("UPDATE {0} SET {1} = '{2}' WHERE id = {3}", tableName, col_name, cell, row_id);
+				string str = $"UPDATE {_tableName} SET {colName} = '{cell}' WHERE id = {rowID}";
 				Program.MakeAccess(str);
 				//Program.AddToLog(DateTime.Now, "Внесены изменения в базу справочника " + tableName);
 			}
@@ -65,14 +63,14 @@ namespace Vesna {
 			if (dataGridView1.Rows.Count == 0 || dataGridView1.SelectedCells.Count == 0) {
 				return;
 			}
-			if (dataGridView1.SelectedRows[0].Cells["def"].ValueType != typeof (Boolean)) {
+			if (dataGridView1.SelectedRows[0].Cells["def"].ValueType != typeof(bool)) {
 				return;
 			}
 
-			int row_index = dataGridView1.SelectedRows[0].Index;
+			int rowIndex = dataGridView1.SelectedRows[0].Index;
 			foreach (DataGridViewRow r in dataGridView1.Rows) {
 				if (!r.IsNewRow) {
-					if (r.Index != row_index && r.Cells["def"].Value.ToString() != "False") {
+					if (r.Index != rowIndex && r.Cells["def"].Value.ToString() != "False") {
 						r.Cells["def"].Value = "False";
 					}
 				}
@@ -81,9 +79,9 @@ namespace Vesna {
 
 		private void dataGridView1_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e) {
 			if (dataGridView1.Rows.Count != 0) {
-				string row_id = dataGridView1.Rows[e.Row.Index].Cells["id"].Value.ToString();
-				if (row_id != "") {
-					Program.MakeAccess("DELETE FROM " + tableName + " WHERE id= " + row_id);
+				string rowID = dataGridView1.Rows[e.Row.Index].Cells["id"].Value.ToString();
+				if (rowID != "") {
+					Program.MakeAccess($"DELETE FROM {_tableName} WHERE id= {rowID}");
 					//Program.AddToLog(DateTime.Now, "Удалена запись из базы справочника " + tableName);
 				}
 			}
@@ -92,18 +90,18 @@ namespace Vesna {
 		private void tv_AfterSelect(object sender, TreeViewEventArgs e) {
 			string si = tv.SelectedNode.Text;
 			if (si == "Пункты весового контроля") {
-				tableName = "sp_ppvk";
-				defVal = true;
+				_tableName = "sp_ppvk";
+				_defaultValue = true;
 				Fill();
 				dataGridView1.Columns["name_ppvk"].HeaderText = "Название ППВК";
 			} else if (si == "Точки дислокации") {
-				tableName = "sp_Dis_Point";
-				defVal = true;
+				_tableName = "sp_Dis_Point";
+				_defaultValue = true;
 				Fill();
 				dataGridView1.Columns["Disl_point"].HeaderText = "Точка дислокации";
 			} else if (si == "Весовое оборудование") {
-				tableName = "sp_Vesi";
-				defVal = true;
+				_tableName = "sp_Vesi";
+				_defaultValue = true;
 				Fill();
 				dataGridView1.Columns["Zavod_nomer"].HeaderText = "Заводской номер весов";
 				//dataGridView1.Columns["Svidet_nomer"].HeaderText = "Номер свидет-ва";
@@ -111,33 +109,33 @@ namespace Vesna {
 				dataGridView1.Columns["DateDO"].HeaderText = "Действителен до";
 				dataGridView1.Columns["DateDO"].DisplayIndex = dataGridView1.Columns.Count - 1;
 			} else if (si == "Марки ТС") {
-				tableName = "sp_Mark";
-				defVal = false;
+				_tableName = "sp_Mark";
+				_defaultValue = false;
 				Fill();
 				dataGridView1.Columns["name_Mark"].HeaderText = "Марка";
 			} else if (si == "Организации") {
-				tableName = "sp_Organ";
-				defVal = false;
+				_tableName = "sp_Organ";
+				_defaultValue = false;
 				Fill();
 				dataGridView1.Columns["name_Organ"].HeaderText = "Название организации";
 			} else if (si == "Виды груза") {
-				tableName = "sp_Gruz";
-				defVal = false;
+				_tableName = "sp_Gruz";
+				_defaultValue = false;
 				Fill();
 				dataGridView1.Columns["name_gruz"].HeaderText = "Вид груза";
 			} else if (si == "Инспектора ГИБДД") {
-				tableName = "sp_Inspectors";
-				defVal = true;
+				_tableName = "sp_Inspectors";
+				_defaultValue = true;
 				Fill();
 				dataGridView1.Columns["FIO"].HeaderText = "Имя инспектора";
 			} else if (si == "Инспектора ППВК") {
-				tableName = "sp_Operators";
-				defVal = true;
+				_tableName = "sp_Operators";
+				_defaultValue = true;
 				Fill();
 				dataGridView1.Columns["FIO"].HeaderText = "Имя оператора";
 			} else if (si == "Водители") {
-				tableName = "sp_Driver";
-				defVal = false;
+				_tableName = "sp_Driver";
+				_defaultValue = false;
 				Fill();
 				dataGridView1.Columns["name_Driver"].HeaderText = "Имя водителя";
 			}

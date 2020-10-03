@@ -1,6 +1,6 @@
 ﻿namespace Vesna
 {
-    partial class VideoPictuceControl
+    partial class VideoPictureControl
     {
         /// <summary> 
         /// Требуется переменная конструктора.
@@ -26,22 +26,19 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
-        {
+        private void InitializeComponent() {
 	        this.pictureBox1 = new System.Windows.Forms.PictureBox();
 	        this.b_action = new System.Windows.Forms.Button();
 	        this.comboBox1 = new System.Windows.Forms.ComboBox();
 	        this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-	        ((System.ComponentModel.ISupportInitialize) (this.pictureBox1)).BeginInit();
+	        ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 	        this.SuspendLayout();
 	        // 
 	        // pictureBox1
 	        // 
 	        this.pictureBox1.Anchor =
-		        ((System.Windows.Forms.AnchorStyles) ((((System.Windows.Forms.AnchorStyles.Top |
-		                                                 System.Windows.Forms.AnchorStyles.Bottom) |
-		                                                System.Windows.Forms.AnchorStyles.Left) |
-		                                               System.Windows.Forms.AnchorStyles.Right)));
+		        ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) |
+		                                              System.Windows.Forms.AnchorStyles.Right)));
 	        this.pictureBox1.BackColor = System.Drawing.Color.Snow;
 	        this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 	        this.pictureBox1.Location = new System.Drawing.Point(0, 0);
@@ -55,12 +52,9 @@
 	        // b_action
 	        // 
 	        this.b_action.Anchor =
-		        ((System.Windows.Forms.AnchorStyles) (((System.Windows.Forms.AnchorStyles.Bottom |
-		                                                System.Windows.Forms.AnchorStyles.Left) |
-		                                               System.Windows.Forms.AnchorStyles.Right)));
+		        ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
 	        this.b_action.BackColor = System.Drawing.Color.Snow;
-	        this.b_action.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular,
-		        System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+	        this.b_action.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 	        this.b_action.Location = new System.Drawing.Point(0, 187);
 	        this.b_action.Name = "b_action";
 	        this.b_action.Size = new System.Drawing.Size(163, 31);
@@ -72,12 +66,9 @@
 	        // comboBox1
 	        // 
 	        this.comboBox1.Anchor =
-		        ((System.Windows.Forms.AnchorStyles) (((System.Windows.Forms.AnchorStyles.Bottom |
-		                                                System.Windows.Forms.AnchorStyles.Left) |
-		                                               System.Windows.Forms.AnchorStyles.Right)));
+		        ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
 	        this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-	        this.comboBox1.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular,
-		        System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+	        this.comboBox1.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 	        this.comboBox1.FormattingEnabled = true;
 	        this.comboBox1.Location = new System.Drawing.Point(0, 155);
 	        this.comboBox1.Name = "comboBox1";
@@ -100,7 +91,7 @@
 	        this.Name = "VideoPictuceControl";
 	        this.Size = new System.Drawing.Size(163, 234);
 	        this.Load += new System.EventHandler(this.VideoPictuce_Load);
-	        ((System.ComponentModel.ISupportInitialize) (this.pictureBox1)).EndInit();
+	        ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 	        this.ResumeLayout(false);
         }
 

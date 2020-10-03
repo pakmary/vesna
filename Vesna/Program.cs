@@ -10,9 +10,9 @@ using Vesna.Forms;
 namespace Vesna {
 	internal static class Program {
 		public static string User = "User";
-		public static string PPVKName { get; set; }
+		public static string PpvkName { get; set; }
 		public static string ControlPlace { get; set; }
-		public static RoadType CurrentRoadType { get; set; }	
+		public static RoadType CurrentRoadType { get; set; }
 		public static bool IsFederalRoad { get; set; }
 		public static bool IsSoftRoad { get; set; }
 		public static string ScaleNumber { get; set; }
@@ -20,27 +20,27 @@ namespace Vesna {
 		private static OleDbConnection _connection;
 		private static readonly OleDbDataAdapter Adapter = new OleDbDataAdapter();
 		private static readonly string MyDbPath = $@"{Application.StartupPath}\Files\database_inspector.mdb";
-		private static string ConStr;
+		private static string _connectionString;
 
 		[STAThread]
 		private static void Main() {
-            CultureInfo ci = new CultureInfo("ru-Ru");
-            Thread.CurrentThread.CurrentCulture = ci;
-            Thread.CurrentThread.CurrentUICulture = ci;
+			var ci = new CultureInfo("ru-Ru");
+			Thread.CurrentThread.CurrentCulture = ci;
+			Thread.CurrentThread.CurrentUICulture = ci;
 
-            UpdateBaseFile(MyDbPath);
+			UpdateBaseFile(MyDbPath);
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 			Application.Run(new InitForm());
 		}
 
 		public static void UpdateBaseFile(string path) {
-			ConStr = $"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={path};Jet OLEDB:Database Password=hfpdbnbt";
+			_connectionString = $"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={path};Jet OLEDB:Database Password=hfpdbnbt";
 		}
 
 		private static void ConOpen() {
 			try {
-				_connection = new OleDbConnection(ConStr);
+				_connection = new OleDbConnection(_connectionString);
 				_connection.Open();
 			} catch (Exception e) {
 				MessageBox.Show($"Ошибка: не удалось загрузить базу данных\n{MyDbPath}\n{e.Message}");
@@ -90,9 +90,5 @@ namespace Vesna {
 			}
 			return dt;
 		}
-
-		/*public static void AddToLog(DateTime dateTime, string text) {
-			MakeAccess(string.Format("INSERT INTO Log_base VALUES ( '{0}' , '{1}' , 'Пользователь' " + " )", dateTime.ToString("dd.MM.yyyy HH:mm:ss"), text));
-		}*/
 	}
 }
