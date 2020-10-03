@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vesna", "Vesna\Vesna.csproj", "{D46273F5-1A47-4055-8249-E37D6B7FAE94}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vesna.Tests", "Vesna.Tests\Vesna.Tests.csproj", "{6DF90B12-2EB5-48E4-B96C-D1721E1A2F25}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -13,6 +15,10 @@ Global
 		{D46273F5-1A47-4055-8249-E37D6B7FAE94}.Debug|x86.Build.0 = Debug|x86
 		{D46273F5-1A47-4055-8249-E37D6B7FAE94}.Release|x86.ActiveCfg = Release|x86
 		{D46273F5-1A47-4055-8249-E37D6B7FAE94}.Release|x86.Build.0 = Release|x86
+		{6DF90B12-2EB5-48E4-B96C-D1721E1A2F25}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6DF90B12-2EB5-48E4-B96C-D1721E1A2F25}.Debug|x86.Build.0 = Debug|Any CPU
+		{6DF90B12-2EB5-48E4-B96C-D1721E1A2F25}.Release|x86.ActiveCfg = Release|Any CPU
+		{6DF90B12-2EB5-48E4-B96C-D1721E1A2F25}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
