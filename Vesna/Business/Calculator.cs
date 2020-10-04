@@ -39,7 +39,7 @@ namespace Vesna.Business {
 			for (int i = 0; i < auto.AxisList.Count; i++) {
 				int blockCount = 1;
 				int j = 0;
-				while (i + j < auto.AxisList.Count - 1 && auto.AxisList[i + j].DistanceToNext <= 2.5f) {
+				while (i + j < auto.AxisList.Count - 1 && auto.AxisList[i + j].DistanceToNextWithInaccuracy <= 2.5f) {
 					blockCount++;
 					j++;
 				}
@@ -100,7 +100,7 @@ namespace Vesna.Business {
 						                                               blockIsDouble, blockIsPnevmo, distanceToNext: 0);
 
 						int distanceCount = axises.Count - 1;
-						float averageDistance = axises.Take(distanceCount).Sum(a => a.DistanceToNext) / distanceCount;
+						float averageDistance = axises.Take(distanceCount).Sum(a => a.DistanceToNextWithInaccuracy) / distanceCount;
 						float blockLimit = GetLimitForAxisesBlock(roadType, blockType, blockIsDouble, blockIsPnevmo,
 						                                          averageDistance);
 
@@ -125,11 +125,11 @@ namespace Vesna.Business {
 							Axis axis = axises[i];
 							float dist;
 							if (i == 0) {
-								dist = axis.DistanceToNext;
+								dist = axis.DistanceToNextWithInaccuracy;
 							} else if (i == axises.Count - 1) {
-								dist = axises[i - 1].DistanceToNext;
+								dist = axises[i - 1].DistanceToNextWithInaccuracy;
 							} else {
-								dist = Math.Min(axis.DistanceToNext, axises[i - 1].DistanceToNext);
+								dist = Math.Min(axis.DistanceToNextWithInaccuracy, axises[i - 1].DistanceToNextWithInaccuracy);
 							}
 
 							axis.LoadLimit = GetLimitForAxisesBlock(roadType, blockType, axis.IsDouble, axis.IsPnevmo, dist);
