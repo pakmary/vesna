@@ -8,7 +8,7 @@ using Vesna.Business.Data;
 using Vesna.Properties;
 
 namespace Vesna.UnitTests.Business {
-	[TestFixture]
+	[TestFixture, Parallelizable]
 	public class AutoTests {
 		[OneTimeSetUp]
 		public void SetUp() {
@@ -26,47 +26,47 @@ namespace Vesna.UnitTests.Business {
 		          "122700", AutoType.Autotrain, RoadType.R5Tc, false, false, 0f, 0f, TestName = "02 ( R5Tc )")] //R5Tc
 		[TestCase("4 2,6 6 1,29 1,31",
 		          "10 12DP 13DP 14DP 15DP 16DP",
-		          "130783",
+		          "130782",
 		          AutoType.Autotrain, RoadType.R10Tc, false, false, 0f, 0f, TestName = "03")]
 		[TestCase("4 1,9 1,3 1,3 1,3 5 1,1",
 		          "14P 15PD 16PD 17PD 18PD 19PD 20PD 21PD",
-		          "463881,86",
+		          "463878",
 		          AutoType.Autotrain, RoadType.R10Tc, false, false, 0f, 0f, TestName = "04")]
 		[TestCase("4 1,2 4 1,3 4 1,5 5",
 		          "10P 11,5PD 12,5PD 13,5PD 14,5PD 15,5PD 16,5PD 17,5PD",
-		          "188824",
+		          "188822",
 		          AutoType.Autotrain, RoadType.R10Tc, false, false, 0f, 0f, TestName = "05")]
 		[TestCase("4 6 1,23 1,22 5 1,33 1,45",
 		          "20P 19DP 18D 17D 16D 15P 14P 13P",
-		          "341829,57",
+		          "341826",
 		          AutoType.Autotrain, RoadType.R10Tc, false, false, 0f, 0f, TestName = "06")]
 		[TestCase("5 1,38 6 1,2 1,2 8 1,45 1,5",
 		          "17 16D 15D 14D 13D 12D 11D 10D 9D",
-		          "514662,45",
+		          "514660",
 		          AutoType.Autotrain, RoadType.R10Tc, false, true, 0f, 0f, TestName = "07")]
 		[TestCase("5 1,38 6 1,2 1,2 8 1,45 1,5",
 		          "17 16D 15D 14D 13D 12D 11D 10D 9D",
-		          "121866,39",
+		          "121864",
 		          AutoType.Autotrain, RoadType.R115Tc, false, true, 0f, 0f, TestName = "08")]
 		[TestCase("5 1,38 6 1,2 1,2 8 1,45 1,5",
 		          "17 16D 15D 14D 13D 12D 11D 10D 9D",
-		          "2958042,29",
+		          "2958040",
 		          AutoType.Autotrain, RoadType.R6Tc, false, true, 0f, 0f, TestName = "09 ( R6Tc )")]
 		[TestCase("5 1,38 6 1,2 1,2 8 1,45 1,5",
 		          "17 16D 15D 14D 13D 12D 11D 10D 9D",
-		          "3688281",
+		          "3688278",
 		          AutoType.Autotrain, RoadType.R5Tc, false, true, 0f, 0f, TestName = "10 ( R5Tc )")]
 		[TestCase("5 1,38 6 1,2 1,2 8 1,45 1,5",
 		          "9,5 8,3D 8,2D 6,6D 7D 8D 7,8D 10D 10D",
-		          "25399,0",
+		          "25398",
 		          AutoType.Autotrain, RoadType.R10Tc, false, false, 0f, 0f, TestName = "11 ( <5% )")]
 		[TestCase("4 2,6 6 1,29 1,31",
 		          "10 12DP 13DP 14DP 15DP 16DP",
-		          "129290",
+		          "129288",
 		          AutoType.Autotrain, RoadType.R10Tc, false, false, 0.05f, 0.4f, TestName = "12")]
 		[TestCase("4 2,1 6 1,29 1,31",
 		          "10 12DP 13DP 14DP 15DP 16DP",
-		          "135121",
+		          "135119",
 		          AutoType.Autotrain, RoadType.R10Tc, false, false, 0.05f, 0.4f, TestName = "13")]
 		[TestCase("5 5 1,1",
 		          "8 8 7,3 5,7",

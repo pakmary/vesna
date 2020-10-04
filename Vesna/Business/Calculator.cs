@@ -10,7 +10,6 @@ namespace Vesna.Business {
 	static class Calculator {
 		private static float YearIndex => Settings.Default.YearIndex;
 		private static float ConstDorojhnoKlimatZon => Settings.Default.ConstDorojhnoKlimatZon;
-		private static float ConstKapitalniyRemont => Settings.Default.ConstKapitalniyRemont;
 		private static bool KlimatUsloviya => Settings.Default.Klimat_usloviya;
 		private static float ConstKlimatAxisMult => Settings.Default.ConstKlimatAxisMult;
 		private static float ConstKlimat => Settings.Default.Klimat_usloviya ? 1f : 0.35f;
@@ -238,7 +237,7 @@ namespace Vesna.Business {
 			float damage;
 			RoadType t = road.RoadType;
 			float kd = ConstDorojhnoKlimatZon;
-			float kk = ConstKapitalniyRemont;
+			float kk = Settings.Default.ConstKapitalniyRemont;
 			float kc = ConstKlimat;
 			float p = ConstDamageDefault(t);
 			float a = ConstA(t);
@@ -247,11 +246,13 @@ namespace Vesna.Business {
 
 			float over = axis.GetOver();
 			if (!road.IsSoftClothes) {
+				// для дорог с одеждой капитального и облегченного типа, в том числе для зимнего периода года
 				var pOver = (float)Math.Pow(over, 1.92f);
 				damage = kd * kk * kc * p * (1 + 0.2f * pOver * (a / h - b));
 			} else {
+				// для дорог с одеждой переходного типа, в том числе для зимнего периода года
 				var pOver = (float)Math.Pow(over, 1.24f);
-				damage = kk * kc * p * (1 + 0.14f * pOver * (a / h + b));
+				damage = kk * kc * p * (1 + 0.14f * pOver * (a / h - b));
 			}
 			return damage;
 		}
@@ -286,12 +287,11 @@ namespace Vesna.Business {
 			if (massOverProcent <= 0) {
 				return 0;
 			}
-			RoadType t = road.RoadType;
-			float kk = ConstKapitalniyRemont;
-			float kp = ConstMassInfluence(road.IsFederalRoad);
-			float c = ConstC(t);
-			float d = ConstD(t);
-			return kk * kp * (c + d * massOverProcent);
+			float kk = Settings.Default.ConstKapitalniyRemont; //К кап.рем
+			float kp = ConstMassInfluence(road.IsFederalRoad); //К пм
+			float p = Settings.Default.ConstIshodnoeZnacheieDlyaMassi; //Р исх.пм
+			float c = Settings.Default.ConstUchotPrevisheniyaMassi; //Коэффицент учета превышения массы
+			return kk * kp * p * (1 + c * massOverProcent);
 		}
 
 		private static float GetAutoFullDamage(float massDamage, IEnumerable<float> axisDamages, float distanse) {
@@ -309,8 +309,6 @@ namespace Vesna.Business {
 		private static float ConstH(RoadType roadType) => GetRoadTypeIndex(roadType, "H");
 		private static float ConstA(RoadType roadType) => GetRoadTypeIndex(roadType, "a");
 		private static float ConstB(RoadType roadType) => GetRoadTypeIndex(roadType, "b");
-		private static float ConstC(RoadType roadType) => GetRoadTypeIndex(roadType, "c");
-		private static float ConstD(RoadType roadType) => GetRoadTypeIndex(roadType, "d");
 
 		private static float GetRoadTypeIndex(RoadType roadType, string type) {
 			int roadTypeValue = (int)roadType;

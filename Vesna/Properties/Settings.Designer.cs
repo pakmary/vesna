@@ -120,6 +120,30 @@ namespace Vesna.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("7365")]
+        public float ConstIshodnoeZnacheieDlyaMassi {
+            get {
+                return ((float)(this["ConstIshodnoeZnacheieDlyaMassi"]));
+            }
+            set {
+                this["ConstIshodnoeZnacheieDlyaMassi"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.01675")]
+        public float ConstUchotPrevisheniyaMassi {
+            get {
+                return ((float)(this["ConstUchotPrevisheniyaMassi"]));
+            }
+            set {
+                this["ConstUchotPrevisheniyaMassi"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0.04")]
         public float InaccuracyRoulette {
             get {

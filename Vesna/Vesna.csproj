@@ -227,33 +227,6 @@
     <None Include="Files\act.doc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Files\Docs\Постановление о внесении изменений в постановление  №934 №12.docx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Files\Docs\Постановление о внесении изменений в постановление №934.docx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Files\Docs\Постановление от 15.04.2011 №272 Об утверждении правил перевозок грузов автомобильным транспортом.doc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Files\Docs\Постановление от 16.11.2009 №934 О возмещении вреда, причиняемого тс, осуществляющими перевозки тяжеловесных грузов.doc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Files\Docs\Постановление от 25.02.2010 №121 О размере вреда, причиняемого тс, осуществляющими перевозки тяжеловесных грузов.docx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Files\Docs\Постановление Правительства Воронежской обл. от 22.09.2015 N 750.pdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Files\Docs\Приказ о временном ограничении движения №24 от 02.02.2016.doc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Files\Docs\Приказ о временном ограничении движения №35 от 22.02.2013.doc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Files\Docs\Приказ от 29 марта 2018 №119 ОБ УТВЕРЖДЕНИИ ПОРЯДКА ОСУЩЕСТВЛЕНИЯ ВЕСОВОГО И ГАБАРИТНОГО КОНТРОЛЯ ТC.docx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -289,6 +262,18 @@
     <Content Include="Files\database_inspector.mdb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Files\Docs\(о погрешностях) Приказ от 29 марта 2018 №119 ОБ УТВЕРЖДЕНИИ ПОРЯДКА ОСУЩЕСТВЛЕНИЯ ВЕСОВОГО И ГАБАРИТНОГО КОНТРОЛЯ ТC.docx" />
+    <Content Include="Files\Docs\(РАЗМЕР ВРЕДА) Постановление Правительства РФ от 31.01.2020 N 67.pdf" />
+    <Content Include="Files\Docs\(ФОРМУЛА И ЛИМИТЫ) Постановление Правительства РФ от 15.04.2011 N 272.pdf" />
+    <Content Include="Files\Docs\Утратило силу\(5 тон в ВО) Постановление Правительства Воронежской обл. от 22.09.2015 N 750.pdf" />
+    <Content Include="Files\Docs\Утратило силу\(5 тон в ВО) Приказ о временном ограничении движения №24 от 02.02.2016.doc" />
+    <Content Include="Files\Docs\Утратило силу\(5 тон в ВО) Приказ о временном ограничении движения №35 от 22.02.2013.doc" />
+    <Content Include="Files\Docs\Утратило силу\(старая редакция) Постановление Правительства РФ от 15.04.2011 N 272 (от март 2019).rtf" />
+    <Content Include="Files\Docs\Утратило силу\(старая редакция)Постановление от 15.04.2011 №272 Об утверждении правил перевозок грузов автомобильным транспортом.doc" />
+    <Content Include="Files\Docs\Утратило силу\(утратило силу в №750 ВО) Постановление от 25.02.2010 №121 О размере вреда, причиняемого тс, осуществляющими перевозки тяжеловесных грузов.docx" />
+    <Content Include="Files\Docs\Утратило силу\(утратило силу) Постановление о внесении изменений в постановление  №934 №12.docx" />
+    <Content Include="Files\Docs\Утратило силу\(утратило силу) Постановление о внесении изменений в постановление №934.docx" />
+    <Content Include="Files\Docs\Утратило силу\(утратило силу) Постановление от 16.11.2009 №934 О возмещении вреда, причиняемого тс, осуществляющими перевозки тяжеловесных грузов.doc" />
     <Content Include="Files\Foto\1.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
