@@ -26,3 +26,8 @@ UPDATE MaxAxis SET R6_Double = 13 WHERE TypeAxisId = 3 AND Distance = 1,3;
 //10.2020
 ALTER TABLE TypesRoad DROP COLUMN c;
 ALTER TABLE TypesRoad DROP COLUMN d;
+
+UPDATE MaxAxis SET R6_Double = 6.5, R10_Double = 10, R115_Double = 11.5 WHERE TypeAxisId = 5 and Distance = 1;
+UPDATE MaxAxis SET R6_Double = 7, R10_Double = 11, R115_Double = 12.5 WHERE TypeAxisId = 5 and Distance = 1.3;
+UPDATE MaxAxis SET R6_Double = 8, R10_Double = 12.5, R115_Double = 14.5 WHERE TypeAxisId = 5 and Distance = 1.8;
+UPDATE MaxAxis SET R6_Double = 9, R10_Double = 14, R115_Double = 16.5 WHERE TypeAxisId = 5 and Distance = 9999;

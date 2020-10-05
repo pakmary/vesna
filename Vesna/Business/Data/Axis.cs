@@ -11,6 +11,7 @@ namespace Vesna.Business.Data {
 		public float Damage { get; set; }
 
 		public AxisBlockType BlockType { get; set; }
+		public bool IsSingle => Type == AxisType.Single || Type == AxisType.SingleAndPnevmo;
 		public bool IsDouble => Type == AxisType.Double || Type == AxisType.DoubleAndPnevmo;
 		public bool IsPnevmo => Type == AxisType.DoubleAndPnevmo || Type == AxisType.SingleAndPnevmo;
 

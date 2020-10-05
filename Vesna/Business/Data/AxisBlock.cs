@@ -1,9 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
 
 namespace Vesna.Business.Data {
 	public class AxisBlock {
-		public List<Axis> Axises { get; } = new List<Axis>();
-		public AxisBlockType BlockType { get; set; }
-		//public float BlockLimit { get; set; }
+		public AxisBlockType BlockType { get; }
+		public Axis[] Axises { get; }
+
+		public AxisBlock(AxisBlockType blockType, Axis[] axises) {
+			BlockType = blockType;
+			Axises = axises;
+			Array.ForEach(axises, a => a.BlockType = blockType);
+		}
 	}
 }

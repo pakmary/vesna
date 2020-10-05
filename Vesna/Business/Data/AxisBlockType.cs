@@ -4,6 +4,6 @@
 		Dual = 2,
 		Triple = 3,
 		MoreThree = 4,
-		EightOrMore = 5
+		MultiWheeled = 5
 	}
 }

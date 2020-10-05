@@ -17,11 +17,6 @@ namespace Vesna.Business {
 			auto.FullWeightData.Damage = GetFullWeightAutoDamage(auto.FullWeightData.PercentageExceeded);
 
 			AxisBlock[] axisBlocks = SplitAxisOnBlocks(auto);
-
-			AxisBlock[] axisBlocks2 = axisBlocks.Where(a => a.BlockType == AxisBlockType.EightOrMore).ToArray();
-			foreach (AxisBlock a in axisBlocks2) {
-				a.BlockType = AxisBlockType.Dual;
-			}
 			PopulateAxisBlockLoadLimitsAndDamage(axisBlocks, auto.Road);
 
 			auto.FullAutoDamage = GetAutoFullDamage(auto.FullWeightData.Damage, auto.AxisList.Select(a => a.Damage), auto.Road.Distance);
@@ -30,32 +25,37 @@ namespace Vesna.Business {
 		private static AxisBlock[] SplitAxisOnBlocks(Auto auto) {
 			var blocks = new List<AxisBlock>();
 			for (int i = 0; i < auto.AxisList.Count; i++) {
-				int blockCount = 1;
+				int axisesInBlock = 1;
 				int j = 0;
 				while (i + j < auto.AxisList.Count - 1 && auto.AxisList[i + j].DistanceToNextWithInaccuracy <= 2.5f) {
-					blockCount++;
+					axisesInBlock++;
 					j++;
 				}
+				var axises = new List<Axis>();
+				for (int i2 = 0; i2 < axisesInBlock; i2++) {
+					axises.Add(auto.AxisList[i + i2]);
+				}
 				AxisBlockType blockType;
-				if (blockCount == 1) {
-					blockType = AxisBlockType.Single;
-				} else if (blockCount == 2) {
-					blockType = AxisBlockType.Dual;
-				} else if (blockCount == 3) {
-					blockType = AxisBlockType.Triple;
-				} else if (blockCount > 3 && blockCount < 8) {
-					blockType = AxisBlockType.MoreThree;
+				if (axises.All(a => a.IsDouble || a.IsSingle)) {
+					if (axisesInBlock == 1) {
+						blockType = AxisBlockType.Single;
+					} else if (axisesInBlock == 2) {
+						blockType = AxisBlockType.Dual;
+					} else if (axisesInBlock == 3) {
+						blockType = AxisBlockType.Triple;
+					} else if (axisesInBlock > 3) {
+						blockType = AxisBlockType.MoreThree;
+					} else {
+						throw new NotImplementedException();
+					}
 				} else {
-					blockType = AxisBlockType.EightOrMore;
+					// Не реализованно интерфесом
+					// blockType = AxisBlockType.MultiWheeled;
+					throw new NotImplementedException("MultiWheeled");
 				}
-				var block = new AxisBlock { BlockType = blockType };
-				for (int i2 = 0; i2 < blockCount; i2++) {
-					Axis axis = auto.AxisList[i + i2];
-					axis.BlockType = blockType;
-					block.Axises.Add(axis);
-				}
+				
 				i = i + j;
-				blocks.Add(block);
+				blocks.Add(new AxisBlock(blockType, axises.ToArray()));
 			}
 			return blocks.ToArray();
 		}
@@ -64,12 +64,12 @@ namespace Vesna.Business {
 			RoadType roadType = road.RoadType;
 
 			foreach (AxisBlock axisBlock in axisBlocks) {
-				List<Axis> axises = axisBlock.Axises;
+				Axis[] axises = axisBlock.Axises;
 				AxisBlockType blockType = axisBlock.BlockType;
 
 				if (roadType == RoadType.R5Tc) {
-					axises.ForEach(a => a.LoadLimit = 5);
-					axises.ForEach(a => a.Damage = GetAxisDamage(road, a));
+					Array.ForEach(axises, a => a.LoadLimit = 5);
+					Array.ForEach(axises, a => a.Damage = GetAxisDamage(road, a));
 					continue;
 				}
 				string blockInfo =
@@ -92,18 +92,18 @@ namespace Vesna.Business {
 						float singleAxisLimit = GetLimitForAxisesBlock(road.RoadType, AxisBlockType.Single,
 						                                               blockIsDouble, blockIsPnevmo, distanceToNext: 0);
 
-						int distanceCount = axises.Count - 1;
+						int distanceCount = axises.Length - 1;
 						float averageDistance = axises.Take(distanceCount).Sum(a => a.DistanceToNextWithInaccuracy) / distanceCount;
 						float blockLimit = GetLimitForAxisesBlock(roadType, blockType, blockIsDouble, blockIsPnevmo,
 						                                          averageDistance);
 
 						if (blockWeight <= blockLimit && maxAxisWeight <= singleAxisLimit) {
-							axises.ForEach(a => a.LoadLimit = 0);
-							axises.ForEach(a => a.Damage = 0);
+							Array.ForEach(axises, a => a.LoadLimit = 0);
+							Array.ForEach(axises, a => a.Damage = 0);
 						} else {
-							float axisLimit = blockLimit / axises.Count;
-							axises.ForEach(a => a.LoadLimit = axisLimit);
-							axises.ForEach(a => a.Damage = GetAxisDamage(road, a));
+							float axisLimit = blockLimit / axises.Length;
+							Array.ForEach(axises, a => a.LoadLimit = axisLimit);
+							Array.ForEach(axises, a => a.Damage = GetAxisDamage(road, a));
 						}
 
 						blockInfo +=
@@ -113,13 +113,13 @@ namespace Vesna.Business {
 					}
 
 					case AxisBlockType.MoreThree:
-					case AxisBlockType.EightOrMore: {
-						for (int i = 0; i < axises.Count; i++) {
+					case AxisBlockType.MultiWheeled: {
+						for (int i = 0; i < axises.Length; i++) {
 							Axis axis = axises[i];
 							float dist;
 							if (i == 0) {
 								dist = axis.DistanceToNextWithInaccuracy;
-							} else if (i == axises.Count - 1) {
+							} else if (i == axises.Length - 1) {
 								dist = axises[i - 1].DistanceToNextWithInaccuracy;
 							} else {
 								dist = Math.Min(axis.DistanceToNextWithInaccuracy, axises[i - 1].DistanceToNextWithInaccuracy);
@@ -134,7 +134,7 @@ namespace Vesna.Business {
 						throw new NotImplementedException();
 				}
 
-				axises.ForEach(a => a.BlockInfo = blockInfo);
+				Array.ForEach(axises, a => a.BlockInfo = blockInfo);
 			}
 		}
 
