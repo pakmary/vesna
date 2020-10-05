@@ -15,12 +15,15 @@ namespace Vesna.UnitTests.Business {
 			var ci = new CultureInfo("Ru-ru");
 			Thread.CurrentThread.CurrentCulture = ci;
 			Thread.CurrentThread.CurrentUICulture = ci;
-			Program.UpdateBaseFile(@"D:\Projects\Vesna\Misc\database_inspector.mdb");
+			Program.UpdateBaseFile(@"D:\Projects\Vesna\Vesna\Files\database_inspector.mdb");
 		}
 
 		[TestCase("4 5 1,3",
 		          "10 8 9 10",
 		          "20521,79", AutoType.Automobile, RoadType.R10Tc, false, false, 0f, 0f, TestName = "01")]
+		[TestCase("4 5 1,3",
+		          "10 8 9 10",
+		          "42120", AutoType.Automobile, RoadType.R10Tc, true, false, 0f, 0f, TestName = "01-2")]
 		[TestCase("3,72 5,92 1,34 1,34 1,34",
 		          "6,25 9,45D 7,05 7,40 7,30",
 		          "122700", AutoType.Autotrain, RoadType.R5Tc, false, false, 0f, 0f, TestName = "02 ( R5Tc )")] //R5Tc
@@ -80,6 +83,10 @@ namespace Vesna.UnitTests.Business {
 		          "8 8 11 7",
 		          "14343",
 		          AutoType.Autotrain, RoadType.R10Tc, false, false, 0.00f, 0.0f, TestName = "16 (Группа осей больше 13)")]
+		[TestCase("3,2 1,3 2,5 1,3 1,3",
+		          "4,9 7,15 6,9 7,45 7,45 7,25",
+		          "4401",
+		          AutoType.Autotrain, RoadType.R10Tc, true, false, 0.04f, 0.04f, TestName = "17 (2,5 метра между 3 и 4 осью")]
 		public void PopulateAutoTest(string distancesString,
 		                             string loadsString,
 		                             string fullDamage,
