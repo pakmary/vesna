@@ -198,6 +198,7 @@
 	        this.tb_run.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
 	        this.tb_run.Multiline = true;
 	        this.tb_run.Name = "tb_run";
+	        this.tb_run.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
 	        this.tb_run.Size = new System.Drawing.Size(340, 46);
 	        this.tb_run.TabIndex = 13;
 	        // 

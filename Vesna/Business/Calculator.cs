@@ -214,6 +214,9 @@ namespace Vesna.Business {
 				                                          + $"AND TypeRoadId = {(int)road.RoadType} "
 				                                          + "ORDER BY ProcentLimit ASC)").Rows[0];
 				damage = float.Parse(damageAxisRow["Damage"].ToString());
+				if (Math.Abs(damage) < 0.1f) {
+					return 0;
+				}
 				if (damage > -1 && Settings.Default.Klimat_usloviya) {
 					damage *= Settings.Default.ConstKlimatAxisMult;
 				}
@@ -261,11 +264,14 @@ namespace Vesna.Business {
 
 			DataRow damageMassRow = Program.GetAccess("SELECT TOP 1 * FROM " +
 			                                          "(SELECT Damage, ProcentLimit FROM DamageMass " +
-			                                          $"WHERE {massOverPercent.ToString(NumberFormatInfo.InvariantInfo)} <= ProcentLimit " +
+			                                          $"WHERE {massOverPercent.ToString(NumberFormatInfo.InvariantInfo)} < ProcentLimit " +
 			                                          "ORDER BY ProcentLimit ASC) ")
 			                               .Rows[0];
 			float damage = float.Parse(damageMassRow["Damage"].ToString());
 
+			if (Math.Abs(damage) < 0.1f) {
+				return 0;
+			}
 			if (damage <= -1) {
 				damage = GetFullWeightAutoDamageByFormula(massOverPercent);
 			} else {

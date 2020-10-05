@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 using Vesna.Business.Utils;
 using Vesna.Properties;
@@ -64,7 +65,7 @@ namespace Vesna {
 		}
 
 		private void b_run_Click(object sender, EventArgs e) {
-			foreach (string line in tb_run.Lines) {
+			foreach (string line in tb_run.Lines.Select(l => l.Trim()).Where(l => !string.IsNullOrWhiteSpace(l))) {
 				int i = Program.MakeAccess(line);
 				if (i == -1) {
 					MessageBox.Show($"Ошибка: Результат: {i}");
