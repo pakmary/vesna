@@ -8,20 +8,13 @@ using Vesna.Properties;
 
 namespace Vesna.Business {
 	static class Calculator {
-		private static float YearIndex => Settings.Default.YearIndex;
-		private static float ConstDorojhnoKlimatZon => Settings.Default.ConstDorojhnoKlimatZon;
-		private static bool KlimatUsloviya => Settings.Default.Klimat_usloviya;
-		private static float ConstKlimatAxisMult => Settings.Default.ConstKlimatAxisMult;
-		private static float ConstKlimat => Settings.Default.Klimat_usloviya ? 1f : 0.35f;
-		private static float ConstMassInfluence(bool isFedaral) => isFedaral ? Settings.Default.ConstKpmFederalRoad : Settings.Default.ConstKpmRegionRoad;
-
 		public static void Populate(Auto auto) {
 			if (!auto.IsCanEdit) {
 				return;
 			}
 			auto.FullWeightData.Value = auto.AxisList.Sum(a => a.WeightValueWithInaccuracy);
 			auto.FullWeightData.Limit = GetFullAutoLimit(auto.AutoType, auto.AxisList.Count);
-			auto.FullWeightData.Damage = GetFullWeightAutoDamage(auto.Road, auto.FullWeightData.PercentageExceeded);
+			auto.FullWeightData.Damage = GetFullWeightAutoDamage(auto.FullWeightData.PercentageExceeded);
 
 			AxisBlock[] axisBlocks = SplitAxisOnBlocks(auto);
 
@@ -204,7 +197,6 @@ namespace Vesna.Business {
 		/// Размер вреда от превышения допустимых осевых нагрузок на ось
 		/// </summary>
 		private static float GetAxisDamage(AutoRoad road, Axis axis) {
-			////SELECT TOP 1 * FROM (SELECT * FROM MaxAxis WHERE  1.3 <= Distance AND TypeAxisId = 2 ) ORDER BY Distance ASC
 			float over = axis.GetOver();
 			float overPercent = axis.GetOverPercent();
 			if (over <= 0 || overPercent <= Settings.Default.DopustimiyProcentAxis) {
@@ -212,6 +204,8 @@ namespace Vesna.Business {
 			}
 
 			float damage = -1;
+			//Размер вреда, причиняемого тяжеловесными транспортными средствами,
+			//при движении таких транспортных средств по автомобильным дорогам федерального значения
 			if (road.IsFederalRoad && (road.RoadType == RoadType.R10Tc || road.RoadType == RoadType.R115Tc)) {
 				string percent = overPercent.ToString(NumberFormatInfo.InvariantInfo);
 				DataRow damageAxisRow = Program.GetAccess("SELECT TOP 1 * FROM "
@@ -220,8 +214,8 @@ namespace Vesna.Business {
 				                                          + $"AND TypeRoadId = {(int)road.RoadType} "
 				                                          + "ORDER BY ProcentLimit ASC)").Rows[0];
 				damage = float.Parse(damageAxisRow["Damage"].ToString());
-				if (damage > -1 && KlimatUsloviya) {
-					damage *= ConstKlimatAxisMult;
+				if (damage > -1 && Settings.Default.Klimat_usloviya) {
+					damage *= Settings.Default.ConstKlimatAxisMult;
 				}
 			}
 			if (damage <= -1) {
@@ -236,9 +230,9 @@ namespace Vesna.Business {
 		private static float GetAxisDamageByFormula(AutoRoad road, Axis axis) {
 			float damage;
 			RoadType t = road.RoadType;
-			float kd = ConstDorojhnoKlimatZon;
+			float kd = Settings.Default.ConstDorojhnoKlimatZon;
 			float kk = Settings.Default.ConstKapitalniyRemont;
-			float kc = ConstKlimat;
+			float kc = Settings.Default.Klimat_usloviya ? 1f : 0.35f;
 			float p = ConstDamageDefault(t);
 			float a = ConstA(t);
 			float b = ConstB(t);
@@ -260,7 +254,7 @@ namespace Vesna.Business {
 		/// <summary>
 		/// Размер вреда от превышения допустимой массы транспортного средства
 		/// </summary>
-		private static float GetFullWeightAutoDamage(AutoRoad road, float massOverPercent) {
+		private static float GetFullWeightAutoDamage(float massOverPercent) {
 			if (massOverPercent <= Settings.Default.DopustimiyProcentFullMass) {
 				return 0;
 			}
@@ -273,9 +267,9 @@ namespace Vesna.Business {
 			float damage = float.Parse(damageMassRow["Damage"].ToString());
 
 			if (damage <= -1) {
-				damage = GetFullWeightAutoDamageByFormula(road, massOverPercent);
+				damage = GetFullWeightAutoDamageByFormula(massOverPercent);
 			} else {
-				damage = damage * ConstMassInfluence(road.IsFederalRoad);
+				damage = damage * Settings.Default.ConstKpmFederalRoad; //К пм
 			}
 			return (float)(Math.Round(damage, 2));
 		}
@@ -283,19 +277,19 @@ namespace Vesna.Business {
 		/// <summary>
 		/// Размер вреда от превышения допустимой массы транспортного средства (ПО ФОРМУЛЕ)
 		/// </summary>
-		private static float GetFullWeightAutoDamageByFormula(AutoRoad road, float massOverProcent) {
+		private static float GetFullWeightAutoDamageByFormula(float massOverProcent) {
 			if (massOverProcent <= 0) {
 				return 0;
 			}
 			float kk = Settings.Default.ConstKapitalniyRemont; //К кап.рем
-			float kp = ConstMassInfluence(road.IsFederalRoad); //К пм
+			float kp = Settings.Default.ConstKpmFederalRoad; //К пм
 			float p = Settings.Default.ConstIshodnoeZnacheieDlyaMassi; //Р исх.пм
 			float c = Settings.Default.ConstUchotPrevisheniyaMassi; //Коэффицент учета превышения массы
 			return kk * kp * p * (1 + c * massOverProcent);
 		}
 
 		private static float GetAutoFullDamage(float massDamage, IEnumerable<float> axisDamages, float distanse) {
-			double fullDamage = (massDamage + axisDamages.Sum()) * (distanse / 100f) * YearIndex;
+			double fullDamage = (massDamage + axisDamages.Sum()) * (distanse / 100f) * Settings.Default.YearIndex;
 			return (float)Math.Round(fullDamage, 2);
 		}
 

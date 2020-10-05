@@ -96,18 +96,6 @@ namespace Vesna.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.285")]
-        public float ConstKpmRegionRoad {
-            get {
-                return ((float)(this["ConstKpmRegionRoad"]));
-            }
-            set {
-                this["ConstKpmRegionRoad"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("2.9")]
         public float ConstKlimatAxisMult {
             get {
