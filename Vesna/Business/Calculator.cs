@@ -210,7 +210,7 @@ namespace Vesna.Business {
 				string percent = overPercent.ToString(NumberFormatInfo.InvariantInfo);
 				DataRow damageAxisRow = Program.GetAccess("SELECT TOP 1 * FROM "
 				                                          + "(SELECT Damage, ProcentLimit FROM DamageAxis "
-				                                          + $"WHERE {percent} <= ProcentLimit "
+				                                          + $"WHERE {percent} < ProcentLimit "
 				                                          + $"AND TypeRoadId = {(int)road.RoadType} "
 				                                          + "ORDER BY ProcentLimit ASC)").Rows[0];
 				damage = float.Parse(damageAxisRow["Damage"].ToString());

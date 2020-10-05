@@ -31,3 +31,181 @@ UPDATE MaxAxis SET R6_Double = 6.5, R10_Double = 10, R115_Double = 11.5 WHERE Ty
 UPDATE MaxAxis SET R6_Double = 7, R10_Double = 11, R115_Double = 12.5 WHERE TypeAxisId = 5 and Distance = 1.3;
 UPDATE MaxAxis SET R6_Double = 8, R10_Double = 12.5, R115_Double = 14.5 WHERE TypeAxisId = 5 and Distance = 1.8;
 UPDATE MaxAxis SET R6_Double = 9, R10_Double = 14, R115_Double = 16.5 WHERE TypeAxisId = 5 and Distance = 9999;
+
+delete from DamageAxis;
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 3, 1350);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 4, 1369);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 5, 1396);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 6, 1430);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 7, 1470);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 8, 1517);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 9, 1571);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 10, 1631);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 11, 1698);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 12, 1772);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 13, 1851);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 14, 1938);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 15, 2030);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 16, 2129);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 17, 2234);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 18, 2345);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 19, 2462);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 20, 2586);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 21, 2715);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 22, 2851);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 23, 2993);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 24, 3141);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 25, 3295);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 26, 3455);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 27, 3621);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 28, 3792);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 29, 3970);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 30, 4154);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 31, 4344);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 32, 4540);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 33, 4741);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 34, 4948);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 35, 5162);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 36, 5381);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 37, 5606);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 38, 5837);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 39, 6073);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 40, 6316);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 41, 6564);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 42, 6818);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 43, 7077);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 44, 7343);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 45, 7614);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 46, 7891);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 47, 8174);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 48, 8462);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 49, 8756);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 50, 9056);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 51, 9361);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 52, 9673);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 53, 9989);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 54, 10312);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 55, 10640);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 56, 10974);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 57, 11313);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 58, 11658);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 59, 12009);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (1, 60, 12365);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 3, 614);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 4, 620);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 5, 629);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 6, 639);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 7, 652);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 8, 668);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 9, 685);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 10, 704);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 11, 726);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 12, 749);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 13, 775);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 14, 802);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 15, 832);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 16, 863);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 17, 897);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 18, 933);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 19, 970);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 20, 1010);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 21, 1051);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 22, 1095);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 23, 1140);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 24, 1187);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 25, 1237);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 26, 1288);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 27, 1341);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 28, 1396);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 29, 1453);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 30, 1512);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 31, 1573);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 32, 1635);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 33, 1700);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 34, 1766);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 35, 1835);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 36, 1905);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 37, 1977);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 38, 2051);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 39, 2126);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 40, 2204);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 41, 2284);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 42, 2365);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 43, 2448);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 44, 2533);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 45, 2620);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 46, 2709);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 47, 2799);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 48, 2891);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 49, 2986);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 50, 3082);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 51, 3179);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 52, 3279);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 53, 3380);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 54, 3484);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 55, 3589);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 56, 3696);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 57, 3804);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 58, 3915);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 59, 4027);
+INSERT INTO DamageAxis (TypeRoadId, ProcentLimit, Damage) VALUES (2, 60, 4141);
+
+INSERT INTO 
+до 3 7611 6825 9170 3563 3339 3098 5220 4347
+от 3 (включительно) до 4 7735 6935 9319 3620 3394 3148 5304 4418
+от 4 (включительно) до 5 7858 7046 9467 3678 3448 3198 5389 4488
+от 5 (включительно) до 6 7981 7156 9616 3736 3502 3248 5473 4559
+от 6 (включительно) до 7 8105 7267 9765 3794 3556 3299 5558 4629
+от 7 (включительно) до 8 8228 7378 9913 3851 3610 3349 5643 4700
+от 8 (включительно) до 9 8351 7488 10062 3909 3664 3399 5727 4770
+от 9 (включительно) до 10 8475 7599 10211 3967 3718 3449 5812 4841
+от 10 (включительно) до 11 8598 7710 10359 4025 3772 3499 5896 4911
+от 11 (включительно) до 12 8722 7820 10508 4082 3827 3550 5981 4982
+от 12 (включительно) до 13 8845 7931 10656 4140 3881 3600 6066 5052
+от 13 (включительно) до 14 8968 8041 10805 4198 3935 3650 6150 5122
+от 14 (включительно) до 15 9092 8152 10954 4256 3989 3700 6235 5193
+от 15 (включительно) до 16 9215 8263 11102 4313 4043 3750 6319 5263
+от 16 (включительно) до 17 9338 8373 11251 4371 4097 3801 6404 5334
+от 17 (включительно) до 18 9462 8484 11400 4429 4151 3851 6489 5404
+от 18 (включительно) до 19 9585 8594 11548 4487 4205 3901 6573 5475
+от 19 (включительно) до 20 9708 8705 11697 4544 4260 3951 6658 5545
+от 20 (включительно) до 21 9832 8816 11845 4602 4314 4002 6742 5616
+от 21 (включительно) до 22 9955 8926 11994 4660 4368 4052 6827 5686
+от 22 (включительно) до 23 10079 9037 12143 4718 4422 4102 6912 5757
+от 23 (включительно) до 24 10202 9148 12291 4775 4476 4152 6996 5827
+от 24 (включительно) до 25 10325 9258 12440 4833 4530 4202 7081 5898
+от 25 (включительно) до 26 10449 9369 12589 4891 4584 4253 7165 5968
+от 26 (включительно) до 27 10572 9479 12737 4949 4638 4303 7250 6038
+от 27 (включительно) до 28 10695 9590 12886 5006 4693 4353 7335 6109
+от 28 (включительно) до 29 10819 9701 13034 5064 4747 4403 7419 6179
+от 29 (включительно) до 30 10942 9811 13183 5122 4801 4453 7504 6250
+от 30 (включительно) до 31 11065 9922 13332 5180 4855 4504 7589 6320
+от 31 (включительно) до 32 11189 10032 13480 5237 4909 4554 7673 6391
+от 32 (включительно) до 33 11312 10143 13629 5295 4963 4604 7758 6461
+от 33 (включительно) до 34 11436 10254 13778 5353 5017 4654 7842 6532
+от 34 (включительно) до 35 11559 10364 13926 5411 5072 4705 7927 6602
+от 35 (включительно) до 36 11682 10475 14075 5468 5126 4755 8012 6673
+от 36 (включительно) до 37 11806 10586 14223 5526 5180 4805 8096 6743
+от 37 (включительно) до 38 11929 10696 14372 5584 5234 4855 8181 6814
+от 38 (включительно) до 39 12052 10807 14521 5642 5288 4905 8265 6884
+от 39 (включительно) до 40 12176 10917 14669 5699 5342 4956 8350 6955
+от 40 (включительно) до 41 12299 11028 14818 5757 5396 5006 8435 7025
+от 41 (включительно) до 42 12422 11139 14967 5815 5450 5056 8519 7095
+от 42 (включительно) до 43 12546 11249 15115 5873 5505 5106 8604 7166
+от 43 (включительно) до 44 12669 11360 15264 5930 5559 5156 8688 7236
+от 44 (включительно) до 45 12793 11470 15413 5988 5613 5207 8773 7307
+от 45 (включительно) до 46 12916 11581 15561 6046 5667 5257 8858 7377
+от 46 (включительно) до 47 13039 11692 15710 6104 5721 5307 8942 7448
+от 47 (включительно) до 48 13163 11802 15858 6161 5775 5357 9027 7518
+от 48 (включительно) до 49 13286 11913 16007 6219 5829 5407 9111 7589
+от 49 (включительно) до 50 13409 12024 16156 6277 5883 5458 9196 7659
+от 50 (включительно) до 51 13533 12134 16304 6335 5938 5508 9281 7730
+от 51 (включительно) до 52 13656 12245 16453 6392 5992 5558 9365 7800
+от 52 (включительно) до 53 13779 12355 16602 6450 6046 5608 9450 7871
+от 53 (включительно) до 54 13903 12466 16750 6508 6100 5659 9534 7941
+от 54 (включительно) до 55 14026 12577 16899 6566 6154 5709 9619 8012
+от 55 (включительно) до 56 14150 12687 17047 6623 6208 5759 9704 8082
+от 56 (включительно) до 57 14273 12798 17196 6681 6262 5809 9788 8152
+от 57 (включительно) до 58 14396 12908 17345 6739 6316 5859 9873 8223
+от 58 (включительно) до 59 14520 13019 17493 6797 6371 5910 9957 8293
+от 59 (включительно) до 60 14643 13130 17642 6854 6425 5960 10042 8364

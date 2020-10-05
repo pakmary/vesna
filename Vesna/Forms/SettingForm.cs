@@ -64,8 +64,14 @@ namespace Vesna {
 		}
 
 		private void b_run_Click(object sender, EventArgs e) {
-			int i = Program.MakeAccess(tb_run.Text);
-			MessageBox.Show($"Результат: {i}");
+			foreach (string line in tb_run.Lines) {
+				int i = Program.MakeAccess(line);
+				if (i == -1) {
+					MessageBox.Show($"Ошибка: Результат: {i}");
+					return;
+				}
+			}
+			MessageBox.Show("Успешно");
 		}
 	}
 }
