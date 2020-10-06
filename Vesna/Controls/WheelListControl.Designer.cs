@@ -1,4 +1,6 @@
-﻿namespace Vesna.Controls {
+﻿using System.Windows.Forms;
+
+namespace Vesna.Controls {
 	partial class WheelListControl {
 		/// <summary> 
 		/// Требуется переменная конструктора.
@@ -393,6 +395,7 @@
 			this.videoPictuce1.Location = new System.Drawing.Point(8, 9);
 			this.videoPictuce1.Name = "videoPictuce1";
 			this.videoPictuce1.Size = new System.Drawing.Size(163, 216);
+			this.videoPictuce1.Padding = new Padding(0, 0, 45, 20);
 			this.videoPictuce1.TabIndex = 13;
 			// 
 			// os10
@@ -532,7 +535,7 @@
 			// 
 			// WheelListControl
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.Snow;
 			this.Controls.Add(this.videoPictuce1);

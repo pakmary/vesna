@@ -42,8 +42,9 @@
 	        this.pictureBox1.BackColor = System.Drawing.Color.Snow;
 	        this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 	        this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+	        this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
 	        this.pictureBox1.Name = "pictureBox1";
-	        this.pictureBox1.Size = new System.Drawing.Size(163, 153);
+	        this.pictureBox1.Size = new System.Drawing.Size(133, 109);
 	        this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 	        this.pictureBox1.TabIndex = 0;
 	        this.pictureBox1.TabStop = false;
@@ -55,9 +56,10 @@
 		        ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
 	        this.b_action.BackColor = System.Drawing.Color.Snow;
 	        this.b_action.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-	        this.b_action.Location = new System.Drawing.Point(0, 187);
+	        this.b_action.Location = new System.Drawing.Point(0, 134);
+	        this.b_action.Margin = new System.Windows.Forms.Padding(2);
 	        this.b_action.Name = "b_action";
-	        this.b_action.Size = new System.Drawing.Size(163, 31);
+	        this.b_action.Size = new System.Drawing.Size(132, 22);
 	        this.b_action.TabIndex = 1;
 	        this.b_action.Text = "Обзор";
 	        this.b_action.UseVisualStyleBackColor = false;
@@ -70,9 +72,10 @@
 	        this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 	        this.comboBox1.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 	        this.comboBox1.FormattingEnabled = true;
-	        this.comboBox1.Location = new System.Drawing.Point(0, 155);
+	        this.comboBox1.Location = new System.Drawing.Point(0, 111);
+	        this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
 	        this.comboBox1.Name = "comboBox1";
-	        this.comboBox1.Size = new System.Drawing.Size(163, 28);
+	        this.comboBox1.Size = new System.Drawing.Size(133, 28);
 	        this.comboBox1.TabIndex = 2;
 	        this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
 	        // 
@@ -82,14 +85,15 @@
 	        // 
 	        // VideoPictuceControl
 	        // 
-	        this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+	        this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 10F);
 	        this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 	        this.BackColor = System.Drawing.Color.White;
 	        this.Controls.Add(this.comboBox1);
 	        this.Controls.Add(this.b_action);
 	        this.Controls.Add(this.pictureBox1);
+	        this.Margin = new System.Windows.Forms.Padding(2);
 	        this.Name = "VideoPictuceControl";
-	        this.Size = new System.Drawing.Size(163, 234);
+	        this.Size = new System.Drawing.Size(100, 167);
 	        this.Load += new System.EventHandler(this.VideoPictuce_Load);
 	        ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 	        this.ResumeLayout(false);
