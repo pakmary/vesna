@@ -20,7 +20,7 @@ ALTER TABLE MainTable ADD COLUMN udostov_vodit TEXT(255);
 ///2019 �2
 
 UPDATE MaxMass SET Axis5 = 38 WHERE AutoTypeId = 1;
-UPDATE MaxAxis SET R6_Double = 13 WHERE TypeAxisId = 3 AND Distance = 1,3;
+UPDATE MaxAxis SET R6_Double = 13 WHERE TypeAxisId = 3 AND Distance = 1.3;
 
 
 //10.2020

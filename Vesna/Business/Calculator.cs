@@ -8,6 +8,10 @@ using Vesna.Properties;
 
 namespace Vesna.Business {
 	static class Calculator {
+		// Для верного обределения блоков, расстояние уменьшенно.
+		// Лучше использовать среднее расстояние и не обьединять оси с сильно разными расстояниями.
+		private const float AxisBlockLimit = 2.25f; //2.5f;
+		
 		public static void Populate(Auto auto) {
 			if (!auto.IsCanEdit) {
 				return;
@@ -27,7 +31,7 @@ namespace Vesna.Business {
 			for (int i = 0; i < auto.AxisList.Count; i++) {
 				int axisesInBlock = 1;
 				int j = 0;
-				while (i + j < auto.AxisList.Count - 1 && auto.AxisList[i + j].DistanceToNextWithInaccuracy <= 2.5f) {
+				while (i + j < auto.AxisList.Count - 1 && auto.AxisList[i + j].DistanceToNextWithInaccuracy <= AxisBlockLimit) {
 					axisesInBlock++;
 					j++;
 				}
@@ -217,8 +221,16 @@ namespace Vesna.Business {
 				if (Math.Abs(damage) < 0.1f) {
 					return 0;
 				}
-				if (damage > -1 && Settings.Default.Klimat_usloviya) {
-					damage *= Settings.Default.ConstKlimatAxisMult;
+				if (damage > -1) {
+					if (Settings.Default.Klimat_usloviya) {
+						damage *= Settings.Default.ConstKlimatAxisMult;
+					}
+					// есть в ayt.su, но не нашел в законе
+					// if (overPercent < 10) {
+					// 	damage *= .2f;
+					// } else {
+					// 	damage *= .6f;
+					// }
 				}
 			}
 			if (damage <= -1) {
@@ -274,8 +286,18 @@ namespace Vesna.Business {
 			}
 			if (damage <= -1) {
 				damage = GetFullWeightAutoDamageByFormula(massOverPercent);
-			} else {
-				damage = damage * Settings.Default.ConstKpmFederalRoad; //К пм
+			}
+			if (massOverPercent <= 15) {
+				DateTime today = DateTime.Now;
+				if (today.Year <= 2020) {
+					damage *= 0.2f;
+				} else if (today.Year == 2021) {
+					damage *= 0.4f;
+				} else if (today.Year == 2022) {
+					damage *= 0.6f;
+				} else if (today.Year == 2023) {
+					damage *= 0.8f;
+				}
 			}
 			return (float)(Math.Round(damage, 2));
 		}

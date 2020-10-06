@@ -18,7 +18,7 @@ namespace Vesna.UnitTests.Business {
 			Program.UpdateBaseFile(@"D:\Projects\Vesna\Vesna\Files\database_inspector.mdb");
 		}
 
-		[TestCase("4 5 1,3",
+		/*[TestCase("4 5 1,3",
 		          "10 8 9 10",
 		          "20521,79", AutoType.Automobile, RoadType.R10Tc, false, false, 0f, 0f, TestName = "01")]
 		[TestCase("4 5 1,3",
@@ -86,7 +86,11 @@ namespace Vesna.UnitTests.Business {
 		[TestCase("3,2 1,3 2,5 1,3 1,3",
 		          "4,9 7,15 6,9 7,45 7,45 7,25",
 		          "4401",
-		          AutoType.Autotrain, RoadType.R10Tc, true, false, 0.04f, 0.04f, TestName = "17 (2,5 метра между 3 и 4 осью")]
+		          AutoType.Autotrain, RoadType.R10Tc, true, false, 0.04f, 0.04f, TestName = "17 (2,5 метра между 3 и 4 осью")]*/
+		[TestCase("3,2 2,5 1,8",
+		          "13 9,85 7 7",
+		          "0",
+		          AutoType.Autotrain, RoadType.R10Tc, true, true, 0.00f, 0.00f, TestName = "проверка по AytoSchema 1")]
 		public void PopulateAutoTest(string distancesString,
 		                             string loadsString,
 		                             string fullDamage,
@@ -97,7 +101,7 @@ namespace Vesna.UnitTests.Business {
 		                             float inaccuracyScales,
 		                             float inaccuracyRoulette) {
 			Settings.Default.Klimat_usloviya = isKlimat;
-			Settings.Default.YearIndex = 1.5388f;
+			Settings.Default.YearIndex = 1.9749f;
 			Settings.Default.DopustimiyProcentAxis = 5;
 			Settings.Default.DopustimiyProcentAxis = 5;
 			var auto = new Auto {
@@ -133,7 +137,8 @@ namespace Vesna.UnitTests.Business {
 			Calculator.Populate(auto);
 
 			float damage = float.Parse(fullDamage);
-			Assert.AreEqual(Math.Round(auto.FullAutoDamage), Math.Round(damage));
+			Assert.AreEqual(Math.Round(auto.FullAutoDamage), Math.Round(damage), $"Масса:{Environment.NewLine}{auto.FullWeightData}{Environment.NewLine}" +
+			                                                                     $"Нагрузки:{Environment.NewLine}{string.Join(Environment.NewLine, auto.AxisList.Select(a => a.ToString()))}");
 		}
 	}
 }
