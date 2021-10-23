@@ -1,6 +1,0 @@
-INSERT INTO MainTable ( id ) VALUES (1);
-alter table MainTable alter column Id counter(1500,1)
-delete from MainTable;
-
-ALTER TABLE TypesRoad ALTER COLUMN id number
-INSERT INTO TypesRoad VALUES (4, '50 кЌ/5 тс', 10, 1840, 37.7, 2.4, 7365, 123.4);
